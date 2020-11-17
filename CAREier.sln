@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CAREier", "CAREier\CAREier.csproj", "{AD5059EA-28BA-4FA6-A7D7-D254F7DB6898}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD5059EA-28BA-4FA6-A7D7-D254F7DB6898}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD5059EA-28BA-4FA6-A7D7-D254F7DB6898}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD5059EA-28BA-4FA6-A7D7-D254F7DB6898}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD5059EA-28BA-4FA6-A7D7-D254F7DB6898}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0E691E24-0A51-436C-AA9B-AF98BA3B4945}
+	EndGlobalSection
+EndGlobal
