@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace CAREier.Interfaces {
-    interface IReader<Item> {
+    public interface IReader<Item> {
 
         public Item ReadState(string fileLocation);
     }

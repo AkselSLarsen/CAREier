@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace CAREier.Interfaces {
-    interface IWriter<Item> {
+    public interface IWriter<Item> {
 
         public void WriteState(Item state, string fileLocation);
     }
