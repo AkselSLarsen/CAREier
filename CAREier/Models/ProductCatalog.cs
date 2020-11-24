@@ -30,6 +30,7 @@ namespace CAREier.Models
         public IProduct Read()
         {
             return Products;
+
         }
 
         public IProduct Update(IProduct pre, IProduct post)
