@@ -24,21 +24,44 @@ namespace CAREier.Models
         }
         public void Create(IProduct item)
         {
-            Products.Add(item);
+            if (item != null)
+            {
+                Products.Add(item);
+            }
         }
 
-        public IProduct Read()
+        public IProduct Read(int index)
         {
-            return Products;
-
+            return Products[index];
         }
 
         public IProduct Update(IProduct pre, IProduct post)
         {
-            throw new NotImplementedException();
+            if (pre != null || post != null)
+            {
+                if (Products.Contains(pre))
+                {
+                    pre = post;
+                    return post;
+                }
+            }
+
+            return null;
+        }
+
+        public IProduct Update(int index, IProduct item)
+        {
+            Products.RemoveAt(index);
+            Products.Insert(index, item);
+            return Products[index];
         }
 
         public void Delete(IProduct item)
+        {
+            Products.
+        }
+
+        public void Delete(int index)
         {
             throw new NotImplementedException();
         }
