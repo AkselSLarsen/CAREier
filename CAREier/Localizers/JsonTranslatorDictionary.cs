@@ -7,26 +7,26 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace CAREier.Localizers {
-    public class JsonLocalizerDictionary : ILocalizer, IReader<Dictionary<string, string>>, IWriter<Dictionary<string, string>> {
+    public class JsonTranslatorDictionary : ITranslator, IReader<Dictionary<string, string>>, IWriter<Dictionary<string, string>> {
         private Dictionary<string, string> _translations;
         private string fileLocation;
 
-        public JsonLocalizerDictionary(string fileLocation) {
+        public JsonTranslatorDictionary(string fileLocation) {
             _translations = new Dictionary<string, string>();
             this.fileLocation = fileLocation;
 
             ReadState(fileLocation);
         }
 
-        public string GetLocalizedString(string s) {
+        public string GetTranslatedString(string s) {
             if(_translations.ContainsKey(s)) {
                 return _translations[s];
             }
-            setLocalizedString(s, s);
+            SetTranslatedString(s, s);
             return s;
         }
 
-        public void setLocalizedString(string unlocalizedString, string localizedString) {
+        public void SetTranslatedString(string unlocalizedString, string localizedString) {
             _translations.Add(unlocalizedString, localizedString);
             WriteState(_translations, fileLocation);
         }
