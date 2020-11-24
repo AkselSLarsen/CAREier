@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace CAREier.Interfaces {
-    interface IHandler<Item> {
+    public interface IHandler<Item> {
         public void Create(Item item);
 
         public Item Read();

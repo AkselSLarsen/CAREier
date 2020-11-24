@@ -6,7 +6,7 @@ using System.Numerics;
 using System.Threading.Tasks;
 
 namespace CAREier.Interfaces {
-    interface IProduct {
+    public interface IProduct {
 
         public string Name { get; }
         public LocalizedPrice Price { get; set; }
