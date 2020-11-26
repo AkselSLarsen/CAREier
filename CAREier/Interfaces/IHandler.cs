@@ -8,7 +8,7 @@ namespace CAREier.Interfaces {
         /// <summary>
         /// Adds the given item into the internal list.
         /// </summary>
-        /// <param name="item">The item to add</param>
+        /// <param name="item">The item to be added</param>
         public void Create(Item item);
 
         /// <summary>

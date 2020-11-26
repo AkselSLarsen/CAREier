@@ -13,7 +13,7 @@ namespace CAREier.Pages {
         }
 
         public void OnGet(int id) {
-            
+            product = products[id];
         }
     }
 }
