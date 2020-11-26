@@ -1,0 +1,38 @@
+﻿@page
+@model CAREier.Pages.CatalogModel
+@{
+}
+
+
+<h1>List of Products</h1>
+
+<p>
+    <a asp-page="CreateProduct">Create New Product</a>
+</p>
+
+
+<p>number of products in the catalog: @Model.Products.Count</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>price</th>
+        <th>weight</th>
+        <th>dimensions</th>
+        <th>tags</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Products)
+    {
+        <tr>
+            <td> @item.Name</td>
+            <td> @item.Price</td>
+            <td> @item.Weight</td>
+            <td> @item.Dimensions</td>
+            <td> @item.Tags</td>
+        </tr>
+
+    }
+    </tbody>
+</table>
