@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
@@ -31,9 +32,9 @@ namespace CAREier.Models
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "the product must have at least 1 tag")]
         public List<string> Tags { get; set; }
+        
 
-        public Product(string name, double price, double weight, Vector3 dimensions,
-            List<string> tags)
+        public Product(string name, double price, double weight, Vector3 dimensions,List<string> tags)
         {
             _name = name;
             _price.PriceDKK = price;
