@@ -1,4 +1,5 @@
 ﻿using CAREier.Localizers;
+using System.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace CAREier.Interfaces {
         public LocalizedPrice Price { get; set; }
         public LocalizedWeight Weight { get; }
         public LocalizedDimensions Dimensions { get; }
+        public Path Picture { get; set; }
         public List<string> Tags { get; set; }
 
     }
