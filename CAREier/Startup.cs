@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CAREier.Interfaces;
 using CAREier.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,7 +22,7 @@ namespace CAREier {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
             services.AddRazorPages();
-            services.AddSingleton<ProductCatalog>();
+            //services.AddSingleton<IHandler<IProduct>, ProductCatalog>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
