@@ -12,10 +12,10 @@ namespace CAREier.Models
     {
         private List<IProduct> _products;
 
-        public ProductCatalog(List<IProduct> products)
+        public ProductCatalog()
         {
             _products = new List<IProduct>();
-            products.Add(new Product("milk", 20, 1, new Vector3(1, 1, 1), new List<string>() ));
+            _products.Add(new Product("milk", 20, 1, new Vector3(1, 1, 1), new List<string>() ));
         }
 
         public List<IProduct> Products
