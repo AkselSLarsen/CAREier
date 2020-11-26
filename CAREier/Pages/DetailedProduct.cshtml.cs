@@ -6,7 +6,7 @@ namespace CAREier.Pages {
 
         
 
-        DetailedProductModel(IHandler<IProduct> handler) {
+        DetailedProductModel() {
             
         }
 
