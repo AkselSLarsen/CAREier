@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
@@ -16,10 +17,19 @@ namespace CAREier.Models
         private LocalizedDimensions _dimensions;
         private List<string> _tags;
 
+        [Required(AllowEmptyStrings = false, ErrorMessage = "the product must have a name")]
         public string Name { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "the product must have a price")]
         public LocalizedPrice Price { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "the product must have a weight")]
         public LocalizedWeight Weight { get; set;  }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "the product must have dimensions")]
         public LocalizedDimensions Dimensions { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "the product must have at least 1 tag")]
         public List<string> Tags { get; set; }
 
         public Product(string name, double price, double weight, Vector3 dimensions,

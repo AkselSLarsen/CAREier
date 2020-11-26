@@ -1,8 +1,5 @@
 ﻿using CAREier.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CAREier.Helpers {
     public static class ProductSorter {
@@ -20,6 +17,37 @@ namespace CAREier.Helpers {
                 }
             }
             return re;
+        }
+
+        /// <summary>
+        /// A sorting method for products, taking in a list of products and a list of tags and then returning all products in the list with all the given tags.
+        /// </summary>
+        /// <param name="products">>The products to be looked through</param>
+        /// <param name="tags">The tags the products must have</param>
+        /// <returns>A list of products from the "products" parameter with all the given tags from the "tags" parameter</returns>
+        public static List<IProduct> GetProductsWithTags(List<IProduct> products, string[] tags) {
+            List<IProduct> re = new List<IProduct>();
+            foreach (IProduct product in products) {
+                bool hasAll = true;
+                foreach (string tag in tags) {
+                    if(!product.Tags.Contains(tag)) {
+                        hasAll = false;
+                    }
+                }
+                if(hasAll) {
+                    re.Add(product);
+                }
+            }
+            return re;
+        }
+        /// <summary>
+        /// A sorting method for products, taking in a list of products and a list of tags and then returning all products in the list with all the given tags.
+        /// </summary>
+        /// <param name="products">>The products to be looked through</param>
+        /// <param name="tags">The tags the products must have</param>
+        /// <returns>A list of products from the "products" parameter with all the given tags from the "tags" parameter</returns>
+        public static List<IProduct> GetProductsWithTags(List<IProduct> products, List<string> tags) {
+            return GetProductsWithTags(products, tags.ToArray());
         }
     }
 }

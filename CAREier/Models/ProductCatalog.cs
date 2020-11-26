@@ -14,32 +14,32 @@ namespace CAREier.Models
 
         public ProductCatalog()
         {
-            _products = new List<IProduct>();
-            _products.Add(new Product("milk", 20, 1, new Vector3(1, 1, 1), new List<string>() ));
+            products = new List<IProduct>();
         }
 
-        public List<IProduct> Products
+
+        public List<IProduct> GetAllProducts()
         {
-            get { return _products;}
+            return products.ToList();
         }
         public void Create(IProduct item)
         {
             if (item != null)
             {
-                Products.Add(item);
+                products.Add(item);
             }
         }
 
         public IProduct Read(int index)
         {
-            return Products[index];
+            return products[index];
         }
 
         public IProduct Update(IProduct pre, IProduct post)
         {
             if (pre != null || post != null)
             {
-                if (Products.Contains(pre))
+                if (products.Contains(pre))
                 {
                     pre = post;
                     return post;
@@ -51,19 +51,19 @@ namespace CAREier.Models
 
         public IProduct Update(int index, IProduct item)
         {
-            Products.RemoveAt(index);
-            Products.Insert(index, item);
-            return Products[index];
+            products.RemoveAt(index);
+            products.Insert(index, item);
+            return products[index];
         }
 
         public void Delete(IProduct item)
         {
-            Products.Remove(item);
+            products.Remove(item);
         }
 
         public void Delete(int index)
         {
-            Products.RemoveAt(index);
+            products.RemoveAt(index);
         }
     }
 }
