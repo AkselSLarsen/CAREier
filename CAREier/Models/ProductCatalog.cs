@@ -58,12 +58,12 @@ namespace CAREier.Models
 
         public void Delete(IProduct item)
         {
-            Products.
+            Products.Remove(item);
         }
 
         public void Delete(int index)
         {
-            throw new NotImplementedException();
+            Products.RemoveAt(index);
         }
     }
 }
