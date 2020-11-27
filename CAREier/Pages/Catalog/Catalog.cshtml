@@ -28,10 +28,9 @@
     {
         <tr>
             <td> @item.Name</td>
-            <td> @item.Price</td>
-            <td> @item.Weight</td>
-            <td> @item.Dimensions</td>
-            <td> @item.Tags</td>
+            <td> @item.Price.PriceDKK</td>
+            <td> @item.Weight.WeightKilo</td>
+            <td> @Model.FormalizeTags(item.Tags)</td>
         </tr>
 
     }

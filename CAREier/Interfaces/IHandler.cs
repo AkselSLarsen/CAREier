@@ -16,6 +16,7 @@ namespace CAREier.Interfaces {
         /// </summary>
         /// <returns>Returns the number of items in the internal list</returns>
         public int Count();
+
         /// <summary>
         /// Gets the item in at the given index of the internal list.
         /// </summary>

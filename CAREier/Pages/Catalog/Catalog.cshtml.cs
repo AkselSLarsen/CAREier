@@ -23,10 +23,24 @@ namespace CAREier.Pages
         {
             Products = _products.ReadAll();
         }
+        /*
+        public string Tags(int index) {
+            if(index >= Products.Count) { return ""; }
+            if(Products[index].Tags.Count == 0) { return ""; }
 
-        public void OnPost()
-        {
-            Products = _products.ReadAll();
+            string re = "";
+            foreach(string tag in Products[index].Tags) {
+                re += tag + " ";
+            }
+            return re;
+        }
+        */
+        public string FormalizeTags(List<string> tags) {
+            string re = "";
+            foreach (string tag in tags) {
+                re += tag + " ";
+            }
+            return re;
         }
     }
 }

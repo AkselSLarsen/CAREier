@@ -15,7 +15,7 @@ namespace CAREier.Models
         public ProductCatalog()
         { 
             products = new List<IProduct>();
-            products.Add(new Product("milk", 1, 2, new List<string>()));
+            products.Add(new Product("milk", 1, 2, new List<string>() {"test", "???", "money" } ));
 
         }
 
