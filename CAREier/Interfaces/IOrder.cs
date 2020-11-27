@@ -10,7 +10,7 @@ namespace CAREier.Interfaces
     {
         public string Name { get; set; }
 
-        public IStore MyStore { get; set; }
+        public IStore Store { get; set; }
         public List<IProduct> Products { get; set; }
         public LocalizedPrice TotalPrice { get; set; }
 
