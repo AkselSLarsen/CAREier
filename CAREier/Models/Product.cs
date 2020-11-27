@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
 using CAREier.Interfaces;
 using CAREier.Localizers;
+using System.IO;
 
 namespace CAREier.Models
 {
@@ -28,6 +30,8 @@ namespace CAREier.Models
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "the product must have dimensions")]
         public LocalizedDimensions Dimensions { get; set; }
+
+        public string Picture { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "the product must have at least 1 tag")]
         public List<string> Tags { get; set; }
