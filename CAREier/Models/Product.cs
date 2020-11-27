@@ -7,7 +7,6 @@ using System.Numerics;
 using System.Threading.Tasks;
 using CAREier.Interfaces;
 using CAREier.Localizers;
-using System.IO;
 
 namespace CAREier.Models
 {

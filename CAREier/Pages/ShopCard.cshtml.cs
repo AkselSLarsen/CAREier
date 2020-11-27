@@ -9,16 +9,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CAREier.Pages
 {
-    internal class ShopCardModel : PageModel
+    public class ShopCardModel : PageModel
     {
         public ShoppingCartService ChartService { get; }
         public List<IOrder> Orders { get; set; }
     
-        public ShoppingCartModel()
+        public ShopCardModel()
         {
             //repo = repository;
             //ChartService = chart;
             //OrderedBooks = new List<Book>();
+             
         }
         public IActionResult OnGet(string isbn)
         {
