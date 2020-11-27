@@ -14,6 +14,11 @@ namespace CAREier.Pages
         private IHandler<IProduct> _products;
 
         public List<IProduct> Products;
+
+        public CatalogModel(IHandler<IProduct> products)
+        {
+            _products = products;
+        }
         public void OnGet()
         {
             Products = _products.ReadAll();

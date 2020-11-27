@@ -39,8 +39,11 @@ namespace CAREier.Models
             List<string> tags)
         {
             _name = name;
+            _price = new LocalizedPrice();
             _price.PriceDKK = price;
+            _weight = new LocalizedWeight();
             _weight.WeightKilo = weight;
+            _dimensions = new LocalizedDimensions();
             _dimensions.DimensionsInCM = dimensions;
             _tags = tags;
         }
