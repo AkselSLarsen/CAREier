@@ -20,10 +20,7 @@ namespace CAREier.Models
             _filelocation = @"Data\Products.json";
             _interface = new JsonInterface<List<IProduct>>();
 
-            _products = new List<IProduct>();
-            _products.Add(new Product("milk", 1, 2, new List<string>() {"test", "???", "money" } ));
-
-            WriteState();
+            _products = ReadState();
         }
 
         public void Create(IProduct item)
