@@ -12,7 +12,6 @@ namespace CAREier.Interfaces {
         public string Name { get; }
         public LocalizedPrice Price { get; set; }
         public LocalizedWeight Weight { get; }
-        public LocalizedDimensions Dimensions { get; }
         public List<string> Tags { get; set; }
         public string Picture { get; set; }
     }

@@ -76,6 +76,7 @@ body {
     #######################################################################################################
 */
 
+/* Doesn't actually work, done in html right now, to my despair. */
 .quarter-circle-img {
     width: 25vw;
     height: auto;
