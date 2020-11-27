@@ -1,4 +1,5 @@
-﻿using CAREier.Interfaces;
+﻿using CAREier.Helpers;
+using CAREier.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,14 @@ using System.Threading.Tasks;
 namespace CAREier.Localizers {
     public class JsonTranslatorDictionary : ITranslator, IReader<Dictionary<string, string>>, IWriter<Dictionary<string, string>> {
         private Dictionary<string, string> _translations;
-        private string fileLocation;
+        private string _fileLocation;
+        private JsonInterface<Dictionary<string, string>> _interface;
 
         public JsonTranslatorDictionary(string fileLocation) {
             _translations = new Dictionary<string, string>();
-            this.fileLocation = fileLocation;
+            this._fileLocation = fileLocation;
+
+            _interface = new JsonInterface<Dictionary<string, string>>();
 
             ReadState(fileLocation);
         }
@@ -28,18 +32,15 @@ namespace CAREier.Localizers {
 
         public void SetTranslatedString(string unlocalizedString, string localizedString) {
             _translations.Add(unlocalizedString, localizedString);
-            WriteState(_translations, fileLocation);
+            WriteState(_translations, _fileLocation);
         }
 
         public Dictionary<string, string> ReadState(string fileLocation) {
-            string jsonString = File.ReadAllText(fileLocation);
-            return JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonString);
+            return _interface.ReadState(fileLocation);
         }
 
         public void WriteState(Dictionary<string, string> state, string fileLocation) {
-            string output = Newtonsoft.Json.JsonConvert.SerializeObject(state, Newtonsoft.Json.Formatting.Indented);
-
-            File.WriteAllText(fileLocation, output);
+            _interface.WriteState(state, fileLocation);
         }
     }
 }
