@@ -10,7 +10,8 @@ namespace CAREier.Interfaces
     {
         public string Name { get; set; }
 
-        public IStore Store { get; set; }
+        //Nu heder den MyStore, for det har jeg lyst til den skal hede! :D
+        public IStore MyStore { get; set; }
         public List<IProduct> Products { get; set; }
         public LocalizedPrice TotalPrice { get; set; }
 
