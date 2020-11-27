@@ -19,14 +19,13 @@ namespace CAREier.Pages
             //repo = repository;
             //ChartService = chart;
             //OrderedBooks = new List<Book>();
-             
         }
-        public IActionResult OnGet(string isbn)
+        public void OnGet()
         {
-           // Book book = repo.GetBook(isbn);
+            // Book book = repo.GetBook(isbn);
             //ChartService.Add(book);
             //OrderedBooks = ChartService.GetOrderedBooks();
-            return Page();
+            //return Page();
         }
 
         public IActionResult OnPostDelete(string isbn)
@@ -36,9 +35,6 @@ namespace CAREier.Pages
             //OrderedBooks = ChartService.GetOrderedBooks();
             return Page();
         }
-
-        public void OnGet()
-        {
-        }
+      
     }
 }
