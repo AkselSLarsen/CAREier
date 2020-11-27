@@ -13,13 +13,18 @@ namespace CAREier.Pages
     {
         private IHandler<IProduct> _products;
 
-        public List<IProduct> Products;
+        public List<IProduct> Products { get; set; }
 
         public CatalogModel(IHandler<IProduct> products)
         {
             _products = products;
         }
         public void OnGet()
+        {
+            Products = _products.ReadAll();
+        }
+
+        public void OnPost()
         {
             Products = _products.ReadAll();
         }
