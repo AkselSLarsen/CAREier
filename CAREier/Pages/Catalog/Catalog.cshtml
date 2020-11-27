@@ -1,5 +1,7 @@
 ﻿@page
+@using CAREier.Interfaces
 @model CAREier.Pages.CatalogModel
+@inject IHandler<IProduct> Handler
 @{
 }
 
@@ -28,6 +30,7 @@
             <td> @item.Name</td>
             <td> @item.Price</td>
             <td> @item.Weight</td>
+            <td> @item.Dimensions</td>
             <td> @item.Tags</td>
         </tr>
 
