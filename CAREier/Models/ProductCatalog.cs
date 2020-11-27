@@ -10,7 +10,7 @@ namespace CAREier.Models
 {
     public class ProductCatalog : IHandler<IProduct>
     {
-        private List<IProduct> products;
+        private List<IProduct> products { get; }
 
         public ProductCatalog()
         { 
