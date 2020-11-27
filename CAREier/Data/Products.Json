@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "milk",
+    "Price": {
+      "PriceDKK": 7.5,
+      "PriceEuro": 1.0
+    },
+    "Weight": {
+      "WeightKilo": 2.0,
+      "WeightPound": 4.40924524
+    },
+    "Picture": null,
+    "Tags": [
+      "test",
+      "???",
+      "money"
+    ]
+  }
+]

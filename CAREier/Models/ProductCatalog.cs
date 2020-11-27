@@ -3,76 +3,107 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
+using CAREier.Helpers;
 using CAREier.Interfaces;
 using CAREier.Localizers;
 
 namespace CAREier.Models
 {
-    public class ProductCatalog : IHandler<IProduct>
+    public class ProductCatalog : IHandler<IProduct>, IReader<List<IProduct>>, IWriter<List<IProduct>>
     {
-        private List<IProduct> products { get; }
+        private string _filelocation;
+        private JsonInterface<List<IProduct>> _interface;
+        private List<IProduct> _products;
 
         public ProductCatalog()
-        { 
-            products = new List<IProduct>();
-            products.Add(new Product("milk", 1, 2, new List<string>() {"test", "???", "money" } ));
+        {
+            _filelocation = @"Data\Products.json";
+            _interface = new JsonInterface<List<IProduct>>();
 
+            _products = new List<IProduct>();
+            _products.Add(new Product("milk", 1, 2, new List<string>() {"test", "???", "money" } ));
+
+            WriteState();
         }
-
-
 
         public void Create(IProduct item)
         {
             if (item != null)
             {
-                products.Add(item);
+                _products.Add(item);
+                WriteState();
             }
         }
 
         public int Count()
         {
-            return products.Count;
+            return _products.Count;
         }
 
         public IProduct Read(int index)
         {
-            return products[index];
+            return _products[index];
         }
 
         public List<IProduct> ReadAll()
         {
-            return products.ToList();
+            return _products.ToList();
         }
 
         void IHandler<IProduct>.Update(IProduct pre, IProduct post)
         {
-            if (products.Contains(pre) )
+            if (_products.Contains(pre) )
             {
-                int deleted = products.IndexOf(pre);
-                products.Remove(pre);
-                products.Insert(deleted, post);
+                int deleted = _products.IndexOf(pre);
+                _products.Remove(pre);
+                _products.Insert(deleted, post);
+
+                WriteState();
             }
             
         }
 
-
         public IProduct Update(int index, IProduct item)
         {
-            products.RemoveAt(index);
-            products.Insert(index, item);
-            return products[index];
+            _products.RemoveAt(index);
+            _products.Insert(index, item);
+
+            WriteState();
+
+            return _products[index];
         }
 
         public void Delete(IProduct item)
         {
-            products.Remove(item);
+            _products.Remove(item);
+
+            WriteState();
         }
 
         IProduct IHandler<IProduct>.Delete(int index)
         {
             IProduct deleted = Read(index);
-            products.RemoveAt(index);
+            _products.RemoveAt(index);
+
+            WriteState();
+
             return deleted;
+        }
+
+        private List<IProduct> ReadState() {
+            return ReadState(_filelocation);
+        }
+
+        public List<IProduct> ReadState(string fileLocation) {
+            return _interface.ReadState(fileLocation);
+        }
+
+        private void WriteState() {
+            WriteState(_products, _filelocation);
+        }
+
+        public void WriteState(List<IProduct> state, string fileLocation) {
+            _interface.WriteState(state, fileLocation);
         }
     }
 }
