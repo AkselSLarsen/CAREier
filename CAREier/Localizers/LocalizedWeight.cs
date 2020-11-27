@@ -2,6 +2,10 @@
     public class LocalizedWeight {
         private double _weight; //Weight in Kilograms
 
+        public LocalizedWeight(double weight) {
+            _weight = weight;
+        }
+
         public double WeightKilo {
             get { return _weight; }
             set { _weight = value; }

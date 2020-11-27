@@ -1,5 +1,7 @@
 ﻿@page
+@using CAREier.Interfaces
 @model CAREier.Pages.CatalogModel
+@inject IHandler<IProduct> Handler
 @{
 }
 
@@ -18,7 +20,6 @@
         <th>Name</th>
         <th>price</th>
         <th>weight</th>
-        <th>dimensions</th>
         <th>tags</th>
     </tr>
     </thead>
@@ -27,10 +28,10 @@
     {
         <tr>
             <td> @item.Name</td>
-            <td> @item.Price</td>
-            <td> @item.Weight</td>
-            <td> @item.Dimensions</td>
-            <td> @item.Tags</td>
+            <td> @item.Price.PriceDKK</td>
+            <td> @item.Weight.WeightKilo</td>
+            <td> @foreach(var t in item.Tags)
+                 {}</td>
         </tr>
 
     }
