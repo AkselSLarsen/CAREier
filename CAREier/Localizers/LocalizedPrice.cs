@@ -2,6 +2,10 @@
     public class LocalizedPrice {
         private double _price; //Price in Euro
 
+        public LocalizedPrice(double price) {
+            _price = price;
+        }
+
         public double PriceDKK {
             get { return _price * 7.5; }
             set { _price = value / 7.5; }
