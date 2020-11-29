@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace CAREier.Helpers {
-    public class JsonInterface<Item> : IReader<Item>, IWriter<Item> {
+    public abstract class JsonInterface<Item> : IReader<Item>, IWriter<Item> {
 
         public JsonInterface() {
 

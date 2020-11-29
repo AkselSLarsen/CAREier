@@ -9,16 +9,14 @@ using CAREier.Localizers;
 
 namespace CAREier.Models
 {
-    public class ProductCatalog : IHandler<IProduct>, IReader<List<IProduct>>, IWriter<List<IProduct>>
+    public class ProductCatalog : JsonInterface<List<IProduct>>, IHandler<IProduct>
     {
         private string _filelocation;
-        private JsonInterface<List<IProduct>> _interface;
         private List<IProduct> _products;
 
         public ProductCatalog()
         {
             _filelocation = @"Data\Products.json";
-            _interface = new JsonInterface<List<IProduct>>();
 
             _products = ReadState();
         }
@@ -91,16 +89,8 @@ namespace CAREier.Models
             return ReadState(_filelocation);
         }
 
-        public List<IProduct> ReadState(string fileLocation) {
-            return _interface.ReadState(fileLocation);
-        }
-
         private void WriteState() {
             WriteState(_products, _filelocation);
-        }
-
-        public void WriteState(List<IProduct> state, string fileLocation) {
-            _interface.WriteState(state, fileLocation);
         }
     }
 }
