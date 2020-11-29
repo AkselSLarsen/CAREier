@@ -1,0 +1,22 @@
+﻿@page
+@model CAREier.Pages.ItemAdderModel
+@{
+    ViewData["Title"] = "ItemAdder";
+}
+}
+<h2 style="glyph-orientation-horizontal">Check-Out</h2>
+
+<form method="post">
+    <h3>Please, enter you  information</h3>
+    <div class="form-group">
+        <label>Id:</label><input asp-for="@Model.Order.Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Name:</label><input asp-for="@Model.Order.MyStore" class="form-control" />
+    </div>
+
+
+    <div class="text-center">
+        <input class="btn btn-primary" type="submit" value="Complete Order" />
+    </div>
+</form>

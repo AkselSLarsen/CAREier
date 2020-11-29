@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CAREier.Localizers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,11 +10,12 @@ namespace CAREier.Interfaces
     {
         public string Name { get; set; }
 
-        public IStore Store { get; set; }
+        //Nu heder den MyStore, for det har jeg lyst til den skal hede! :D
+        public IStore MyStore { get; set; }
         public List<IProduct> Products { get; set; }
-        public float TotalPrice { get; set; }
+        public LocalizedPrice TotalPrice { get; set; }
 
-        public int ORDERID { get; set; }
+        public string OrderID { get; set; }
         
         public abstract void AddProduct(IProduct item);
         public abstract void RemoveProduct(IProduct item);

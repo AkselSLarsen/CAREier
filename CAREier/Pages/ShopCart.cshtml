@@ -1,0 +1,34 @@
+﻿@page
+@model CAREier.Pages.ShopCardModel
+@{
+    ViewData["Title"] = "ShoppingCart";
+}
+<h1>ShoppingCart</h1>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Image</th>
+            <th class="text-right">Price</th>
+        </tr>
+    </thead>
+
+    @if (Model.Orders.Count != 0)
+    {
+        @foreach (var item in Model.Orders)
+        {
+            <tr>
+                <td> @item.Name</td>
+                <td> @item.MyStore</td>
+                <td> @item.TotalPrice.PriceDKK</td>
+            </tr>
+
+        }
+    }
+
+</table>
+<div class="text-center">
+    <a asp-page="/Books/AllBooks" class="btn btn-primary">Continue shopping</a>
+    <a asp-page="/Orders/CheckOut" class="btn btn-primary">Check_Out</a>
+</div>
