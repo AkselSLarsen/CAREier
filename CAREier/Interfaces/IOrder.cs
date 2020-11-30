@@ -11,6 +11,7 @@ namespace CAREier.Interfaces
         public string Name { get; set; }
 
         //Nu heder den MyStore, for det har jeg lyst til den skal hede! :D
+        //Det er komplet uacceptablet!!! XD
         public IStore MyStore { get; set; }
         public List<IProduct> Products { get; set; }
         public LocalizedPrice TotalPrice { get; set; }
