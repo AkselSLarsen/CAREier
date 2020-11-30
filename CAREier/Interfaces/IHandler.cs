@@ -51,7 +51,7 @@ namespace CAREier.Interfaces {
         /// </summary>
         /// <param name="item">The item to be removed from the internal list</param>
 
-        
+        public IProduct ReadByName(string name);
         public void Update(IProduct product);
         public void Delete(Item item);
         /// <summary>
