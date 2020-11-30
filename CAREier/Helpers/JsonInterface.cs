@@ -7,18 +7,18 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace CAREier.Helpers {
-    public abstract class JsonInterface<Item> : IReader<Item>, IWriter<Item> {
+    public abstract class JsonInterface<ReadItem, WriteItem> : IReader<ReadItem>, IWriter<WriteItem> {
 
         public JsonInterface() {
 
         }
 
-        public Item ReadState(string fileLocation) {
+        public ReadItem ReadState(string fileLocation) {
             string jsonString = File.ReadAllText(fileLocation);
-            return JsonConvert.DeserializeObject<Item>(jsonString);
+            return JsonConvert.DeserializeObject<ReadItem>(jsonString);
         }
 
-        public void WriteState(Item state, string fileLocation) {
+        public void WriteState(WriteItem state, string fileLocation) {
             string output = Newtonsoft.Json.JsonConvert.SerializeObject(state, Newtonsoft.Json.Formatting.Indented);
 
             File.WriteAllText(fileLocation, output);
