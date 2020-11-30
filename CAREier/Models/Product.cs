@@ -48,13 +48,13 @@ namespace CAREier.Models
             set { _tags = value; }
         }
 
-        public Product(string name, double price, double weight,
+        /*public Product(string name, double price, double weight,
             List<string> tags)
         {
             _name = name;
             _price = new LocalizedPrice(price);
             _weight = new LocalizedWeight(weight);
             _tags = tags;
-        }
+        }*/
     }
 }

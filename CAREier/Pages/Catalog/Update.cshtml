@@ -12,32 +12,32 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="@Model.Product"/>
+            <input type="hidden" asp-for="@Model.Product.Name"/>
             <div class="form-group">
-                <label asp-for="@Model.Product." class="control-label"></label>
-                <input asp-for="@Model.Event.Name" class="form-control" />
-                <span asp-validation-for="Event.Name" class="text-danger"></span>
+                <label asp-for="@Model.Product.Name" class="control-label"></label>
+                <input asp-for="@Model.Product.Name" class="form-control" />
+                <span asp-validation-for="Product.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Event.Description" class="control-label"></label>
-                <input asp-for="@Model.Event.Description" class="form-control" />
+                <label asp-for="@Model.Product.Price" class="control-label"></label>
+                <input asp-for="@Model.Product.Price" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Event.City" class="control-label"></label>
-                <input asp-for="@Model.Event.City" class="form-control" />
-                <span asp-validation-for="Event.City" class="text-danger"></span>
+                <label asp-for="@Model.Product.Weight" class="control-label"></label>
+                <input asp-for="@Model.Product.Weight" class="form-control" />
+                <span asp-validation-for="Product.Weight" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Event.DateTime" class="control-label"></label>
-                <input asp-for="@Model.Event.DateTime" class="form-control" />
-                <span asp-validation-for="Event.DateTime" class="text-danger"></span>
+                <label asp-for="@Model.Product.Tags" class="control-label"></label>
+                <input asp-for="@Model.Product.Tags" class="form-control" />
+                <span asp-validation-for="Product.Tags" class="text-danger"></span>
             </div>
             <div class="form-group">
 
                 <input type="submit" value="save" class="btn btn-primary" />
             </div>
             <div>
-                <a asp-page="Index">Back to list</a>
+                <a asp-page="Catalog">Back to list</a>
             </div>
         </form>
 
