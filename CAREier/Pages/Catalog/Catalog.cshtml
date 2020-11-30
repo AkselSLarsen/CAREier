@@ -31,6 +31,8 @@
             <td> @item.Price.PriceDKK</td>
             <td> @item.Weight.WeightKilo</td>
             <td> @Model.FormalizeTags(item.Tags)</td>
+            <td><a asp-page="EditEvent" asp-route-id="@item.index">update product</a></td>
+            <td><a asp-page="EditEvent" asp-route-id="@item.Name">add to cart</a></td>
         </tr>
 
     }

@@ -16,6 +16,7 @@ namespace CAREier.Models
         private LocalizedPrice _price;
         private LocalizedWeight _weight;
         private List<string> _tags;
+        private int _index;
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "the product must have a name")]
         public string Name
