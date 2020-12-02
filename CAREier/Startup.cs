@@ -23,6 +23,7 @@ namespace CAREier {
         public void ConfigureServices(IServiceCollection services) {
             services.AddRazorPages();
             services.AddSingleton<IHandler<IProduct>, ProductCatalog>();
+            services.AddSingleton<IHandler<IOrder>, OrderCatalog>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
