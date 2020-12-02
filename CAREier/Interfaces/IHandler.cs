@@ -36,20 +36,23 @@ namespace CAREier.Interfaces {
         /// </summary>
         /// <param name="pre">The item to be replaced</param>
         /// <param name="post">The item "pre" should be replaced with</param>
-        public void Update(Item pre, Item post);
+        //public void Update(Item pre, Item post);
         /// <summary>
         /// Replaces the item at the given index of the internal list with the "item" parameter.
         /// </summary>
         /// <param name="index">The index location to place item into, may cause exceptions if the index is equal to or higher than Count();</param>
         /// <param name="item">The item to place into the given index</param>
         /// <returns>The item that was replaced, meaning the item that could be found with a call of Read("index"); before this method was called</returns>
-        public Item Update(int index, Item item);
+        //public Item Update(int index, Item item);
 
         /// <summary>
         /// Removes the given item from the internal list.
         /// May or may not remove all instances of the item or just one, depending on the implementation.
         /// </summary>
         /// <param name="item">The item to be removed from the internal list</param>
+
+        public IProduct ReadByName(string name);
+        public void Update(IProduct product);
         public void Delete(Item item);
         /// <summary>
         /// Removes the item at the given index location from the internal list.

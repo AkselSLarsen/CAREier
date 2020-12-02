@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace CAREier.Interfaces {
-    public interface IStore : IUser {
+    public interface IUser {
 
-        public List<string> Addresses { get; }
-        public string BankAccount { get; }
+        public string Name { get; }
+        public ILoginCredentials LoginCredentials { get; }
     }
 }

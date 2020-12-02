@@ -57,7 +57,7 @@ namespace CAREier.Models
             }
             return NewProductsList;
         }
-        public Product GetFistProduct(string name)//{
+        public Product GetFistProduct(string name)
         {
             foreach (var prod in _products)
             {

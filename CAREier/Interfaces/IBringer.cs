@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace CAREier.Interfaces {
-    public interface IBringer {
+    public interface IBringer : IUser {
 
-        public string Name { get; }
+        public string PhoneNumber { get; }
+        public string CreditCard { get; }
     }
 }
