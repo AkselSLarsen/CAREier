@@ -23,6 +23,11 @@ namespace CAREier.Pages
         {
             Products = _products.ReadAll();
         }
+
+        public void OnPost()
+        {
+            Products = _products.ReadAll();
+        }
         /*
         public string Tags(int index) {
             if(index >= Products.Count) { return ""; }

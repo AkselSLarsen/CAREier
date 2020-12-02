@@ -29,7 +29,6 @@ namespace CAREier.Interfaces {
         /// </summary>
         /// <returns>The a list representation of the handler</returns>
         public List<Item> ReadAll();
-
         /// <summary>
         /// Replaces the "pre" parameter item with the "post" parameter item.
         /// May or may not replace more than one instance of "pre", depending on the implementation.

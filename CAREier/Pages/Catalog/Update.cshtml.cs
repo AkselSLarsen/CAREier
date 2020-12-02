@@ -11,22 +11,29 @@ namespace CAREier.Pages.Catalog
 {
     public class UpdateModel : PageModel
     {
-        private IHandler<IProduct> _newproduct;
+        private IHandler<IProduct> _newHandler;
+        [BindProperty]
+        public List<Product> ProductList { get; set; }
 
         [BindProperty]
-        public List<IProduct> ProductList { get; set; }
-
-        [BindProperty]
-        public IProduct Product { get; set; }
+        public Product Product { get; set; }
 
         public UpdateModel(IHandler<IProduct> NewProduct)
         {
-            _newproduct = NewProduct;
+            _newHandler = NewProduct;
+            ProductList = new List<Product>(); 
+            foreach (var var in NewProduct.ReadAll())
+            {
+                if (var is Product)
+                {
+                    ProductList.Add((Product) var);
+                }
+            }
         }
 
-        public IActionResult OnGet(string name)
+        public IActionResult OnGet(int id)
         {
-            Product = (Product) _newproduct.ReadByName(name);
+            Product = ProductList[id];
             return Page();
         }
 
@@ -37,7 +44,7 @@ namespace CAREier.Pages.Catalog
                 return Page();
             }
 
-            _newproduct.Update(Product);
+            _newHandler.Update(Product);
             return RedirectToPage("Catalog");
         }
 

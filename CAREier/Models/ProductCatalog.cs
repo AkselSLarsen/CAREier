@@ -24,9 +24,8 @@ namespace CAREier.Models
                 Name = "milk",
                 Picture = "yes",
                 Price = new LocalizedPrice(20),
-                Weight = new LocalizedWeight(10),
-                Tags = new List<string>()
-
+                Tags = new List<string>(),
+                Weight = new LocalizedWeight(10)
             }); 
             if (ReadState() != null) {
                 _products.AddRange(ReadState());

@@ -18,21 +18,21 @@ namespace CAREier.Models
         private List<string> _tags;
         private int _index;
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "the product must have a name")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "the product must have a name")]
         public string Name
         {
             get { return _name;}
             set { _name = value; }
         }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "the product must have a price")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "the product must have a price")]
         public LocalizedPrice Price
         {
             get { return _price; }
             set { _price = value; }
         }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "the product must have a weight")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "the product must have a weight")]
         public LocalizedWeight Weight
         {
             get { return _weight; }
@@ -41,7 +41,7 @@ namespace CAREier.Models
 
         public string Picture { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "the product must have at least 1 tag")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "the product must have at least 1 tag")]
         public List<string> Tags
         {
             get { return _tags; }

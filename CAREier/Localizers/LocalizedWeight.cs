@@ -6,6 +6,10 @@
             _weight = weight;
         }
 
+        public LocalizedWeight()
+        {
+            _weight = 0;
+        }
         public double WeightKilo {
             get { return _weight; }
             set { _weight = value; }
