@@ -22,6 +22,17 @@ namespace CAREier.Models
         private string _OrderID;
         public string OrderID { get { return _OrderID; } set { _OrderID = value; } }
 
+        public override void save()//{
+        {
+            my_values.Add("Name", _name);
+            my_values.Add("MyStore", _store);
+            my_values.Add("products", _products);
+            my_values.Add("totalPrice", _totalPrice);
+            my_values.Add("OrderID", _OrderID);
+
+           
+            JsonFileSystem.Write_Item(my_values);
+        }
         public void AddProduct(IProduct item)//{
         {
             _products.Add(item);
