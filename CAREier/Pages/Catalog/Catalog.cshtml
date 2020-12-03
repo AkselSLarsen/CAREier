@@ -11,7 +11,7 @@
 <h1>List of Products</h1>
 
 <p>
-    <a asp-page="CreateProduct">Create New Product</a>
+    <a asp-page="Create">Create New Product</a>
 </p>
 
 
@@ -37,7 +37,8 @@
             <td> @Model.Products[i].Weight.WeightKilo</td>
             <td> @Model.FormalizeTags(Model.Products[i].Tags)</td>
             <td> @Model.Products[i].Picture</td>
-            <td> <a asp-page="Update" asp-route-id="@i">update product</a> <a asp-page="temp" asp-route-id="@i">add to cart</a></td>
+            <td> <a asp-page="Update" asp-route-id="@i">update product</a>
+            <td> <a asp-page="temp" asp-route-id="@i">add to cart</a></td>
             
         </tr>
 

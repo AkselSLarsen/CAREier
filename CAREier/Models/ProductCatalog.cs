@@ -19,14 +19,7 @@ namespace CAREier.Models
             _filelocation = @"Data\Products.json";
 
             _products = new List<Product>();
-            _products.Add(new Product()
-            {
-                Name = "milk",
-                Picture = "yes",
-                Price = new LocalizedPrice(20),
-                Tags = new List<string>(),
-                Weight = new LocalizedWeight(10)
-            }); 
+            
             if (ReadState() != null) {
                 _products.AddRange(ReadState());
             }
