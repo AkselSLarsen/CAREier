@@ -7,6 +7,8 @@ namespace CAREier.Models
 {
     public class DB_Item
     {
+        public string ItmeType;
+        public Dictionary<string, object> my_valus;
         public DB_Item()
         {
 

@@ -10,7 +10,7 @@ using CAREier.Localizers;
 
 namespace CAREier.Models
 {
-    public class Product : IProduct
+    public class Product : DB_Item,IProduct
     {
         private string _name;
         private LocalizedPrice _price;
