@@ -11,14 +11,14 @@ namespace CAREier.Pages.Catalog
 {
     public class UpdateModel : PageModel
     {
-        private IHandler<IProduct> _newHandler;
+        private IHandler<Product> _newHandler;
         [BindProperty]
         public List<Product> ProductList { get; set; }
 
         [BindProperty]
         public Product Product { get; set; }
 
-        public UpdateModel(IHandler<IProduct> NewProduct)
+        public UpdateModel(IHandler<Product> NewProduct)
         {
             _newHandler = NewProduct;
             ProductList = new List<Product>(); 
