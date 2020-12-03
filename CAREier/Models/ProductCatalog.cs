@@ -19,6 +19,15 @@ namespace CAREier.Models
             _filelocation = @"Data\Products.json";
 
             _products = new List<IProduct>();
+            _products.Add(new Product()
+            {
+                Name = "milk",
+                Picture = "yes",
+                Price = new LocalizedPrice(20),
+                Weight = new LocalizedWeight(10),
+                Tags = new List<string>()
+
+            }); 
             if (ReadState() != null) {
                 _products.AddRange(ReadState());
             }
@@ -43,12 +52,42 @@ namespace CAREier.Models
             return _products[index];
         }
 
+        public IProduct ReadByName(string name)
+        {
+            foreach (var p in _products)
+            {
+                if (p.Name == name)
+                {
+                    return p;
+                }
+            }
+            return new Product();
+        }
+
         public List<IProduct> ReadAll()
         {
             return _products.ToList();
         }
 
-        void IHandler<IProduct>.Update(IProduct pre, IProduct post)
+        public void Update(IProduct product)
+        {
+            if (product != null)
+            {
+                foreach (var p in _products)
+                {
+                    if (p.Name == product.Name)
+                    {
+                        p.Name = product.Name;
+                        p.Price = product.Price;
+                        p.Weight = product.Weight;
+                        p.Tags = product.Tags;
+                        p.Picture = product.Picture;
+                    }
+                }
+            }
+        }
+
+        /*void IHandler<IProduct>.Update(IProduct pre, IProduct post)
         {
             if (_products.Contains(pre) )
             {
@@ -59,9 +98,9 @@ namespace CAREier.Models
                 WriteState();
             }
             
-        }
+        }*/
 
-        public IProduct Update(int index, IProduct item)
+        /*public IProduct Update(int index, IProduct item)
         {
             _products.RemoveAt(index);
             _products.Insert(index, item);
@@ -69,7 +108,7 @@ namespace CAREier.Models
             WriteState();
 
             return _products[index];
-        }
+        }*/
 
         public void Delete(IProduct item)
         {

@@ -9,9 +9,15 @@ using CAREier.Localizers;
 
 namespace CAREier.Models
 {
-    public class OrderCatalog : List<IOrder>, IHandler<IOrder>
+    public class OrderCatalog : JsonInterface<List<IOrder>, List<IOrder>>, IHandler<IOrder>
     {
         private string _filelocation;
+
+        public OrderCatalog(string filelocation)
+        {
+            _filelocation = filelocation;
+        }
+
         private List<IOrder> _orders;
 
         public OrderCatalog()
@@ -19,6 +25,15 @@ namespace CAREier.Models
             _filelocation = @"Data\Products.json";
 
             _orders = new List<IOrder>();
+            _orders.Add(new Order()
+            {
+                /*Name = "milk",
+                Picture = "yes",
+                Price = new LocalizedPrice(20),
+                Weight = new LocalizedWeight(10),
+                Tags = new List<string>()*/
+
+            }); 
             if (ReadState() != null) {
                 _orders.AddRange(ReadState());
             }
@@ -33,7 +48,7 @@ namespace CAREier.Models
             }
         }
 
-        public int Lengt()
+        public int Count()
         {
             return _orders.Count;
         }
@@ -43,33 +58,63 @@ namespace CAREier.Models
             return _orders[index];
         }
 
+        public IOrder ReadByName(string name)
+        {
+            foreach (var p in _orders)
+            {
+                if (p.Name == name)
+                {
+                    return p;
+                }
+            }
+            return new Order();
+        }
+
         public List<IOrder> ReadAll()
         {
             return _orders.ToList();
         }
 
-        void IHandler<IOrder>.Update(IOrder pre, IOrder post)
+        public void Update(IOrder product)
         {
-            if (_orders.Contains(pre) )
+            if (product != null)
             {
-                int deleted = _orders.IndexOf(pre);
-                _orders.Remove(pre);
-                _orders.Insert(deleted, post);
+                foreach (var p in _orders)
+                {
+                    if (p.Name == product.Name)
+                    {
+                        /*p.Name = product.Name;
+                        p.Price = product.Price;
+                        p.Weight = product.Weight;
+                        p.Tags = product.Tags;
+                        p.Picture = product.Picture;*/
+                    }
+                }
+            }
+        }
+
+        /*void IHandler<IProduct>.Update(IProduct pre, IProduct post)
+        {
+            if (_products.Contains(pre) )
+            {
+                int deleted = _products.IndexOf(pre);
+                _products.Remove(pre);
+                _products.Insert(deleted, post);
 
                 WriteState();
             }
             
-        }
+        }*/
 
-        public IOrder Update(int index, IOrder item)
+        /*public IProduct Update(int index, IProduct item)
         {
-            _orders.RemoveAt(index);
-            _orders.Insert(index, item);
+            _products.RemoveAt(index);
+            _products.Insert(index, item);
 
             WriteState();
 
-            return _orders[index];
-        }
+            return _products[index];
+        }*/
 
         public void Delete(IOrder item)
         {
@@ -88,13 +133,24 @@ namespace CAREier.Models
             return deleted;
         }
 
-        private List<IOrder> ReadState()
-        {
-            return JsonInterface<List<IOrder>, List<IOrder>>.ReadState(_filelocation);
+        private List<IOrder> ReadState() {
+            return ReadState(_filelocation);
         }
-        private void WriteState()
+
+        private void WriteState() {
+            WriteState(_orders, _filelocation);
+        }
+
+        IOrder IHandler<IOrder>.ReadByName(string name)
         {
-            JsonInterface<List<IOrder>, List<IOrder>>.WriteState(_orders, _filelocation);
+            foreach (var p in _orders)
+            {
+                if (p.Name == name)
+                {
+                    return p;
+                }
+            }
+            return new Order();
         }
     }
 }
