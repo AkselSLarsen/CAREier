@@ -104,9 +104,13 @@ namespace CAREier.Models
 
         public void Delete(Product item)
         {
-            _products.Remove(item);
+            if (_products.Contains(item))
+            {
+                _products.Remove(item);
 
-            WriteState();
+                WriteState();
+            }
+            
         }
 
         public Product Delete(int index)
