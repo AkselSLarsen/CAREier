@@ -143,7 +143,14 @@ namespace CAREier.Models
 
         IOrder IHandler<IOrder>.ReadByName(string name)
         {
-            throw new NotImplementedException();
+            foreach (var p in _orders)
+            {
+                if (p.Name == name)
+                {
+                    return p;
+                }
+            }
+            return new Order();
         }
     }
 }

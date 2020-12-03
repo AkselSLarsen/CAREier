@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CAREier.Models
 {
-    public class Order : IOrder
+    public class Order : DB_Item, IOrder
     {
         private string _name;
         public string Name { get { return _name;  } set { _name = value; } }
