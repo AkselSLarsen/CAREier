@@ -123,7 +123,7 @@ namespace CAREier.Models
             WriteState();
         }
 
-        IOrder IHandler<IOrder>.Delete(int index)
+        public IOrder Delete(int index)
         {
             IOrder deleted = Read(index);
             _orders.RemoveAt(index);
@@ -141,16 +141,6 @@ namespace CAREier.Models
             WriteState(_orders, _filelocation);
         }
 
-        IOrder IHandler<IOrder>.ReadByName(string name)
-        {
-            foreach (var p in _orders)
-            {
-                if (p.Name == name)
-                {
-                    return p;
-                }
-            }
-            return new Order();
-        }
+       
     }
 }

@@ -117,7 +117,7 @@ namespace CAREier.Models
             WriteState();
         }
 
-        IProduct IHandler<IProduct>.Delete(int index)
+        public IProduct Delete(int index)
         {
             IProduct deleted = Read(index);
             _products.RemoveAt(index);
