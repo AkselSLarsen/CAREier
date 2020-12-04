@@ -11,15 +11,14 @@ namespace CAREier.Helpers {
         //Read and Write Products
         public static List<Product> ReadProduct(string JsonFileName) {
             string jsonString = File.ReadAllText(JsonFileName);
-            return JsonConvert.DeserializeObject<List<Product>>(jsonString);
+            return JsonConvert.DeserializeObject<List<DB_Item>>(jsonString);
         }
-        public static void WriteProduct(List<Product> products, string JsonFileName) {
+        public static void Write(List<DB_Item> products, string JsonFileName) {
             string output = Newtonsoft.Json.JsonConvert.SerializeObject(products, Newtonsoft.Json.Formatting.Indented);
 
             File.WriteAllText(JsonFileName, output);
         }
 
-        //Read and Write Orders
         public static List<Order> ReadOrder(string JsonFileName) {
             string jsonString = File.ReadAllText(JsonFileName);
             return JsonConvert.DeserializeObject<List<Order>>(jsonString);

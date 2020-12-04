@@ -1,0 +1,87 @@
+[
+  {
+    "ItmeType": null,
+    "my_valus": null,
+    "Name": "milk",
+    "Price": {
+      "PriceDKK": 150.0,
+      "PriceEuro": 20.0
+    },
+    "Weight": {
+      "WeightKilo": 10.0,
+      "WeightPound": 22.0462262
+    },
+    "Picture": "yes",
+    "Tags": [
+      "brian"
+    ]
+  },
+  {
+    "ItmeType": null,
+    "my_valus": null,
+    "Name": "milk",
+    "Price": {
+      "PriceDKK": 150.0,
+      "PriceEuro": 20.0
+    },
+    "Weight": {
+      "WeightKilo": 10.0,
+      "WeightPound": 22.0462262
+    },
+    "Picture": "yes",
+    "Tags": [
+      "brian"
+    ]
+  },
+  {
+    "ItmeType": null,
+    "my_valus": null,
+    "Name": "yes",
+    "Price": {
+      "PriceDKK": 50.0,
+      "PriceEuro": 6.666666666666667
+    },
+    "Weight": {
+      "WeightKilo": 12.0,
+      "WeightPound": 26.455471439999997
+    },
+    "Picture": null,
+    "Tags": [
+      "no"
+    ]
+  },
+  {
+    "ItmeType": null,
+    "my_valus": null,
+    "Name": "Yeast",
+    "Price": {
+      "PriceDKK": 100.0,
+      "PriceEuro": 13.333333333333334
+    },
+    "Weight": {
+      "WeightKilo": 222.0,
+      "WeightPound": 489.42622164
+    },
+    "Picture": "no",
+    "Tags": [
+      "bløb"
+    ]
+  },
+  {
+    "ItmeType": null,
+    "my_valus": null,
+    "Name": "honduran bananas",
+    "Price": {
+      "PriceDKK": 700.0,
+      "PriceEuro": 93.33333333333333
+    },
+    "Weight": {
+      "WeightKilo": 100.0,
+      "WeightPound": 220.46226199999998
+    },
+    "Picture": "no",
+    "Tags": [
+      "crime"
+    ]
+  }
+]

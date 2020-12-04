@@ -9,31 +9,23 @@ using CAREier.Localizers;
 
 namespace CAREier.Models
 {
-    public class ProductCatalog : JsonInterface<List<Product>, List<IProduct>>, IHandler<IProduct>
+    public class ProductCatalog : JsonInterface<List<Product>, List<Product>>, IHandler<Product>
     {
         private string _filelocation;
-        private List<IProduct> _products;
+        private List<Product> _products;
 
         public ProductCatalog()
         {
             _filelocation = @"Data\Products.json";
 
-            _products = new List<IProduct>();
-            _products.Add(new Product()
-            {
-                Name = "milk",
-                Picture = "yes",
-                Price = new LocalizedPrice(20),
-                Weight = new LocalizedWeight(10),
-                Tags = new List<string>()
-
-            }); 
+            _products = new List<Product>();
+            
             if (ReadState() != null) {
                 _products.AddRange(ReadState());
             }
         }
 
-        public void Create(IProduct item)
+        public void Create(Product item)
         {
             if (item != null)
             {
@@ -47,12 +39,12 @@ namespace CAREier.Models
             return _products.Count;
         }
 
-        public IProduct Read(int index)
+        public Product Read(int index)
         {
             return _products[index];
         }
 
-        public IProduct ReadByName(string name)
+        public Product ReadByName(string name)
         {
             foreach (var p in _products)
             {
@@ -64,12 +56,12 @@ namespace CAREier.Models
             return new Product();
         }
 
-        public List<IProduct> ReadAll()
+        public List<Product> ReadAll()
         {
             return _products.ToList();
         }
 
-        public void Update(IProduct product)
+        public void Update(Product product)
         {
             if (product != null)
             {
@@ -110,16 +102,20 @@ namespace CAREier.Models
             return _products[index];
         }*/
 
-        public void Delete(IProduct item)
+        public void Delete(Product item)
         {
-            _products.Remove(item);
+            if (_products.Contains(item))
+            {
+                _products.Remove(item);
 
-            WriteState();
+                WriteState();
+            }
+            
         }
 
-        IProduct IHandler<IProduct>.Delete(int index)
+        public Product Delete(int index)
         {
-            IProduct deleted = Read(index);
+            Product deleted = Read(index);
             _products.RemoveAt(index);
 
             WriteState();

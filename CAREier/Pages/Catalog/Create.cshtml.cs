@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CAREier.Pages.Catalog
 {
-    public class UpdateModel : PageModel
+    public class CreateModel : PageModel
     {
         private IHandler<Product> _newHandler;
         [BindProperty]
@@ -18,22 +18,21 @@ namespace CAREier.Pages.Catalog
         [BindProperty]
         public Product Product { get; set; }
 
-        public UpdateModel(IHandler<Product> NewProduct)
+        public CreateModel(IHandler<Product> NewProduct)
         {
             _newHandler = NewProduct;
-            ProductList = new List<Product>(); 
+            ProductList = new List<Product>();
             foreach (var var in NewProduct.ReadAll())
             {
                 if (var is Product)
                 {
-                    ProductList.Add((Product) var);
+                    ProductList.Add((Product)var);
                 }
             }
         }
 
         public IActionResult OnGet(int id)
         {
-            Product = ProductList[id];
             return Page();
         }
 
@@ -44,9 +43,8 @@ namespace CAREier.Pages.Catalog
                 return Page();
             }
 
-            _newHandler.Update(Product);
+            _newHandler.Create(Product);
             return RedirectToPage("Catalog");
         }
-
     }
 }
