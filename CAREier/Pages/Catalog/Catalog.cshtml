@@ -36,7 +36,7 @@
             <td> @Model.Products[i].Price.PriceDKK</td>
             <td> @Model.Products[i].Weight.WeightKilo</td>
             <td> @Model.FormalizeTags(Model.Products[i].Tags)</td>
-            <td> @Model.Products[i].Picture</td>
+            <td> <img style="width: 70px; height: auto"src="~/images/@Model.Products[i].Picture" alt="picture"></td>
             <td> <a asp-page="Update" asp-route-id="@i">update product</a>
             <td> <a asp-page="Delete" asp-route-id="@i">Delete</a>
             <td> <a asp-page="temp" asp-route-id="@i">add to cart</a></td>
