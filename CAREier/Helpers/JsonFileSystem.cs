@@ -8,13 +8,23 @@ using System.Threading.Tasks;
 
 namespace CAREier.Helpers {
     public static class JsonFileSystem {
-
-        public static List<DB_Item> Read(string JsonFileName) {
+        //Read and Write Products
+        public static List<Product> ReadProduct(string JsonFileName) {
             string jsonString = File.ReadAllText(JsonFileName);
-            return JsonConvert.DeserializeObject<List<DB_Item>>(jsonString);
+            return JsonConvert.DeserializeObject<List<Product>>(jsonString);
         }
         public static void Write(List<DB_Item> products, string JsonFileName) {
             string output = Newtonsoft.Json.JsonConvert.SerializeObject(products, Newtonsoft.Json.Formatting.Indented);
+
+            File.WriteAllText(JsonFileName, output);
+        }
+
+        public static List<Order> ReadOrder(string JsonFileName) {
+            string jsonString = File.ReadAllText(JsonFileName);
+            return JsonConvert.DeserializeObject<List<Order>>(jsonString);
+        }
+        public static void WriteOrder(List<Order> orders, string JsonFileName) {
+            string output = Newtonsoft.Json.JsonConvert.SerializeObject(orders, Newtonsoft.Json.Formatting.Indented);
 
             File.WriteAllText(JsonFileName, output);
         }
