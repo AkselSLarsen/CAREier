@@ -6,6 +6,11 @@
             _price = price;
         }
 
+        public LocalizedPrice()
+        {
+            _price = 0;
+        }
+
         public double PriceDKK {
             get { return _price * 7.5; }
             set { _price = value / 7.5; }

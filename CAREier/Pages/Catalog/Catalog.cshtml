@@ -1,7 +1,9 @@
 ﻿@page
 @using CAREier.Interfaces
+@using CAREier.Helpers
+@using CAREier.Models
 @model CAREier.Pages.CatalogModel
-@inject IHandler<IProduct> Handler
+@inject ICRUD<Product> Handler
 @{
 }
 
@@ -9,30 +11,36 @@
 <h1>List of Products</h1>
 
 <p>
-    <a asp-page="CreateProduct">Create New Product</a>
+    <a asp-page="Create">Create New Product</a>
 </p>
 
 
 <p>number of products in the catalog: @Model.Products.Count</p>
 <table class="table">
     <thead>
-    <tr>
-        <th>Name</th>
-        <th>price</th>
-        <th>weight</th>
-        <th>tags</th>
-    </tr>
+        <tr>
+            <th>Name</th>
+            <th>price</th>
+            <th>weight</th>
+            <th>tags</th>
+            <th>picture</th>
+            <th>Functions</th>
+
+        </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model.Products)
+    @for (int i = 0; i < Model.Products.Count; i++)
     {
         <tr>
-            <td> @item.Name</td>
-            <td> @item.Price.PriceDKK</td>
-            <td> @item.Weight.WeightKilo</td>
-            <td> @Model.FormalizeTags(item.Tags)</td>
-            <td><a asp-page="Update" asp-route-id="@item.Name">update product</a></td>
-            <td><a asp-page="EditEvent" asp-route-id="@item.Name">add to cart</a></td>
+            <td> @Model.Products[i].Name</td>
+            <td> @Model.Products[i].Price.PriceDKK</td>
+            <td> @Model.Products[i].Weight.WeightKilo</td>
+            <td> @Model.FormalizeTags(Model.Products[i].Tags)</td>
+            <td> @Model.Products[i].Picture</td>
+            <td> <a asp-page="Update" asp-route-id="@i">update product</a>
+            <td> <a asp-page="Delete" asp-route-id="@i">Delete</a>
+            <td> <a asp-page="temp" asp-route-id="@i">add to cart</a></td>
+
         </tr>
 
     }

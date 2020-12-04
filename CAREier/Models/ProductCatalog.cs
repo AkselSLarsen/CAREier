@@ -6,70 +6,54 @@ using System.Threading.Tasks;
 using CAREier.Helpers;
 using CAREier.Interfaces;
 using CAREier.Localizers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CAREier.Models
 {
-    public class ProductCatalog : JsonInterface<List<Product>, List<IProduct>>, IHandler<IProduct>
+    public class ProductCatalog : JsonInterface<List<Product>, List<Product>>, ICRUD<Product>
     {
         private string _filelocation;
-        private List<IProduct> _products;
+        private List<Product> _products;
 
         public ProductCatalog()
         {
             _filelocation = @"Data\Products.json";
 
-            _products = new List<IProduct>();
-            _products.Add(new Product()
-            {
-                Name = "milk",
-                Picture = "yes",
-                Price = new LocalizedPrice(20),
-                Weight = new LocalizedWeight(10),
-                Tags = new List<string>()
-
-            }); 
+            _products = new List<Product>();
+            
             if (ReadState() != null) {
                 _products.AddRange(ReadState());
             }
         }
 
-        public void Create(IProduct item)
+        public void Create(Product item)
         {
             if (item != null)
             {
+                foreach (var v in _products)
+                {
+                    if (item.Name == v.Name)
+                    {
+                        return;
+                    }
+                }
                 _products.Add(item);
                 WriteState();
             }
         }
 
-        public int Count()
-        {
-            return _products.Count;
-        }
-
-        public IProduct Read(int index)
+        public Product Read(int index)
         {
             return _products[index];
         }
 
-        public IProduct ReadByName(string name)
-        {
-            foreach (var p in _products)
-            {
-                if (p.Name == name)
-                {
-                    return p;
-                }
-            }
-            return new Product();
-        }
 
-        public List<IProduct> ReadAll()
+        public List<Product> ReadAll()
         {
             return _products.ToList();
         }
 
-        public void Update(IProduct product)
+        public void Update(Product product)
         {
             if (product != null)
             {
@@ -87,39 +71,33 @@ namespace CAREier.Models
             }
         }
 
-        /*void IHandler<IProduct>.Update(IProduct pre, IProduct post)
+
+        public void Delete(Product item)
         {
-            if (_products.Contains(pre) )
+            if (item != null)
             {
-                int deleted = _products.IndexOf(pre);
-                _products.Remove(pre);
-                _products.Insert(deleted, post);
+                Product Temp = new Product();
+                foreach (var v in _products)
+                {
+                    if (item.Name == v.Name)
+                    {
+                        Temp = v;
+                    }
+                }
 
-                WriteState();
+                if (Temp != null)
+                { 
+                    _products.Remove(Temp);
+                    WriteState();
+                }
+                
             }
-            
-        }*/
 
-        /*public IProduct Update(int index, IProduct item)
-        {
-            _products.RemoveAt(index);
-            _products.Insert(index, item);
-
-            WriteState();
-
-            return _products[index];
-        }*/
-
-        public void Delete(IProduct item)
-        {
-            _products.Remove(item);
-
-            WriteState();
         }
 
-        public IProduct Delete(int index)
+        public Product Delete(int index)
         {
-            IProduct deleted = Read(index);
+            Product deleted = Read(index);
             _products.RemoveAt(index);
 
             WriteState();
