@@ -56,5 +56,16 @@ namespace CAREier.Models
             _weight = new LocalizedWeight(weight);
             _tags = tags;
         }*/
+
+        public override bool Equals(object? obj)
+        {
+            if (obj != null)
+            {
+                Product pind = (Product)obj;
+                if (pind.Name == Name )
+                    return true;
+            }
+            return false;
+        }
     }
 }

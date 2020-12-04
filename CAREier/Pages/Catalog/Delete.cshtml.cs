@@ -43,7 +43,7 @@ namespace CAREier.Pages.Catalog
             {
                 return Page();
             }
-
+            ProductList = _newHandler.ReadAll();
             int index = ProductList.IndexOf(Product);
             _newHandler.Delete(index);
             return RedirectToPage("Catalog");
