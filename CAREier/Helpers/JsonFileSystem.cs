@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CAREier.Helpers {
     public static class JsonFileSystem {
-
+        //Read and Write Products
         public static List<Product> ReadProduct(string JsonFileName) {
             string jsonString = File.ReadAllText(JsonFileName);
             return JsonConvert.DeserializeObject<List<Product>>(jsonString);
@@ -19,6 +19,7 @@ namespace CAREier.Helpers {
             File.WriteAllText(JsonFileName, output);
         }
 
+        //Read and Write Orders
         public static List<Order> ReadOrder(string JsonFileName) {
             string jsonString = File.ReadAllText(JsonFileName);
             return JsonConvert.DeserializeObject<List<Order>>(jsonString);
