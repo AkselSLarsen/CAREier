@@ -16,7 +16,7 @@ namespace CAREier.Models
         private LocalizedPrice _price;
         private LocalizedWeight _weight;
         private List<string> _tags;
-        private int _index;
+        private int _id;
 
         //[Required(AllowEmptyStrings = false, ErrorMessage = "the product must have a name")]
         public string Name
@@ -48,16 +48,16 @@ namespace CAREier.Models
             set { _tags = value; }
         }
 
-        /*public Product(string name, double price, double weight,
+        /*public Product(string name, LocalizedPrice price, LocalizedWeight weight,
             List<string> tags)
         {
             _name = name;
-            _price = new LocalizedPrice(price);
-            _weight = new LocalizedWeight(weight);
+            _price = price;
+            _weight = weight;
             _tags = tags;
         }*/
 
-        public override bool Equals(object? obj)
+        /*public override bool Equals(object? obj)
         {
             if (obj != null)
             {
@@ -66,6 +66,6 @@ namespace CAREier.Models
                     return true;
             }
             return false;
-        }
+        }*/
     }
 }

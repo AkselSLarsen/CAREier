@@ -11,14 +11,14 @@ namespace CAREier.Pages.Catalog
 {
     public class DeleteModel : PageModel
     {
-        private IHandler<Product> _newHandler;
+        private ICRUD<Product> _newHandler;
         [BindProperty]
         public List<Product> ProductList { get; set; }
 
         [BindProperty]
         public Product Product { get; set; }
 
-        public DeleteModel(IHandler<Product> NewProduct)
+        public DeleteModel(ICRUD<Product> NewProduct)
         {
             _newHandler = NewProduct;
             ProductList = _newHandler.ReadAll();
@@ -45,7 +45,7 @@ namespace CAREier.Pages.Catalog
             }
             ProductList = _newHandler.ReadAll();
             int index = ProductList.IndexOf(Product);
-            _newHandler.Delete(index);
+            _newHandler.Delete(Product);
             return RedirectToPage("Catalog");
         }
     }

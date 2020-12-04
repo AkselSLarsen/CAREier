@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using CAREier.Helpers;
 using CAREier.Interfaces;
 using CAREier.Localizers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CAREier.Models
 {
-    public class ProductCatalog : JsonInterface<List<Product>, List<Product>>, IHandler<Product>
+    public class ProductCatalog : JsonInterface<List<Product>, List<Product>>, ICRUD<Product>
     {
         private string _filelocation;
         private List<Product> _products;
@@ -29,14 +30,16 @@ namespace CAREier.Models
         {
             if (item != null)
             {
+                foreach (var v in _products)
+                {
+                    if (item.Name == v.Name)
+                    {
+                        return;
+                    }
+                }
                 _products.Add(item);
                 WriteState();
             }
-        }
-
-        public int Count()
-        {
-            return _products.Count;
         }
 
         public Product Read(int index)
@@ -44,17 +47,6 @@ namespace CAREier.Models
             return _products[index];
         }
 
-        public Product ReadByName(string name)
-        {
-            foreach (var p in _products)
-            {
-                if (p.Name == name)
-                {
-                    return p;
-                }
-            }
-            return new Product();
-        }
 
         public List<Product> ReadAll()
         {
@@ -79,38 +71,28 @@ namespace CAREier.Models
             }
         }
 
-        /*void IHandler<IProduct>.Update(IProduct pre, IProduct post)
-        {
-            if (_products.Contains(pre) )
-            {
-                int deleted = _products.IndexOf(pre);
-                _products.Remove(pre);
-                _products.Insert(deleted, post);
-
-                WriteState();
-            }
-            
-        }*/
-
-        /*public IProduct Update(int index, IProduct item)
-        {
-            _products.RemoveAt(index);
-            _products.Insert(index, item);
-
-            WriteState();
-
-            return _products[index];
-        }*/
 
         public void Delete(Product item)
         {
-            if (_products.Contains(item))
+            if (item != null)
             {
-                _products.Remove(item);
+                Product Temp = new Product();
+                foreach (var v in _products)
+                {
+                    if (item.Name == v.Name)
+                    {
+                        Temp = v;
+                    }
+                }
 
-                WriteState();
+                if (Temp != null)
+                { 
+                    _products.Remove(Temp);
+                    WriteState();
+                }
+                
             }
-            
+
         }
 
         public Product Delete(int index)

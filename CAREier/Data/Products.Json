@@ -2,40 +2,6 @@
   {
     "ItmeType": null,
     "my_valus": null,
-    "Name": "milk",
-    "Price": {
-      "PriceDKK": 150.0,
-      "PriceEuro": 20.0
-    },
-    "Weight": {
-      "WeightKilo": 10.0,
-      "WeightPound": 22.0462262
-    },
-    "Picture": "yes",
-    "Tags": [
-      "brian"
-    ]
-  },
-  {
-    "ItmeType": null,
-    "my_valus": null,
-    "Name": "milk",
-    "Price": {
-      "PriceDKK": 150.0,
-      "PriceEuro": 20.0
-    },
-    "Weight": {
-      "WeightKilo": 10.0,
-      "WeightPound": 22.0462262
-    },
-    "Picture": "yes",
-    "Tags": [
-      "brian"
-    ]
-  },
-  {
-    "ItmeType": null,
-    "my_valus": null,
     "Name": "yes",
     "Price": {
       "PriceDKK": 50.0,
@@ -80,6 +46,23 @@
       "WeightPound": 220.46226199999998
     },
     "Picture": "no",
+    "Tags": [
+      "crime"
+    ]
+  },
+  {
+    "ItmeType": null,
+    "my_valus": null,
+    "Name": "tomms mælkechokolade",
+    "Price": {
+      "PriceDKK": 100000.0,
+      "PriceEuro": 13333.333333333334
+    },
+    "Weight": {
+      "WeightKilo": 1.0,
+      "WeightPound": 2.20462262
+    },
+    "Picture": "rthrr",
     "Tags": [
       "crime"
     ]

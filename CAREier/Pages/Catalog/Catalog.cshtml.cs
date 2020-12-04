@@ -11,11 +11,11 @@ namespace CAREier.Pages
 {
     public class CatalogModel : PageModel
     {
-        private IHandler<Product> _products;
+        private ICRUD<Product> _products;
 
         public List<Product> Products { get; set; }
 
-        public CatalogModel(IHandler<Product> products)
+        public CatalogModel(ICRUD<Product> products)
         {
             _products = products;
         }

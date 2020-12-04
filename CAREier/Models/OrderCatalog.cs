@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using CAREier.Helpers;
 using CAREier.Interfaces;
 using CAREier.Localizers;
-
+/*
 namespace CAREier.Models
 {
     public class OrderCatalog : JsonInterface<List<IOrder>, List<IOrder>>, IHandler<IOrder>
@@ -31,7 +31,7 @@ namespace CAREier.Models
                 Picture = "yes",
                 Price = new LocalizedPrice(20),
                 Weight = new LocalizedWeight(10),
-                Tags = new List<string>()*/
+                Tags = new List<string>()
 
             }); 
             if (ReadState() != null) {
@@ -87,7 +87,7 @@ namespace CAREier.Models
                         p.Price = product.Price;
                         p.Weight = product.Weight;
                         p.Tags = product.Tags;
-                        p.Picture = product.Picture;*/
+                        p.Picture = product.Picture;
                     }
                 }
             }
@@ -114,7 +114,7 @@ namespace CAREier.Models
             WriteState();
 
             return _products[index];
-        }*/
+        }
 
         public void Delete(IOrder item)
         {
@@ -153,4 +153,4 @@ namespace CAREier.Models
             return new Order();
         }
     }
-}
+}*/
