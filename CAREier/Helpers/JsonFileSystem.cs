@@ -13,7 +13,7 @@ namespace CAREier.Helpers {
             string jsonString = File.ReadAllText(JsonFileName);
             return JsonConvert.DeserializeObject<List<Product>>(jsonString);
         }
-        public static void Write(List<DB_Item> products, string JsonFileName) {
+        public static void Write(List<Product> products, string JsonFileName) {
             string output = Newtonsoft.Json.JsonConvert.SerializeObject(products, Newtonsoft.Json.Formatting.Indented);
 
             File.WriteAllText(JsonFileName, output);

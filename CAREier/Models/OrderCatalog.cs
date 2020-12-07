@@ -6,105 +6,134 @@ using System.Threading.Tasks;
 using CAREier.Helpers;
 using CAREier.Interfaces;
 using CAREier.Localizers;
-/*
+
 namespace CAREier.Models
 {
-    public class OrderCatalog : JsonInterface<List<IOrder>, List<IOrder>>, IHandler<IOrder>
+    public class OrderCatalog : JsonInterface<List<Order>, List<Order>>, ICRUD<Order>
     {
         private string _filelocation;
-
-        public OrderCatalog(string filelocation)
+        public void Create(Order item)
         {
-            _filelocation = filelocation;
+            //throw new NotImplementedException();
         }
 
-        private List<IOrder> _orders;
-
-        public OrderCatalog()
+        public void Delete(Order item)
         {
-            _filelocation = @"Data\Products.json";
+            // throw new NotImplementedException();
+        }
 
-            _orders = new List<IOrder>();
-            _orders.Add(new Order()
+        public Order Read(int index)
+        {
+            return new Order();
+            //throw new NotImplementedException();
+        }
+
+        public List<Order> ReadAll()
+        {
+            return new Order();
+            // throw new NotImplementedException();
+        }
+
+        public void Update(Order item)
+        {
+            //throw new NotImplementedException();
+        }
+        /*
+
+     
+
+            public OrderCatalog(string filelocation)
             {
-                /*Name = "milk",
-                Picture = "yes",
-                Price = new LocalizedPrice(20),
-                Weight = new LocalizedWeight(10),
-                Tags = new List<string>()
-
-            }); 
-            if (ReadState() != null) {
-                _orders.AddRange(ReadState());
+                _filelocation = filelocation;
             }
-        }
 
-        public void Create(IOrder item)
-        {
-            if (item != null)
+            private List<IOrder> _orders;
+
+            public OrderCatalog()
             {
-                _orders.Add(item);
-                WriteState();
-            }
-        }
+                _filelocation = @"Data\Products.json";
 
-        public int Count()
-        {
-            return _orders.Count;
-        }
-
-        public IOrder Read(int index)
-        {
-            return _orders[index];
-        }
-
-        public IOrder ReadByName(string name)
-        {
-            foreach (var p in _orders)
-            {
-                if (p.Name == name)
+                _orders = new List<IOrder>();
+                _orders.Add(new Order()
                 {
-                    return p;
+                    /*Name = "milk",
+                    Picture = "yes",
+                    Price = new LocalizedPrice(20),
+                    Weight = new LocalizedWeight(10),
+                    Tags = new List<string>()
+
+                }); 
+                if (ReadState() != null) {
+                    _orders.AddRange(ReadState());
                 }
             }
-            return new Order();
-        }
 
-        public List<IOrder> ReadAll()
-        {
-            return _orders.ToList();
-        }
+            public void Create(IOrder item)
+            {
+                if (item != null)
+                {
+                    _orders.Add(item);
+                    WriteState();
+                }
+            }
 
-        public void Update(IOrder product)
-        {
-            if (product != null)
+            public int Count()
+            {
+                return _orders.Count;
+            }
+
+            public IOrder Read(int index)
+            {
+                return _orders[index];
+            }
+
+            public IOrder ReadByName(string name)
             {
                 foreach (var p in _orders)
                 {
-                    if (p.Name == product.Name)
+                    if (p.Name == name)
                     {
-                        /*p.Name = product.Name;
-                        p.Price = product.Price;
-                        p.Weight = product.Weight;
-                        p.Tags = product.Tags;
-                        p.Picture = product.Picture;
+                        return p;
+                    }
+                }
+                return new Order();
+            }
+
+            public List<IOrder> ReadAll()
+            {
+                return _orders.ToList();
+            }
+
+            public void Update(IOrder product)
+            {
+                if (product != null)
+                {
+                    foreach (var p in _orders)
+                    {
+                        if (p.Name == product.Name)
+                        {
+                            /*p.Name = product.Name;
+                            p.Price = product.Price;
+                            p.Weight = product.Weight;
+                            p.Tags = product.Tags;
+                            p.Picture = product.Picture;
+                        }
                     }
                 }
             }
-        }
 
-        /*void IHandler<IProduct>.Update(IProduct pre, IProduct post)
-        {
-            if (_products.Contains(pre) )
+            /*void IHandler<IProduct>.Update(IProduct pre, IProduct post)
             {
-                int deleted = _products.IndexOf(pre);
-                _products.Remove(pre);
-                _products.Insert(deleted, post);
+                if (_products.Contains(pre) )
+                {
+                    int deleted = _products.IndexOf(pre);
+                    _products.Remove(pre);
+                    _products.Insert(deleted, post);
 
-                WriteState();
-            }
-            
-        }*/
+                    WriteState();
+                }
+
+            }*/
 
         /*public IProduct Update(int index, IProduct item)
         {
@@ -140,7 +169,8 @@ namespace CAREier.Models
         private void WriteState() {
             WriteState(_orders, _filelocation);
         }
+        }
+        */
 
-       
     }
-}*/
+}
