@@ -6,126 +6,80 @@ using System.Threading.Tasks;
 using CAREier.Helpers;
 using CAREier.Interfaces;
 using CAREier.Localizers;
-/*
-namespace CAREier.Models
-{
-    public class OrderCatalog : JsonInterface<List<IOrder>, List<IOrder>>, IHandler<IOrder>
-    {
+using Microsoft.AspNetCore.Mvc;
+
+namespace CAREier.Models {
+    public class OrderCatalog /*: ICRUD<Order>*/ {
         private string _filelocation;
+        private List<Order> _orders;
 
-        public OrderCatalog(string filelocation)
-        {
-            _filelocation = filelocation;
+        public OrderCatalog() {
+            _filelocation = @"Data\Orders.json";
+
+            _orders = new List<Order>();
+
+            //if (ReadState() != null) {
+            //    _orders.AddRange(ReadState());
+            //}
         }
 
-        private List<IOrder> _orders;
-
-        public OrderCatalog()
-        {
-            _filelocation = @"Data\Products.json";
-
-            _orders = new List<IOrder>();
-            _orders.Add(new Order()
-            {
-                /*Name = "milk",
-                Picture = "yes",
-                Price = new LocalizedPrice(20),
-                Weight = new LocalizedWeight(10),
-                Tags = new List<string>()
-
-            }); 
-            if (ReadState() != null) {
-                _orders.AddRange(ReadState());
-            }
-        }
-
-        public void Create(IOrder item)
-        {
-            if (item != null)
-            {
+        public void Create(Order item) {
+            if (item != null) {
+                foreach (var v in _orders) {
+                    if (item.OrderID == v.OrderID) {
+                        return;
+                    }
+                }
                 _orders.Add(item);
-                WriteState();
+                //WriteState();
             }
         }
 
-        public int Count()
-        {
-            return _orders.Count;
-        }
-
-        public IOrder Read(int index)
-        {
+        public Order Read(int index) {
             return _orders[index];
         }
 
-        public IOrder ReadByName(string name)
-        {
-            foreach (var p in _orders)
-            {
-                if (p.Name == name)
-                {
-                    return p;
-                }
-            }
-            return new Order();
-        }
 
-        public List<IOrder> ReadAll()
-        {
+        public List<Order> ReadAll() {
             return _orders.ToList();
         }
 
-        public void Update(IOrder product)
-        {
-            if (product != null)
-            {
-                foreach (var p in _orders)
-                {
-                    if (p.Name == product.Name)
-                    {
-                        /*p.Name = product.Name;
-                        p.Price = product.Price;
-                        p.Weight = product.Weight;
-                        p.Tags = product.Tags;
-                        p.Picture = product.Picture;
+        public void Update(Order order) {
+            if (order != null) {
+                foreach (var o in _orders) {
+                    if (o.Bringer == order.Bringer) {
+                        o.MyStore = order.MyStore;
+                        o.Products = order.Products;
+                        o.Rating = order.Rating;
+                        o.TotalPrice = order.TotalPrice;
+
+                        //WriteState();
                     }
                 }
             }
         }
 
-        /*void IHandler<IProduct>.Update(IProduct pre, IProduct post)
-        {
-            if (_products.Contains(pre) )
-            {
-                int deleted = _products.IndexOf(pre);
-                _products.Remove(pre);
-                _products.Insert(deleted, post);
+        /*
+        public void Delete(Order item) {
+            if (item != null) {
+                Order Temp = new Order();
+                foreach (var v in _orders) {
+                    if (item.Name == v.Name) {
+                        Temp = v;
+                    }
+                }
 
-                WriteState();
+                if (Temp != null) {
+                    _orders.Remove(Temp);
+                    WriteState();
+                }
+
             }
-            
-        }*/
 
-        /*public IProduct Update(int index, IProduct item)
-        {
-            _products.RemoveAt(index);
-            _products.Insert(index, item);
-
-            WriteState();
-
-            return _products[index];
         }
 
-        public void Delete(IOrder item)
-        {
-            _orders.Remove(item);
-
-            WriteState();
-        }
-
-        IOrder IHandler<IOrder>.Delete(int index)
-        {
-            IOrder deleted = Read(index);
+        public Order Delete(int index) {
+            Order deleted = Read(index);
             _orders.RemoveAt(index);
 
             WriteState();
@@ -133,24 +87,13 @@ namespace CAREier.Models
             return deleted;
         }
 
-        private List<IOrder> ReadState() {
+        private List<Order> ReadState() {
             return ReadState(_filelocation);
         }
 
         private void WriteState() {
             WriteState(_orders, _filelocation);
         }
-
-        IOrder IHandler<IOrder>.ReadByName(string name)
-        {
-            foreach (var p in _orders)
-            {
-                if (p.Name == name)
-                {
-                    return p;
-                }
-            }
-            return new Order();
-        }
+        */
     }
-}*/
+}

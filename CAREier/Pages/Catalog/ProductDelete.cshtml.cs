@@ -46,7 +46,7 @@ namespace CAREier.Pages.Catalog
             ProductList = _newHandler.ReadAll();
             int index = ProductList.IndexOf(Product);
             _newHandler.Delete(Product);
-            return RedirectToPage("Catalog");
+            return RedirectToPage("ProductCatalog");
         }
     }
 }

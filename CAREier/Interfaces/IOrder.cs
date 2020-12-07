@@ -8,17 +8,18 @@ namespace CAREier.Interfaces
 {
     public interface IOrder
     {
-        public string Name { get; set; }
-
+        public double Rating { get; set; }
+        public IBuyer Buyer { get; }
+        public IBringer Bringer { get; set; }
         //Nu heder den MyStore, for det har jeg lyst til den skal hede! :D
         //Det er komplet uacceptablet!!! XD
-        public IStore MyStore { get; set; }
-        public List<IProduct> Products { get; set; }
-        public LocalizedPrice TotalPrice { get; set; }
-
-        public string OrderID { get; set; }
+        public IStore MyStore { get; }
+        public List<IProduct> Products { get; }
+        public LocalizedPrice TotalPrice { get; }
+        public int OrderID { get; }
+        public DateTime CreationDate { get; }
         
-        public abstract void AddProduct(IProduct item);
-        public abstract void RemoveProduct(IProduct item);
+        public abstract void AddToProductList(IProduct item);
+        public abstract void RemoveProductFromList(IProduct item);
     }
 }

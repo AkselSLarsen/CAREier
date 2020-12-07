@@ -39,18 +39,7 @@ namespace CAREier.Pages
         {
             Products = ProductSorter.GetProductsWithTags(Products, Tags);
         }
-        /*
-        public string Tags(int index) {
-            if(index >= Products.Count) { return ""; }
-            if(Products[index].Tags.Count == 0) { return ""; }
 
-            string re = "";
-            foreach(string tag in Products[index].Tags) {
-                re += tag + " ";
-            }
-            return re;
-        }
-        */
         public string FormalizeTags(List<string> tags) {
             return TagFormalizer.TagsToString(tags);
         }

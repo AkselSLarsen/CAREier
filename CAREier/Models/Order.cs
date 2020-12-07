@@ -8,80 +8,42 @@ using System.Threading.Tasks;
 
 namespace CAREier.Models
 {
-    public class Order : DB_Item, IOrder
+    public class Order : IOrder 
     {
-        private string _name;
-        public string Name { get { return _name;  } set { _name = value; } }
-
+        private double _rating;
+        private IBuyer _buyer;
+        private IBringer _bringer;
         private IStore _store;
-        public IStore MyStore { get { return _store; } set { _store = value; } }
         private List<IProduct> _products;
-        public List<IProduct> Products { get { return _products; } set { _products = value; } }
         private LocalizedPrice _totalPrice;
-        public LocalizedPrice TotalPrice { get { return _totalPrice; } set { _totalPrice = value; } }
-        private string _OrderID;
-        public string OrderID { get { return _OrderID; } set { _OrderID = value; } }
+        private static int _idCount;
+        private int _OrderID;
+        private DateTime _creationTime;
 
-        public void AddProduct(IProduct item)//{
+        public Order(IBuyer buyer) {
+            _products = new List<IProduct>();
+            _buyer = buyer;
+            _OrderID = _idCount++;
+        }
+
+        public double Rating { get; set; }
+        public IBuyer Buyer { get; }
+        public IBringer Bringer { get { return _bringer; } set { _bringer = value; } }
+        public IStore MyStore { get { return _store; } set { _store = value; } }
+        public List<IProduct> Products { get { return _products; } set { _products = value; } }
+        public LocalizedPrice TotalPrice { get { return _totalPrice; } set { _totalPrice = value; } }
+        public int OrderID { get { return _OrderID; } set { _OrderID = value; } }
+        public DateTime CreationDate { get { return _creationTime; } }
+        public bool ITaken { get { return Bringer != null; } }
+
+        public void AddToProductList(IProduct item)
         {
             _products.Add(item);
         }
 
-        public void RemoveProduct(IProduct item)//{
+        public void RemoveProductFromList(IProduct item)
         {
             _products.Remove(item);
         }
-
-        /*public void RemoveProductWithTags(params string[] tags)//{
-        {
-            List<Product> DeleteList = GetProductsWithTags(tags);
-            foreach (var prod in DeleteList)
-            {
-                if(!_products.Contains(prod)) throw new System.ArgumentException("A imposible Error; A none existen product could not get deleted: tjeck order", "original");
-                _products.Remove(prod);
-            }
-            DeleteList.Clear();
-        }*/
-        public List<Product> GetProduct(string name)//{
-        {
-            List<Product> NewProductsList = new List<Product>();
-            foreach (var prod in _products)
-            {
-                if (prod is Product) 
-                {
-                    if (prod.Name == name)
-                    {
-                        NewProductsList.Add((Product)prod);
-                    }
-                }
-            }
-            return NewProductsList;
-        }
-        public Product GetFistProduct(string name)
-        {
-            foreach (var prod in _products)
-            {
-                if (prod is Product)
-                {
-                    if (prod.Name == name)
-                    {
-                        return (Product)prod;
-                    }
-                    
-                }
-            }
-            return null;
-        }
-        /*public List<Product> GetProductsWithTags(params string[] tags)//{
-        {
-            List<IProduct> Products = ProductSorter.GetProductsWithTags(_products, tags);
-            List<Product> NewProductsList = new List<Product>(Products.Count);
-            foreach (var prod in _products)
-            {
-                NewProductsList.Add((Product)prod);
-            }
-            return NewProductsList;
-        }*/
-        
     }
 }
