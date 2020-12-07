@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CAREier.Models {
     public class OrderCatalog /*: ICRUD<Order>*/ {
+
         private string _filelocation;
         private List<Order> _orders;
 
