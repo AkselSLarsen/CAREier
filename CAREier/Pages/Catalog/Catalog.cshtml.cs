@@ -15,10 +15,20 @@ namespace CAREier.Pages
         private ICRUD<Product> _products;
 
         public List<Product> Products { get; set; }
+        [BindProperty]
+        public List<string> Tags { get; set; }
 
         public CatalogModel(ICRUD<Product> products)
         {
             _products = products;
+            Products = new List<Product>();
+            foreach (var var in _products.ReadAll())
+            {
+                if (var is Product)
+                {
+                    Products.Add((Product)var);
+                }
+            }
         }
         public void OnGet()
         {
@@ -27,7 +37,7 @@ namespace CAREier.Pages
 
         public void OnPost()
         {
-            Products = _products.ReadAll();
+            Products = ProductSorter.GetProductsWithTags(Products, Tags);
         }
         /*
         public string Tags(int index) {

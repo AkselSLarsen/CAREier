@@ -32,7 +32,7 @@ namespace CAREier.Models
             _products.Remove(item);
         }
 
-        public void RemoveProductWithTags(params string[] tags)//{
+        /*public void RemoveProductWithTags(params string[] tags)//{
         {
             List<Product> DeleteList = GetProductsWithTags(tags);
             foreach (var prod in DeleteList)
@@ -41,7 +41,7 @@ namespace CAREier.Models
                 _products.Remove(prod);
             }
             DeleteList.Clear();
-        }
+        }*/
         public List<Product> GetProduct(string name)//{
         {
             List<Product> NewProductsList = new List<Product>();
@@ -72,7 +72,7 @@ namespace CAREier.Models
             }
             return null;
         }
-        public List<Product> GetProductsWithTags(params string[] tags)//{
+        /*public List<Product> GetProductsWithTags(params string[] tags)//{
         {
             List<IProduct> Products = ProductSorter.GetProductsWithTags(_products, tags);
             List<Product> NewProductsList = new List<Product>(Products.Count);
@@ -81,7 +81,7 @@ namespace CAREier.Models
                 NewProductsList.Add((Product)prod);
             }
             return NewProductsList;
-        }
+        }*/
         
     }
 }
