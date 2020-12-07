@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CAREier.Helpers;
 using CAREier.Interfaces;
 using CAREier.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -41,11 +42,7 @@ namespace CAREier.Pages
         }
         */
         public string FormalizeTags(List<string> tags) {
-            string re = "";
-            foreach (string tag in tags) {
-                re += tag + " ";
-            }
-            return re;
+            return TagFormalizer.TagsToString(tags);
         }
     }
 }
