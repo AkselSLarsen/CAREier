@@ -45,7 +45,7 @@ namespace CAREier.Pages.Catalog
             }
 
             _newHandler.Update(Product);
-            return RedirectToPage("Catalog");
+            return RedirectToPage("ProductCatalog");
         }
 
     }

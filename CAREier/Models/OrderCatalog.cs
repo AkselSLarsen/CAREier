@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 using CAREier.Helpers;
 using CAREier.Interfaces;
 using CAREier.Localizers;
+using Microsoft.AspNetCore.Mvc;
 
-namespace CAREier.Models
-{
-    public class OrderCatalog : JsonInterface<List<Order>, List<Order>>, ICRUD<Order>
-    {
+namespace CAREier.Models {
+    public class OrderCatalog /*: ICRUD<Order>*/ {
         private string _filelocation;
         public void Create(Order item)
         {
@@ -122,13 +121,15 @@ namespace CAREier.Models
                 }
             }
 
-            /*void IHandler<IProduct>.Update(IProduct pre, IProduct post)
-            {
-                if (_products.Contains(pre) )
-                {
-                    int deleted = _products.IndexOf(pre);
-                    _products.Remove(pre);
-                    _products.Insert(deleted, post);
+        /*
+        public void Delete(Order item) {
+            if (item != null) {
+                Order Temp = new Order();
+                foreach (var v in _orders) {
+                    if (item.Name == v.Name) {
+                        Temp = v;
+                    }
+                }
 
                     WriteState();
                 }
@@ -145,16 +146,10 @@ namespace CAREier.Models
             return _products[index];
         }
 
-        public void Delete(IOrder item)
-        {
-            _orders.Remove(item);
-
-            WriteState();
         }
 
-        public IOrder Delete(int index)
-        {
-            IOrder deleted = Read(index);
+        public Order Delete(int index) {
+            Order deleted = Read(index);
             _orders.RemoveAt(index);
 
             WriteState();
@@ -162,7 +157,7 @@ namespace CAREier.Models
             return deleted;
         }
 
-        private List<IOrder> ReadState() {
+        private List<Order> ReadState() {
             return ReadState(_filelocation);
         }
 
