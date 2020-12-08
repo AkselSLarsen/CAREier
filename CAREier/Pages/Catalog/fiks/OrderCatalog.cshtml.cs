@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CAREier.Pages
 {
-    public class OrderCatalogModel : PageModel
+    public class OrderACatalogModel : PageModel
     {
         private ICRUD<Order> _orders;
 
@@ -18,7 +18,7 @@ namespace CAREier.Pages
         [BindProperty]
         public Order Order { get; set; }
 
-        public OrderCatalogModel(ICRUD<Order> orders)
+        public OrderACatalogModel(ICRUD<Order> orders)
         {
             _orders = orders;
             Orders = new List<Order>();
