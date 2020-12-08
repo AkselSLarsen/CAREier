@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CAREier.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace CAREier.Models
 {
-    public class Bringer
+    public class Bringer : IUser
     {
         private string _name;
         private string _email;

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CAREier.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace CAREier.Models
 {
-    public class Buyer
+    public class Buyer : IUser
     {
         private string _name;
         private string _email;

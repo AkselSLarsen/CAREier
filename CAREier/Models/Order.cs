@@ -11,9 +11,9 @@ namespace CAREier.Models
     public class Order : IOrder 
     {
         private double _rating;
-        private IBuyer _buyer;
-        private IBringer _bringer;
-        private IStore _store;
+        private Buyer _buyer;
+        private Bringer _bringer;
+        private Store _store;
         private List<IProduct> _products;
         private LocalizedPrice _totalPrice;
         private LocalizedWeight _totalWeight;
@@ -21,16 +21,16 @@ namespace CAREier.Models
         private int _OrderID;
         private DateTime _creationTime;
 
-        public Order(IBuyer buyer) {
+        public Order(Buyer buyer) {
             _products = new List<IProduct>();
             _buyer = buyer;
             _OrderID = _idCount++;
         }
 
         public double Rating { get; set; }
-        public IBuyer Buyer { get; }
-        public IBringer Bringer { get { return _bringer; } set { _bringer = value; } }
-        public IStore MyStore { get { return _store; } set { _store = value; } }
+        public Buyer Buyer { get; }
+        public Bringer Bringer { get { return _bringer; } set { _bringer = value; } }
+        public Store MyStore { get { return _store; } set { _store = value; } }
         public List<IProduct> Products { get { return _products; } set { _products = value; } }
         public LocalizedPrice TotalPrice { get { return _totalPrice; } private set { _totalPrice = value; } }
         public LocalizedWeight TotalWeight { get { return _totalWeight; } private set { _totalWeight = value; } }
