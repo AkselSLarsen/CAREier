@@ -28,5 +28,41 @@ namespace CAREier.Helpers {
 
             File.WriteAllText(JsonFileName, output);
         }
+
+        public static List<Buyer> ReadBuyer(string JsonFileName)
+        {
+            string jsonString = File.ReadAllText(JsonFileName);
+            return JsonConvert.DeserializeObject<List<Buyer>>(jsonString);
+        }
+        public static void WriteBuyer(List<Buyer> buyers, string JsonFileName)
+        {
+            string output = Newtonsoft.Json.JsonConvert.SerializeObject(buyers, Newtonsoft.Json.Formatting.Indented);
+
+            File.WriteAllText(JsonFileName, output);
+        }
+
+        public static List<Store> ReadStores(string JsonFileName)
+        {
+            string jsonString = File.ReadAllText(JsonFileName);
+            return JsonConvert.DeserializeObject<List<Store>>(jsonString);
+        }
+        public static void WriteStores(List<Store> stores, string JsonFileName)
+        {
+            string output = Newtonsoft.Json.JsonConvert.SerializeObject(stores, Newtonsoft.Json.Formatting.Indented);
+
+            File.WriteAllText(JsonFileName, output);
+        }
+
+        public static List<Bringer> ReadBringers(string JsonFileName)
+        {
+            string jsonString = File.ReadAllText(JsonFileName);
+            return JsonConvert.DeserializeObject<List<Bringer>>(jsonString);
+        }
+        public static void WriteBringers(List<Bringer> bringers, string JsonFileName)
+        {
+            string output = Newtonsoft.Json.JsonConvert.SerializeObject(bringers, Newtonsoft.Json.Formatting.Indented);
+
+            File.WriteAllText(JsonFileName, output);
+        }
     }
 }
