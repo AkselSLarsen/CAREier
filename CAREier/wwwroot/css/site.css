@@ -56,6 +56,8 @@ button.accept-policy {
 html {
   position: relative;
   min-height: 100%;
+  margin:0
+
 }
 
 body {
@@ -78,7 +80,50 @@ body {
 
 /* Doesn't actually work, done in html right now, to my despair. */
 .quarter-circle-img {
-    width: 25vw;
+    width: 80%;
     height: auto;
     border-radius: 50%;
+    margin-left: 10%;
+}
+
+.rounded_box {
+    border-bottom:4px solid #808080;
+    border-radius: 10%;
+    background-color: #909090;
+    margin:0
+}
+.sitebox {
+    
+}
+.rounded_box {
+    border-bottom: 4px solid #808080;
+    border-radius: 10%;
+    background-color: #909090;
+    text-align:left;
+}
+.center-h {
+    margin-left: auto;
+    margin-right: auto;
+   
+    background-color: #909090;
+}
+
+
+.halfside-right {
+    width: 50%;
+}
+.halfside-left {
+    width: 50%;
+}
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: #00ff21;
+}
+.flex-container > div {
+    background-color: #f1f1f1;
+    width: 100%;
+  
+    /*line-height: 75px;
+    font-size: 30px;*/
 }
