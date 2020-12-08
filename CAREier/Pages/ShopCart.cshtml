@@ -3,32 +3,62 @@
 @{
     ViewData["Title"] = "ShoppingCart";
 }
-<h1>ShoppingCart</h1>
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Image</th>
-            <th class="text-right">Price</th>
-        </tr>
-    </thead>
 
-    @if (Model.Orders.Count != 0)
-    {
-        @foreach (var item in Model.Orders)
-        {
-            <tr>
-                <td> @item.OrderID</td>
-                <td> @item.MyStore</td>
-                <td> @item.TotalPrice.PriceDKK</td>
-            </tr>
+<div class="flex-container">
 
-        }
-    }
+    <div>
+        <h2>List of items</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Taken</th>
+                    <th>Weight</th>
+                    <th class="text-right">Price</th>
+                </tr>
+                @foreach (var Prod in Model.Products)
+                {
+                <tr>
+                    <td> <img style="width: 70px; height: auto" src="~/images/@Prod.Picture" alt="picture"></td>
+                    <td> @Prod.Name</td>
+                    <td> @Prod.Price.PriceDKK</td>
+                    <td> @Prod.Weight.WeightKilo</td>
+                    <td><div class="btn btn-success"> <a asp-page="BuyItem" asp-route-id="">Buy Item</a></div> </td>
 
-</table>
-<div class="text-center">
-    <a asp-page="/Books/AllBooks" class="btn btn-primary">Continue shopping</a>
-    <a asp-page="/Orders/CheckOut" class="btn btn-primary">Check_Out</a>
-</div>
+                </tr>
+
+                }
+                </thead>
+        </table>
+    </div>
+    <div>
+        <div>
+            <form method="post">
+                <p>
+                    Search:
+                    <input type="text"/>
+                    <input type="submit" value="Search" />
+                </p>
+            </form>
+        </div>
+        <div class="rounded_box">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Buyer</th>
+                        <th>Taken</th>
+                        <th>Image</th>
+                        <th class="text-right">Price</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+            <div class="text-center">
+                <a asp-page="/Books/AllBooks" class="btn btn-primary">Continue shopping</a>
+                <a asp-page="/Orders/CheckOut" class="btn btn-primary">Check_Out</a>
+            </div>
+        </div>
+    </div>
+
+
