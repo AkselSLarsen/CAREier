@@ -16,6 +16,11 @@ namespace CAREier.Models
         private string _username;
         private string _password;
 
+        public Buyer()
+        {
+            
+        }
+
         public Buyer(string name, string email, string phone, string adress, List<Order> orders, string username, string password)
         {
             _name = name;
