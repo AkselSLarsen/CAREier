@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CAREier.Models {
-    public enum UserType {
+namespace CAREier.Models.profiles
+{
+    public enum UserTypes
+    {
         Buyer,
         Bringer,
         Store

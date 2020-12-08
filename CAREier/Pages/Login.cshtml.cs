@@ -1,11 +1,12 @@
 using CAREier.Models;
+using CAREier.Models.profiles;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CAREier.Pages {
     public class LoginModel : PageModel {
 
-        public UserType UserType { get; set; }
+        public UserTypes UserType { get; set; }
 
         public LoginModel() {
 
@@ -14,13 +15,13 @@ namespace CAREier.Pages {
         public IActionResult OnGet(int id) {
             switch(id) {
                 case 0: //UserType = Buyer
-                    UserType = UserType.Buyer;
+                    UserType = UserTypes.Buyer;
                     return Page();
                 case 1: //UserType = Bringer
-                    UserType = UserType.Bringer;
+                    UserType = UserTypes.Bringer;
                     return Page();
                 case 2: //UserType = Store
-                    UserType = UserType.Store;
+                    UserType = UserTypes.Store;
                     return Page();
                 default:
                     return Page();

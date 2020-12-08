@@ -5,7 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Catalog\fiks\OrderCatalog.cshtml.cs" />
+    <Compile Remove="Pages\Catalog\fiks\OrderUpdate.cshtml.cs" />
+    <Compile Remove="Pages\Catalog\OrderUpdate.cshtml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\Catalog\fiks\OrderCatalog.cshtml" />
+    <Content Remove="Pages\Catalog\fiks\OrderUpdate.cshtml" />
+    <Content Remove="Pages\Catalog\OrderUpdate.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Catalog\fiks\" />
   </ItemGroup>
 
 </Project>

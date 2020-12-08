@@ -1,11 +1,9 @@
 [
   {
-    "ItmeType": null,
-    "my_valus": null,
     "Name": "yes",
     "Price": {
-      "PriceDKK": 50.0,
-      "PriceEuro": 6.666666666666667
+      "PriceDKK": 100.0,
+      "PriceEuro": 13.333333333333334
     },
     "Weight": {
       "WeightKilo": 12.0,
@@ -13,12 +11,10 @@
     },
     "Picture": null,
     "Tags": [
-      "en, to, tre, fire"
+      "System.Collections.Generic.List`1[System.String]"
     ]
   },
   {
-    "ItmeType": null,
-    "my_valus": null,
     "Name": "Yeast",
     "Price": {
       "PriceDKK": 100.0,
@@ -34,37 +30,18 @@
     ]
   },
   {
-    "ItmeType": null,
-    "my_valus": null,
-    "Name": "honduran bananas",
-    "Price": {
-      "PriceDKK": 700.0,
-      "PriceEuro": 93.33333333333333
-    },
-    "Weight": {
-      "WeightKilo": 100.0,
-      "WeightPound": 220.46226199999998
-    },
-    "Picture": "no",
-    "Tags": [
-      "crime"
-    ]
-  },
-  {
-    "ItmeType": null,
-    "my_valus": null,
     "Name": "tomms mælkechokolade",
     "Price": {
       "PriceDKK": 100000.0,
       "PriceEuro": 13333.333333333334
     },
     "Weight": {
-      "WeightKilo": 1.0,
-      "WeightPound": 2.20462262
+      "WeightKilo": 3.0,
+      "WeightPound": 6.613867859999999
     },
     "Picture": "RødBar.jpg",
     "Tags": [
-      "mhm"
+      "System.Collections.Generic.List`1[System.String]"
     ]
   }
 ]
