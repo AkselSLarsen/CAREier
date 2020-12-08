@@ -1,7 +1,5 @@
 [
   {
-    "ItmeType": null,
-    "my_valus": null,
     "Name": "yes",
     "Price": {
       "PriceDKK": 100.0,
@@ -17,8 +15,6 @@
     ]
   },
   {
-    "ItmeType": null,
-    "my_valus": null,
     "Name": "Yeast",
     "Price": {
       "PriceDKK": 100.0,
@@ -34,37 +30,18 @@
     ]
   },
   {
-    "ItmeType": null,
-    "my_valus": null,
     "Name": "tomms mælkechokolade",
     "Price": {
       "PriceDKK": 100000.0,
       "PriceEuro": 13333.333333333334
     },
     "Weight": {
-      "WeightKilo": 2.0,
-      "WeightPound": 4.40924524
+      "WeightKilo": 3.0,
+      "WeightPound": 6.613867859999999
     },
     "Picture": "RødBar.jpg",
     "Tags": [
       "System.Collections.Generic.List`1[System.String]"
-    ]
-  },
-  {
-    "ItmeType": null,
-    "my_valus": null,
-    "Name": "honduran bananas",
-    "Price": {
-      "PriceDKK": -200.0,
-      "PriceEuro": -26.666666666666668
-    },
-    "Weight": {
-      "WeightKilo": 1.0,
-      "WeightPound": 2.20462262
-    },
-    "Picture": "rthrr",
-    "Tags": [
-      "crime"
     ]
   }
 ]
