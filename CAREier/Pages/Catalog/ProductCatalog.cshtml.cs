@@ -37,7 +37,10 @@ namespace CAREier.Pages
 
         public void OnPost()
         {
-            Products = ProductSorter.GetProductsWithTags(Products, Tags);
+            Products = ProductSorter.GetProductsWithTags(_products.ReadAll(), Tags);
+            if (Products.Count == 0) {
+                Products = _products.ReadAll();
+            }
         }
 
         public string FormalizeTags(List<string> tags) {
