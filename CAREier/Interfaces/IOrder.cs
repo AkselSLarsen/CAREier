@@ -16,6 +16,7 @@ namespace CAREier.Interfaces
         public IStore MyStore { get; }
         public List<IProduct> Products { get; }
         public LocalizedPrice TotalPrice { get; }
+        public LocalizedWeight TotalWeight { get; }
         public int OrderID { get; }
         public DateTime CreationDate { get; }
         

@@ -16,6 +16,7 @@ namespace CAREier.Models
         private IStore _store;
         private List<IProduct> _products;
         private LocalizedPrice _totalPrice;
+        private LocalizedWeight _totalWeight;
         private static int _idCount;
         private int _OrderID;
         private DateTime _creationTime;
@@ -31,7 +32,8 @@ namespace CAREier.Models
         public IBringer Bringer { get { return _bringer; } set { _bringer = value; } }
         public IStore MyStore { get { return _store; } set { _store = value; } }
         public List<IProduct> Products { get { return _products; } set { _products = value; } }
-        public LocalizedPrice TotalPrice { get { return _totalPrice; } set { _totalPrice = value; } }
+        public LocalizedPrice TotalPrice { get { return _totalPrice; } private set { _totalPrice = value; } }
+        public LocalizedWeight TotalWeight { get { return _totalWeight; } private set { _totalWeight = value; } }
         public int OrderID { get { return _OrderID; } set { _OrderID = value; } }
         public DateTime CreationDate { get { return _creationTime; } }
         public bool ITaken { get { return Bringer != null; } }
