@@ -16,6 +16,11 @@ namespace CAREier.Models
         private string _username;
         private string _password;
 
+
+        public Bringer()
+        {
+            
+        }
         public Bringer(string name, string email, string phone, double rating, List<Order> orders, string username, string password)
         {
             _name = name;
