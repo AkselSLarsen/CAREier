@@ -87,10 +87,10 @@ body {
 }
 
 .rounded_box {
-    border-bottom:4px solid #808080;
+    border-bottom: 4px solid #808080;
     border-radius: 10%;
     background-color: #909090;
-    margin:0
+  
 }
 .sitebox {
     
@@ -99,7 +99,10 @@ body {
     border-bottom: 4px solid #808080;
     border-radius: 10%;
     background-color: #909090;
-    text-align:left;
+    text-align: left;
+    
+    min-height:200px;
+    width:auto;
 }
 .center-h {
     margin-left: auto;
@@ -107,23 +110,43 @@ body {
    
     background-color: #909090;
 }
-
-
-.halfside-right {
-    width: 50%;
+.headfield {
+    margin: 20px;
+    width: 100%;
+    line-height: 35px;
+    font-size: 20px;
 }
-.halfside-left {
-    width: 50%;
+.bodyfield {
+    
 }
+.Mainfield {
+    width: 60%;
+    padding:10px;
+    float: left;
+}
+
+.LeftSidfield {
+    width: 40%;
+    padding: 10px;
+    float: left;
+}
+
 .flex-container {
     display: flex;
     flex-wrap: nowrap;
     background-color: #00ff21;
+    height: 100%;
 }
 .flex-container > div {
     background-color: #f1f1f1;
     width: 100%;
-  
-    /*line-height: 75px;
-    font-size: 30px;*/
+}
+.ItemList {
+    
+    overflow: auto;
+    border-bottom: 2px dashed #808080;
+    margin-right: 10px
+}
+.shop-page-container {
+   
 }

@@ -6,7 +6,7 @@
 
 <div class="flex-container">
 
-    <div>
+    <div class="ItemList">
         <h2>List of items</h2>
         <table>
             <thead>
@@ -18,47 +18,73 @@
                 </tr>
                 @foreach (var Prod in Model.Products)
                 {
-                <tr>
-                    <td> <img style="width: 70px; height: auto" src="~/images/@Prod.Picture" alt="picture"></td>
-                    <td> @Prod.Name</td>
-                    <td> @Prod.Price.PriceDKK</td>
-                    <td> @Prod.Weight.WeightKilo</td>
-                    <td><div class="btn btn-success"> <a asp-page="BuyItem" asp-route-id="">Buy Item</a></div> </td>
+                    <tr>
+                        <td> <img style="width: 70px; height: auto" src="~/images/@Prod.Picture" alt="picture"></td>
+                        <td> @Prod.Name</td>
+                        <td> @Prod.Price.PriceDKK</td>
+                        <td> @Prod.Weight.WeightKilo</td>
+                        <td>
+                            <form method="post">
+                                <p>
+                                    <button type="submit" asp-page-handler="ByItem" class="btn btn-success">By Item</button>
+                                </p>
+                            </form>
+                       
 
-                </tr>
+                    </tr>
 
                 }
                 </thead>
         </table>
     </div>
-    <div>
-        <div>
+    <div class="shop-page-container">
+        <div class="headfield">
             <form method="post">
-                <p>
-                    Search:
-                    <input type="text"/>
+                <h2>
+                    <input type="text" />
                     <input type="submit" value="Search" />
-                </p>
+                </h2>
             </form>
         </div>
-        <div class="rounded_box">
+        <div class="bodyfield">
+            <div class="Mainfield">
+                <p>some more stuff</p>
+            </div>
+            <div class="LeftSidfield">
+                <div class="rounded_box">
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Buyer</th>
-                        <th>Taken</th>
-                        <th>Image</th>
-                        <th class="text-right">Price</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-            <div class="text-center">
-                <a asp-page="/Books/AllBooks" class="btn btn-primary">Continue shopping</a>
-                <a asp-page="/Orders/CheckOut" class="btn btn-primary">Check_Out</a>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Buyer</th>
+                                <th>Taken</th>
+                                <th>Image</th>
+                                <th class="text-right">Price</th>
+                            </tr>
+                            @if (Model.CurrentBuyer.HasOrders)
+                            {
+                                @foreach (var Ord in @Model.SortedOrderList())
+                                {
+
+                                    <tr>
+                                        <td> @Ord.OrderID</td>
+                                        <td> @Ord.TotalPrice.PriceDKK</td>
+                                        <td> @Ord.TotalWeight.WeightKilo</td>
+                                        <td> @Ord.CreationDate</td>
+                                    </tr>
+
+                                }
+                            }
+                        </thead>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <a asp-page="/Books/AllBooks" class="btn btn-primary">Continue shopping</a>
+                    <a asp-page="/Orders/CheckOut" class="btn btn-primary">Check_Out</a>
+                </div>
             </div>
         </div>
     </div>
+</div>
 
 

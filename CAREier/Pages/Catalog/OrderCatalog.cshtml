@@ -7,12 +7,12 @@
 <tbody>
     @foreach (var Ord in Model.Orders)
     {
-    <tr>
-        <td> @Ord.OrderID</td>
-        <td> @Ord.TotalPrice.PriceDKK</td>
-        <td> @Ord.TotalWeight.WeightKilo</td>
-        <td> @Ord.CreationDate</td>
-    </tr>
+        <tr>
+            <td> @Ord.OrderID</td>
+            <td> @Ord.TotalPrice.PriceDKK</td>
+            <td> @Ord.TotalWeight.WeightKilo</td>
+            <td> @Ord.CreationDate</td>
+        </tr>
 
         }
 </tbody>

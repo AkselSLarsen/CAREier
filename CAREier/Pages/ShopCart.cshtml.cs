@@ -13,11 +13,15 @@ namespace CAREier.Pages
 {
     public class ShopCardModel : PageModel
     {
+        public Buyer CurrentBuyer { get; set; }
         private ICRUD<Product> _products;
         public List<Product> Products { get; set; }
         public ShoppingCartService ChartService { get; }
-        public List<IOrder> Orders { get; set; }
+        public List<Order> CurrentOrders { get; set; }
         public List<string> Tags { get; set; }
+
+        [BindProperty]
+        public Order ItemOrder { get; set; }
 
         public ShopCardModel(ICRUD<Product> products)
         {
@@ -30,19 +34,28 @@ namespace CAREier.Pages
                     Products.Add((Product)var);
                 }
             }
+
+            CurrentBuyer = new Buyer();
         }
+        public List<Order> SortedOrderList()
+        {
+            
+            return CurrentBuyer.Orders;
+        }
+
         public void OnGet()
         {
             Products = _products.ReadAll();
         }
 
-        public void OnPost()
+        public void OnPostByItem()
         {
-           /* Products = ProductSorter.GetProductsWithTags(_products.ReadAll(), Tags);
-            if (Products.Count == 0)
-            {
-                Products = _products.ReadAll();
-            }*/
+            CurrentBuyer.MakeOrder();
+            /* Products = ProductSorter.GetProductsWithTags(_products.ReadAll(), Tags);
+             if (Products.Count == 0)
+             {
+                 Products = _products.ReadAll();
+             }*/
         }
 
         public string FormalizeTags(List<string> tags)

@@ -16,25 +16,35 @@ namespace CAREier.Models
         private List<Order> _orders;
         private string _username;
         private string _password;
-
+        public bool HasOrders;
         public Buyer()
         {
-            
+            HasOrders = false;
         }
 
-        public Buyer(string name, string email, string phone, string adress, List<Order> orders, string username, string password)
+        public Buyer(string name, string email, string phone, string adress, string username, string password)
         {
             _name = name;
             _email = email;
             _phone = phone;
             _adress = adress;
             //_paymentMethod = paymentMethod;
-            _orders = orders;
+            _orders = new List<Order>();
             _username = username;
             _password = password;
+            HasOrders = false;
 
         }
-
+        public void MakeOrder(string ShopID)
+        {
+            Orders.Add(new Order(this));
+            HasOrders = true;
+        }
+        public void ClearOrders()
+        {
+            Orders.Clear();
+            HasOrders = false;
+        }
         public string Name
         {
             get { return _name;}
