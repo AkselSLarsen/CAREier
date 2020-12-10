@@ -107,11 +107,26 @@ namespace CAREier.Models
             return deleted;
         }
 
-        private List<Product> ReadState() {
+        public List<Store> FindStore(Product item)
+        {
+            foreach (var p in _products)
+            {
+                if (p.Stores != null)
+                {
+                    return p.Stores;
+                }
+                
+            }
+            return null;
+        }
+
+        private List<Product> ReadState() 
+        {
             return ReadState(_filelocation);
         }
 
-        private void WriteState() {
+        private void WriteState() 
+        {
             WriteState(_products, _filelocation);
         }
     }

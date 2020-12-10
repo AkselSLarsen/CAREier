@@ -20,6 +20,7 @@
             <div class="form-group">
                 <label asp-for="@Model.Product.Price.PriceDKK" class="control-label"></label>
                 <input asp-for="@Model.Product.Price.PriceDKK" class="form-control" />
+                <span asp-validation-for="Product.Price.PriceDKK" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Product.Weight.WeightKilo" class="control-label"></label>
