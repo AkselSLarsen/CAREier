@@ -16,6 +16,7 @@ namespace CAREier.Models
         private LocalizedPrice _price;
         private LocalizedWeight _weight;
         private List<string> _tags;
+        private List<Store> _stores;
         private int _id;
 
         //[Required(AllowEmptyStrings = false, ErrorMessage = "the product must have a name")]
@@ -25,14 +26,20 @@ namespace CAREier.Models
             set { _name = value; }
         }
 
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "the product must have a price")]
+        public List<Store> Stores
+        {
+            get { return _stores; }
+            set { _stores = value; }
+        }
+
+        //[Required] [Range(0, 1000000)]
         public LocalizedPrice Price
         {
             get { return _price; }
             set { _price = value; }
         }
 
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "the product must have a weight")]
+        //[Required] [Range(0, 1000000)]
         public LocalizedWeight Weight
         {
             get { return _weight; }
