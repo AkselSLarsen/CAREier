@@ -16,11 +16,11 @@ namespace CAREier.Models
         private double _rating;
         private string _username;
         private string _password;
-
+      
 
         public Store()
         {
-            
+           
         }
         public Store(string name, string email, string adress, string openingtimes, double rating, string username, string password)
         {

@@ -35,9 +35,15 @@ namespace CAREier.Models
             HasOrders = false;
 
         }
-        public void MakeOrder(string ShopID)
+        public void MakeOrder(Product product)
         {
-            Orders.Add(new Order(this));
+            foreach (Order order in _orders) { 
+
+            }
+
+            Order ord = new Order(this);
+            ord.AddToProductList(product);
+            Orders.Add(ord);
             HasOrders = true;
         }
         public void ClearOrders()

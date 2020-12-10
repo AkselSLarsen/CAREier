@@ -17,8 +17,15 @@ namespace CAREier.Models
         private LocalizedWeight _weight;
         private List<string> _tags;
         private int _id;
+        private List<string> _ShopIDList;
 
         //[Required(AllowEmptyStrings = false, ErrorMessage = "the product must have a name")]
+        public Product()
+        {
+            _ShopIDList = new List<string>();
+        }
+
+
         public string Name
         {
             get { return _name;}
@@ -47,7 +54,16 @@ namespace CAREier.Models
             get { return _tags; }
             set { _tags = value; }
         }
-
+       
+        public List<string> ShopIDList
+        {
+            get { return _tags; }
+            set { _tags = value; }
+        }
+        public List<string> BindToShop(string ShopID)
+        {
+            ShopIDList.Add(ShopID);
+        }
         /*public Product(string name, LocalizedPrice price, LocalizedWeight weight,
             List<string> tags)
         {

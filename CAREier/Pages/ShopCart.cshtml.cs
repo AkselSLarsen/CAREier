@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CAREier.Pages
 {
+   
     public class ShopCardModel : PageModel
     {
         public Buyer CurrentBuyer { get; set; }
@@ -21,7 +22,8 @@ namespace CAREier.Pages
         public List<string> Tags { get; set; }
 
         [BindProperty]
-        public Order ItemOrder { get; set; }
+        public Product PostProduct { get; set; }
+
 
         public ShopCardModel(ICRUD<Product> products)
         {
@@ -50,12 +52,12 @@ namespace CAREier.Pages
 
         public void OnPostByItem()
         {
-            CurrentBuyer.MakeOrder();
-            /* Products = ProductSorter.GetProductsWithTags(_products.ReadAll(), Tags);
-             if (Products.Count == 0)
-             {
-                 Products = _products.ReadAll();
-             }*/
+             CurrentBuyer.MakeOrder(PostProduct);
+             /* Products = ProductSorter.GetProductsWithTags(_products.ReadAll(), Tags);
+              if (Products.Count == 0)
+              {
+                  Products = _products.ReadAll();
+              }*/
         }
 
         public string FormalizeTags(List<string> tags)

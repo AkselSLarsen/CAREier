@@ -26,6 +26,7 @@ namespace CAREier {
             services.AddSingleton<IUser, User>();
             services.AddSingleton<ICRUD<Product>, ProductCatalog>();
             services.AddSingleton<ICRUD<Order>, OrderCatalog>();
+            services.AddSingleton<ICRUD<Store>, StoreCatalog>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

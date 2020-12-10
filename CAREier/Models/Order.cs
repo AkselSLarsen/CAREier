@@ -26,6 +26,7 @@ namespace CAREier.Models
             _buyer = buyer;
             _OrderID = _idCount++;
         }
+       
 
         public double Rating { get; set; }
         public Buyer Buyer { get; }

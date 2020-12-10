@@ -14,5 +14,7 @@ namespace CAREier.Interfaces {
         public LocalizedWeight Weight { get; set; }
         public List<string> Tags { get; set; }
         public string Picture { get; set; }
+
+        public List<string> ShopIDList { get; set; }
     }
 }
