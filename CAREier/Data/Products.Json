@@ -1,10 +1,11 @@
 [
   {
-    "Name": "fisk2",
+    "Name": "fisk",
     "Stores": [],
-    "Price": "2,6666666666666665",
+    "Price": "2,65",
     "Weight": "12",
     "Picture": null,
-    "Tags": "All"
+    "Tags": "All",
+    "id": 0
   }
 ]
