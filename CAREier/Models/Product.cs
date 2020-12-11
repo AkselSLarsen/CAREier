@@ -7,6 +7,8 @@ using System.Numerics;
 using System.Threading.Tasks;
 using CAREier.Interfaces;
 using CAREier.Localizers;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace CAREier.Models
 {
@@ -18,7 +20,8 @@ namespace CAREier.Models
         private TagSystem _tags;
         private List<Store> _stores;
         private int _id;
- 
+        
+        
 
         //[Required(AllowEmptyStrings = false, ErrorMessage = "the product must have a name")]
         public Product()
@@ -41,6 +44,7 @@ namespace CAREier.Models
         }
 
         //[Required] [Range(0, 1000000)]
+        [JsonConverter(typeof(PriceConverter))]
         public LocalizedPrice Price
         {
             get { return _price; }
@@ -48,6 +52,7 @@ namespace CAREier.Models
         }
 
         //[Required] [Range(0, 1000000)]
+        [JsonConverter(typeof(WeightConverter))]
         public LocalizedWeight Weight
         {
             get { return _weight; }
@@ -70,6 +75,7 @@ namespace CAREier.Models
         /// <summary>
         /// Is Read only, User .TagAdd( [Item] ) to add tags
         /// </summary>
+        [JsonConverter(typeof(TagConverter))]
         public TagSystem Tags
         {
             get { return _tags; }

@@ -1,18 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
+
 
 namespace CAREier {
     public class TagSystem {
+
+        
         private string[] _tags;
 
         public TagSystem()
         {
             _tags = new string[1] { "All" };
         }
-        public void StringToTags(string s) {
-            string[] strs = s.Split(",");
+        public TagSystem(string tags)
+        {
+            _tags = StringToTags(tags);
+        }
+        public string[] StringToTags(string s) {
+            return s.Split(",");
         }
         /// <summary>
         /// Makes sure all tags are unicure
@@ -79,6 +86,26 @@ namespace CAREier {
                 }
             }
             return re;
+        }
+    }
+    public class TagConverter : Newtonsoft.Json.JsonConverter
+    {
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            TagSystem obj = (TagSystem)value;
+
+            writer.WriteValue(obj.ToString());
+        }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            if (reader.Value == null) return new TagSystem();
+            TagSystem obj = new TagSystem((string)reader.Value);
+            return obj;
+        }
+        public override bool CanConvert(Type typeToConvert)
+        {
+            return typeToConvert == typeof(string);
         }
     }
 }

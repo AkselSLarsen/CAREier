@@ -14,6 +14,7 @@ namespace CAREier.Helpers {
             return JsonConvert.DeserializeObject<List<Product>>(jsonString);
         }
         public static void WriteProduct(List<Product> products, string JsonFileName) {
+
             string output = Newtonsoft.Json.JsonConvert.SerializeObject(products, Newtonsoft.Json.Formatting.Indented);
 
             File.WriteAllText(JsonFileName, output);
@@ -52,7 +53,6 @@ namespace CAREier.Helpers {
 
             File.WriteAllText(JsonFileName, output);
         }
-
         public static List<Bringer> ReadBringers(string JsonFileName)
         {
             string jsonString = File.ReadAllText(JsonFileName);
