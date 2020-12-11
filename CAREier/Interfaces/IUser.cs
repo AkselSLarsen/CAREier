@@ -9,5 +9,6 @@ namespace CAREier.Interfaces {
         public string Email { get; }
         public string Username { get; }
         public string Password { get; }
+        public WorldPoint Location { get; set; }
     }
 }

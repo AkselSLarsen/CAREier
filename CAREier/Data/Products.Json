@@ -1,47 +1,44 @@
 [
   {
-    "Name": "yes",
+    "Name": "fisk",
+    "Stores": [],
     "Price": {
-      "PriceDKK": 100.0,
-      "PriceEuro": 13.333333333333334
+      "PriceDKK": 20.0,
+      "PriceEuro": 2.6666666666666665
     },
     "Weight": {
       "WeightKilo": 12.0,
       "WeightPound": 26.455471439999997
     },
     "Picture": null,
-    "Tags": [
-      "System.Collections.Generic.List`1[System.String]"
-    ]
+    "Tags": {}
   },
   {
-    "Name": "Yeast",
+    "Name": "fisk2",
+    "Stores": [],
     "Price": {
-      "PriceDKK": 100.0,
-      "PriceEuro": 13.333333333333334
+      "PriceDKK": 20.0,
+      "PriceEuro": 2.6666666666666665
     },
     "Weight": {
-      "WeightKilo": 222.0,
-      "WeightPound": 489.42622164
+      "WeightKilo": 12.0,
+      "WeightPound": 26.455471439999997
     },
-    "Picture": "no",
-    "Tags": [
-      "bløb"
-    ]
+    "Picture": null,
+    "Tags": {}
   },
   {
     "Name": "tomms mælkechokolade",
+    "Stores": [],
     "Price": {
-      "PriceDKK": 1000.0,
-      "PriceEuro": 13333.333333333334
+      "PriceDKK": 1000.0000000000001,
+      "PriceEuro": 133.33333333333334
     },
     "Weight": {
-      "WeightKilo": 3.0,
-      "WeightPound": 6.613867859999999
+      "WeightKilo": 30.0,
+      "WeightPound": 66.13867859999999
     },
     "Picture": "RødBar.jpg",
-    "Tags": [
-      "System.Collections.Generic.List`1[System.String]"
-    ]
+    "Tags": {}
   }
 ]

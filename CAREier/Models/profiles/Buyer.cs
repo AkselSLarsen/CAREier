@@ -17,6 +17,7 @@ namespace CAREier.Models
         private string _username;
         private string _password;
         public bool HasOrders;
+        private WorldPoint _location;
         public Buyer()
         {
             HasOrders = false;
@@ -37,11 +38,9 @@ namespace CAREier.Models
         }
         public void MakeOrder(Product product)
         {
-            foreach (Order order in _orders) { 
+           
 
-            }
-
-            Order ord = new Order(this);
+            Order ord = new Order(this, product.Stores[0]);
             ord.AddToProductList(product);
             Orders.Add(ord);
             HasOrders = true;
@@ -80,7 +79,11 @@ namespace CAREier.Models
             get { return _paymentMethod; }
             set { _paymentMethod = value; }
         }*/
-
+        public WorldPoint Location
+        {
+            get { return _location; }
+            set { _location = value; }
+        }
         public List<Order> Orders
         {
             get { return _orders; }

@@ -21,9 +21,10 @@ namespace CAREier.Models
         private int _OrderID;
         private DateTime _creationTime;
 
-        public Order(Buyer buyer) {
+        public Order(Buyer buyer, Store FromStore) {
             _products = new List<IProduct>();
             _buyer = buyer;
+            _store = FromStore;
             _OrderID = _idCount++;
         }
        

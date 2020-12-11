@@ -29,15 +29,16 @@ namespace CAREier.Helpers {
         public static List<Product> GetProductsWithTags(List<Product> products, string[] tags) {
             List<Product> re = new List<Product>();
             foreach (Product product in products) {
-                bool hasAll = true;
-                foreach (string tag in tags) {
-                    if(!product.Tags.Contains(tag)) {
+                //bool hasAll = true;
+                product.Tags.Add(tags);
+                /*foreach (string tag in tags) {
+                    if(!Contains(tag)) {
                         hasAll = false;
                     }
                 }
                 if(hasAll) {
                     re.Add(product);
-                }
+                }*/
             }
             return re;
         }

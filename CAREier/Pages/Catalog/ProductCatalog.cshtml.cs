@@ -43,8 +43,8 @@ namespace CAREier.Pages
             }
         }
 
-        public string FormalizeTags(List<string> tags) {
-            return TagFormalizer.TagsToString(tags);
-        }
+        //public string FormalizeTags(List<string> tags) {
+        //   return TagFormalizer.TagsToString(tags);
+        // }
     }
 }

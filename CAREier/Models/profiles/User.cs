@@ -56,5 +56,7 @@ namespace CAREier.Models.profiles {
         public string Username => Profile.Username;
 
         public string Password => Profile.Password;
+
+        public WorldPoint Location { get; set; }
     }
 }

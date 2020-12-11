@@ -16,7 +16,12 @@ namespace CAREier.Models
         private double _rating;
         private string _username;
         private string _password;
-      
+        private WorldPoint _location;
+        public WorldPoint Location
+        {
+            get { return _location; }
+            set { _location = value; }
+        }
 
         public Store()
         {
@@ -82,5 +87,7 @@ namespace CAREier.Models
             get { return _password; }
             set { _password = value; }
         }
+
+       
     }
 }

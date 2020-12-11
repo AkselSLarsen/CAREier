@@ -16,7 +16,7 @@ namespace CAREier.Models
         private List<Order> _orders;
         private string _username;
         private string _password;
-
+        private WorldPoint _location;
 
         public Bringer()
         {
@@ -46,7 +46,11 @@ namespace CAREier.Models
             get { return _email; }
             set { _email = value; }
         }
-
+        public WorldPoint Location
+        {
+            get { return _location; }
+            set { _location = value; }
+        }
         public string Phone
         {
             get { return _phone; }

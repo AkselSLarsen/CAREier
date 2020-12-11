@@ -15,15 +15,16 @@ namespace CAREier.Models
         private string _name;
         private LocalizedPrice _price;
         private LocalizedWeight _weight;
-        private List<string> _tags;
+        private TagSystem _tags;
         private List<Store> _stores;
         private int _id;
-        private List<string> _ShopIDList;
+ 
 
         //[Required(AllowEmptyStrings = false, ErrorMessage = "the product must have a name")]
         public Product()
         {
-            _ShopIDList = new List<string>();
+            Tags = new TagSystem();
+            _stores = new List<Store>();
         }
 
 
@@ -55,22 +56,27 @@ namespace CAREier.Models
 
         public string Picture { get; set; }
 
+        public bool HasStore(Store myStore)
+        {
+            if (_stores == null) return false;
+            foreach (Store str in _stores)
+            {
+                if (str.Location.UnicID(str.Email) == myStore.Location.UnicID(myStore.Email)) return true;
+            }
+            return false;
+        }
+
         //[Required(AllowEmptyStrings = false, ErrorMessage = "the product must have at least 1 tag")]
-        public List<string> Tags
+        /// <summary>
+        /// Is Read only, User .TagAdd( [Item] ) to add tags
+        /// </summary>
+        public TagSystem Tags
         {
             get { return _tags; }
             set { _tags = value; }
         }
-       
-        public List<string> ShopIDList
-        {
-            get { return _tags; }
-            set { _tags = value; }
-        }
-        public List<string> BindToShop(string ShopID)
-        {
-            ShopIDList.Add(ShopID);
-        }
+    
+     
         /*public Product(string name, LocalizedPrice price, LocalizedWeight weight,
             List<string> tags)
         {

@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CAREier.Models
 {
-    public class ProductCatalog : JsonInterface<List<Product>, List<Product>>, ICRUD<Product>
+    public class ProductCatalog : ICRUD<Product>
     {
         private string _filelocation;
         private List<Product> _products;
@@ -25,6 +25,7 @@ namespace CAREier.Models
                 _products.AddRange(ReadState());
             }
         }
+
 
         public void Create(Product item)
         {
@@ -107,27 +108,15 @@ namespace CAREier.Models
             return deleted;
         }
 
-        public List<Store> FindStore(Product item)
-        {
-            foreach (var p in _products)
-            {
-                if (p.Stores != null)
-                {
-                    return p.Stores;
-                }
-                
-            }
-            return null;
-        }
-
+      
         private List<Product> ReadState() 
         {
-            return ReadState(_filelocation);
+            return JsonFileSystem.ReadProduct(_filelocation);
         }
 
         private void WriteState() 
         {
-            WriteState(_products, _filelocation);
+            JsonFileSystem.WriteProduct(_products, _filelocation);
         }
     }
 }

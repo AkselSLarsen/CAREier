@@ -25,8 +25,13 @@ namespace CAREier.Pages
         public Product PostProduct { get; set; }
 
 
+        public Order ActivOrder { get; set; }
+
+
+        public string StoreSort { get; set; }
         public ShopCardModel(ICRUD<Product> products)
         {
+            StoreSort = "All";
             _products = products;
             Products = new List<Product>();
             foreach (var var in _products.ReadAll())
@@ -36,9 +41,27 @@ namespace CAREier.Pages
                     Products.Add((Product)var);
                 }
             }
-
+            
             CurrentBuyer = new Buyer();
+            ActivOrder = null;
         }
+        /// <summary>
+        /// Gets a list sorted after store ides, or all products
+        /// </summary>
+        /// <returns>List of Products</returns>
+        public List<Product> SortedProductList()
+        {
+            if (ActivOrder == null) return Products;
+            List<Product> Prods = new List<Product>();
+            foreach (Product prod in Products)
+            {
+                if (!prod.HasStore(ActivOrder.MyStore)) continue;
+                Prods.Add(prod);
+            }
+
+            return Prods;
+        }
+        
         public List<Order> SortedOrderList()
         {
             
@@ -50,20 +73,26 @@ namespace CAREier.Pages
             Products = _products.ReadAll();
         }
 
-        public void OnPostByItem()
+        public void OnPostByItem(ICRUD<Order> order_crud)
         {
-             CurrentBuyer.MakeOrder(PostProduct);
+            if (ActivOrder == null) {
+                Store foundStore = Global.FindShortest("all", false, CurrentBuyer.Location, PostProduct.Stores.ToArray());
+                ActivOrder = new Order(CurrentBuyer, foundStore);
+                ActivOrder.AddToProductList(PostProduct);
+                order_crud.Create(ActivOrder);
+            }
+            else{
+                ActivOrder.AddToProductList(PostProduct);
+            }
+            
+            
+
+           
              /* Products = ProductSorter.GetProductsWithTags(_products.ReadAll(), Tags);
               if (Products.Count == 0)
               {
                   Products = _products.ReadAll();
               }*/
         }
-
-        public string FormalizeTags(List<string> tags)
-        {
-            return TagFormalizer.TagsToString(tags);
-        }
-
     }
 }
