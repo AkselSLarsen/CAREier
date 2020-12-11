@@ -11,7 +11,13 @@ namespace CAREier.Helpers {
         //Read and Write Products
         public static List<Product> ReadProduct(string JsonFileName) {
             string jsonString = File.ReadAllText(JsonFileName);
-            return JsonConvert.DeserializeObject<List<Product>>(jsonString);
+            List<Product> temp = JsonConvert.DeserializeObject<List<Product>>(jsonString);
+            for (int i = 0; i < temp.Count; i++)
+            {
+                temp[i].id = i;
+            }
+
+            return temp;
         }
         public static void WriteProduct(List<Product> products, string JsonFileName) {
             string output = Newtonsoft.Json.JsonConvert.SerializeObject(products, Newtonsoft.Json.Formatting.Indented);

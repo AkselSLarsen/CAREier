@@ -14,6 +14,7 @@ namespace CAREier.Models
     {
         private string _filelocation;
         private List<Product> _products;
+        private int counter;
 
         public ProductCatalog()
         {
@@ -60,14 +61,14 @@ namespace CAREier.Models
             {
                 foreach (var p in _products)
                 {
-                    if (p.Name == product.Name)
+                    if (p.id == product.id)
                     {
                         p.Name = product.Name;
                         p.Price = product.Price;
                         p.Weight = product.Weight;
                         p.Tags = product.Tags;
                         p.Picture = product.Picture;
-
+                        p.id = product.id;
                         WriteState();
                     }
                 }
@@ -82,7 +83,7 @@ namespace CAREier.Models
                 Product Temp = new Product();
                 foreach (var v in _products)
                 {
-                    if (item.Name == v.Name)
+                    if (item.id == v.id)
                     {
                         Temp = v;
                     }

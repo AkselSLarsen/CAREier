@@ -75,8 +75,12 @@ namespace CAREier.Models
             get { return _tags; }
             set { _tags = value; }
         }
-    
-     
+
+        public int id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
         /*public Product(string name, LocalizedPrice price, LocalizedWeight weight,
             List<string> tags)
         {

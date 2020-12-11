@@ -1,17 +1,18 @@
 [
   {
-    "Name": "fisk",
+    "Name": "pog",
     "Stores": [],
     "Price": {
-      "PriceDKK": 20.0,
-      "PriceEuro": 2.6666666666666665
+      "PriceDKK": 50.0,
+      "PriceEuro": 6.666666666666667
     },
     "Weight": {
-      "WeightKilo": 12.0,
-      "WeightPound": 26.455471439999997
+      "WeightKilo": 77.0,
+      "WeightPound": 169.75594174
     },
     "Picture": null,
-    "Tags": {}
+    "Tags": {},
+    "id": 0
   },
   {
     "Name": "fisk2",
@@ -25,7 +26,8 @@
       "WeightPound": 26.455471439999997
     },
     "Picture": null,
-    "Tags": {}
+    "Tags": {},
+    "id": 1
   },
   {
     "Name": "tomms mælkechokolade",
@@ -35,10 +37,11 @@
       "PriceEuro": 133.33333333333334
     },
     "Weight": {
-      "WeightKilo": 30.0,
+      "WeightKilo": 29.999999999999996,
       "WeightPound": 66.13867859999999
     },
     "Picture": "RødBar.jpg",
-    "Tags": {}
+    "Tags": {},
+    "id": 2
   }
 ]
