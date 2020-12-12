@@ -20,8 +20,6 @@ namespace CAREier.Models
         private TagSystem _tags;
         private List<Store> _stores;
         private int _id;
-        
-        
 
         //[Required(AllowEmptyStrings = false, ErrorMessage = "the product must have a name")]
         public Product()
@@ -29,8 +27,6 @@ namespace CAREier.Models
             Tags = new TagSystem();
             _stores = new List<Store>();
         }
-
-
         public string Name
         {
             get { return _name;}
@@ -87,6 +83,11 @@ namespace CAREier.Models
             get { return _id; }
             set { _id = value; }
         }
+        public string LookUpInfo()
+        {
+            return $"{_name},{Tags.ToString()},{_id}";
+        }
+        
         /*public Product(string name, LocalizedPrice price, LocalizedWeight weight,
             List<string> tags)
         {
@@ -107,4 +108,5 @@ namespace CAREier.Models
             return false;
         }*/
     }
+    
 }

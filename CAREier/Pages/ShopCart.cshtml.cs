@@ -64,7 +64,7 @@ namespace CAREier.Pages
         
         public List<Order> SortedOrderList()
         {
-            
+           
             return CurrentBuyer.Orders;
         }
 
@@ -78,16 +78,12 @@ namespace CAREier.Pages
             if (ActivOrder == null) {
                 Store foundStore = Global.FindShortest("all", false, CurrentBuyer.Location, PostProduct.Stores.ToArray());
                 ActivOrder = new Order(CurrentBuyer, foundStore);
-                ActivOrder.AddToProductList(PostProduct);
+                ActivOrder.AddToProductList(PostProduct.LookUpInfo());
                 order_crud.Create(ActivOrder);
             }
             else{
                 ActivOrder.AddToProductList(PostProduct);
             }
-            
-            
-
-           
              /* Products = ProductSorter.GetProductsWithTags(_products.ReadAll(), Tags);
               if (Products.Count == 0)
               {

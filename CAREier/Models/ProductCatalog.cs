@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CAREier.Helpers;
 using CAREier.Interfaces;
 using CAREier.Localizers;
+using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CAREier.Models

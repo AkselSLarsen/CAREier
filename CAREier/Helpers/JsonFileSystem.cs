@@ -1,4 +1,5 @@
-﻿using CAREier.Models;
+﻿using CAREier.Interfaces;
+using CAREier.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,6 @@ namespace CAREier.Helpers {
             {
                 temp[i].id = i;
             }
-
             return temp;
         }
         public static void WriteProduct(List<Product> products, string JsonFileName) {
@@ -26,11 +26,15 @@ namespace CAREier.Helpers {
             File.WriteAllText(JsonFileName, output);
         }
 
-        public static List<Order> ReadOrder(string JsonFileName) {
+        public static List<Order> ReadOrder(string JsonFileName, ICRUD<Store> store, ICRUD<> store, ICRUD<Product> Bringer, ICRUD<Product> Prods) {
             string jsonString = File.ReadAllText(JsonFileName);
+
             return JsonConvert.DeserializeObject<List<Order>>(jsonString);
         }
         public static void WriteOrder(List<Order> orders, string JsonFileName) {
+
+            
+
             string output = Newtonsoft.Json.JsonConvert.SerializeObject(orders, Newtonsoft.Json.Formatting.Indented);
 
             File.WriteAllText(JsonFileName, output);
@@ -43,6 +47,8 @@ namespace CAREier.Helpers {
         }
         public static void WriteBuyer(List<Buyer> buyers, string JsonFileName)
         {
+
+
             string output = Newtonsoft.Json.JsonConvert.SerializeObject(buyers, Newtonsoft.Json.Formatting.Indented);
 
             File.WriteAllText(JsonFileName, output);
