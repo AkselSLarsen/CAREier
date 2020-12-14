@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CAREier.Pages
 {
-   
     public class ShopCardModel : PageModel
     {
         public Buyer CurrentBuyer { get; set; }
