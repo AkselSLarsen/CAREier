@@ -15,7 +15,7 @@ namespace CAREier.Models
     {
         private string _filelocation;
         private List<Product> _products;
-        private int counter;
+        private int _maxId;
 
         public ProductCatalog()
         {
@@ -26,20 +26,15 @@ namespace CAREier.Models
             if (ReadState() != null) {
                 _products.AddRange(ReadState());
             }
+            _maxId = 0;
+            calculateMaxId(false);
         }
-
 
         public void Create(Product item)
         {
             if (item != null)
             {
-                foreach (var v in _products)
-                {
-                    if (item.Name == v.Name)
-                    {
-                        return;
-                    }
-                }
+                item.id = ++_maxId; // this is shorthand for "maxId = maxId + 1; item.id = _maxId;"
                 _products.Add(item);
                 WriteState();
             }
@@ -69,7 +64,6 @@ namespace CAREier.Models
                         p.Weight = product.Weight;
                         p.Tags = product.Tags;
                         p.Picture = product.Picture;
-                        p.id = product.id;
                         WriteState();
                     }
                 }
@@ -94,6 +88,10 @@ namespace CAREier.Models
                 { 
                     _products.Remove(Temp);
                     WriteState();
+                    
+                    if(item.id == _maxId) {
+                        calculateMaxId(true);
+                    }
                 }
                 
             }
@@ -103,14 +101,41 @@ namespace CAREier.Models
         public Product Delete(int index)
         {
             Product deleted = Read(index);
-            _products.RemoveAt(index);
-
-            WriteState();
+            Delete(deleted);
 
             return deleted;
         }
 
-      
+        /// <summary>
+        /// This method ensures that every product not only gets a unique id amoungst existing products, but also amoungst no longer existing products.
+        /// This is achieved by always keeping track of the largest Id amoungst the current products, and giving new products higher Ids than that.
+        /// This itself ensures it in all but one edge case, which is if the current product with the highest Id is deleted.
+        /// This is remidied by checking for that edge case, and then reasigning the current product with the smallest Id, a new Id larger than the former max.
+        /// </summary>
+        /// <param name="wasRemoved">If the product with the highst Id was just deleted</param>
+        private void calculateMaxId(bool maxWasRemoved) {
+            if (maxWasRemoved) {
+                int minId = int.MaxValue;
+                Product temp = null;
+                foreach (Product product in _products) {
+                    if (product.id < minId) {
+                        minId = product.id;
+                        temp = product;
+                    }
+                }
+                Delete(temp);
+                temp.id = ++_maxId; // this is shorthand for "maxId = maxId + 1; temp.id = _maxId;", though is it really shorthand if I have to write all this out just to explain it?!?
+                Create(temp);
+                WriteState();
+            } else {
+                foreach (Product product in _products) {
+                    if (product.id > _maxId) {
+                        _maxId = product.id;
+                    }
+                }
+            }
+        }
+
         private List<Product> ReadState() 
         {
             return JsonFileSystem.ReadProduct(_filelocation);
