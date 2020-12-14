@@ -21,6 +21,7 @@ namespace CAREier.Helpers {
             }
             return temp;
         }
+
         public static void WriteProduct(List<Product> products, string JsonFileName) {
             string output = Newtonsoft.Json.JsonConvert.SerializeObject(products, Newtonsoft.Json.Formatting.Indented);
 
