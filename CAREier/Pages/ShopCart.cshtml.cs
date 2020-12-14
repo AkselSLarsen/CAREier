@@ -62,7 +62,7 @@ namespace CAREier.Pages
         public List<Order> SortedOrderList()
         {
             //CurrentBuyer.Orders;
-            ICRUD<Product> Prods
+            // ICRUD<Product> Prods
             return CurrentBuyer.Orders;
         }
 
@@ -76,7 +76,7 @@ namespace CAREier.Pages
             if (ActivOrder == null) {
                 Store foundStore = Global.FindShortest("all", false, CurrentBuyer.Location, PostProduct.Stores.ToArray());
                 ActivOrder = new Order(CurrentBuyer, foundStore);
-                ActivOrder.AddToProductList(PostProduct);
+                ActivOrder.AddToProductList(PostProduct.LookUpInfo());
                 order_crud.Create(ActivOrder);
             }
             else{

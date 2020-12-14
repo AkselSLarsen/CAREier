@@ -31,7 +31,18 @@ namespace CAREier.Models
             _OrderID = _idCount++;
             _creationTime = DateTime.Now;
         }
-       
+        public Order(int id, string date, string buyerEmail, string StoreAdress,string bringerEmail)
+        {
+            _products = new List<string>();
+            _buyer = new Buyer();
+            _buyer.Email = buyerEmail;
+            _store = new Store();
+            _store.Adress = StoreAdress;
+            _bringer = new Bringer();
+            _bringer.Email = bringerEmail;
+            _OrderID = id;
+            _creationTime = DateTime.Parse(date);
+        }
 
         public double Rating { get; set; }
       
@@ -42,6 +53,10 @@ namespace CAREier.Models
         public int OrderID { get { return _OrderID; } set { _OrderID = value; } }
         public DateTime CreationDate { get { return _creationTime; } }
         public bool ITaken { get { return Bringer != null; } }
+
+        public string Buyer_name { get { return _buyer.Email; } }
+        public string Store_name { get { return _store.Adress; } }
+        public string Bringer_name { get { return _bringer.Email; } }
         //[JsonIgnore]
         // [JsonConverter(typeof(ProductListConverter))]
         [JsonIgnore]
@@ -55,7 +70,7 @@ namespace CAREier.Models
             _products.Add(info);
         }
 
-        public void RemoveProductFromList(string item)
+        public void RemoveProductFromList(string info)
         {
             _products.Remove(info);
         }
