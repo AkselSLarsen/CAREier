@@ -58,13 +58,12 @@ namespace CAREier.Pages
                 if (!prod.HasStore(ActivOrder.MyStore)) continue;
                 Prods.Add(prod);
             }
-
             return Prods;
         }
-        
         public List<Order> SortedOrderList()
         {
-           
+            //CurrentBuyer.Orders;
+            ICRUD<Product> Prods
             return CurrentBuyer.Orders;
         }
 
@@ -82,7 +81,7 @@ namespace CAREier.Pages
                 order_crud.Create(ActivOrder);
             }
             else{
-                ActivOrder.AddToProductList(PostProduct);
+                ActivOrder.AddToProductList(PostProduct.LookUpInfo());
             }
              /* Products = ProductSorter.GetProductsWithTags(_products.ReadAll(), Tags);
               if (Products.Count == 0)

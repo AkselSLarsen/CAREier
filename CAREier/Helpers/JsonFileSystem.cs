@@ -12,12 +12,7 @@ namespace CAREier.Helpers {
         //Read and Write Products
         public static List<Product> ReadProduct(string JsonFileName) {
             string jsonString = File.ReadAllText(JsonFileName);
-            List<Product> temp = JsonConvert.DeserializeObject<List<Product>>(jsonString);
-            for (int i = 0; i < temp.Count; i++)
-            {
-                temp[i].id = i;
-            }
-            return temp;
+            return JsonConvert.DeserializeObject<List<Product>>(jsonString);
         }
         public static void WriteProduct(List<Product> products, string JsonFileName) {
 
@@ -26,7 +21,7 @@ namespace CAREier.Helpers {
             File.WriteAllText(JsonFileName, output);
         }
 
-        public static List<Order> ReadOrder(string JsonFileName, ICRUD<Store> store, ICRUD<> store, ICRUD<Product> Bringer, ICRUD<Product> Prods) {
+        public static List<Order> ReadOrder(string JsonFileName) {
             string jsonString = File.ReadAllText(JsonFileName);
 
             return JsonConvert.DeserializeObject<List<Order>>(jsonString);
