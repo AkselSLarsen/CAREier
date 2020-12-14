@@ -73,8 +73,8 @@ namespace CAREier_Testing_Site {
             _bringers = new BringerCatalog();
             _stores = new StoreCatalog();
 
-            _buyers.Create(new Buyer("Bob", "Bob@hotmail.com", "38383260", "Kærlighedsvej 7777, Intetsted", new List<Order>(), "B0b", "Langelænder"));
-            _buyers.Create(new Buyer("Eugene", "MyLittlePony@Bronuts.com", "34-237-957-362", "Austin Delaware street 802, Texas", new List<Order>(), "XXB1gD1ck69XX", "LoveuMom"));
+            _buyers.Create(new Buyer("Bob", "Bob@hotmail.com", "38383260", "Kærlighedsvej 7777, Intetsted", "B0b", "Langelænder"));
+            _buyers.Create(new Buyer("Eugene", "MyLittlePony@Bronuts.com", "34-237-957-362", "Austin Delaware street 802, Texas", "XXB1gD1ck69XX", "LoveuMom"));
             //_buyers.Create(new Buyer());
 
             _bringers.Create(new Bringer("Dillon", "GenericEmail@Gmail.com", "11111111111", 2.3d, new List<Order>(), "Do1l0r", "$$$$$$$$$$"));

@@ -87,11 +87,11 @@ namespace CAREier.Models.profiles
 
         private List<Buyer> ReadState()
         {
-            return JsonFileSystem.ReadBuyer(_filelocation);
+            return JsonFileSystem.ReadBuyers(_filelocation);
         }
         private void WriteState()
         {
-            JsonFileSystem.WriteBuyer(_buyers, _filelocation);
+            JsonFileSystem.WriteBuyers(_buyers, _filelocation);
         }
     }
 }

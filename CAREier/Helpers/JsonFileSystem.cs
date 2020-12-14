@@ -14,36 +14,36 @@ namespace CAREier.Helpers {
             string jsonString = File.ReadAllText(JsonFileName);
             return JsonConvert.DeserializeObject<List<Product>>(jsonString);
         }
+            {
+                temp[i].id = i;
+            }
+            return temp;
+        }
         public static void WriteProduct(List<Product> products, string JsonFileName) {
-
-            string output = Newtonsoft.Json.JsonConvert.SerializeObject(products, Newtonsoft.Json.Formatting.Indented);
+        //Read and Write Orders
+        public static List<Order> ReadOrder(string JsonFileName) {
 
             File.WriteAllText(JsonFileName, output);
         }
 
-        public static List<Order> ReadOrder(string JsonFileName) {
+        public static List<Order> ReadOrder(string JsonFileName, ICRUD<Store> store, ICRUD<> store, ICRUD<Product> Bringer, ICRUD<Product> Prods) {
             string jsonString = File.ReadAllText(JsonFileName);
 
             return JsonConvert.DeserializeObject<List<Order>>(jsonString);
         }
         public static void WriteOrder(List<Order> orders, string JsonFileName) {
-
-            
-
             string output = Newtonsoft.Json.JsonConvert.SerializeObject(orders, Newtonsoft.Json.Formatting.Indented);
 
             File.WriteAllText(JsonFileName, output);
         }
 
-        public static List<Buyer> ReadBuyer(string JsonFileName)
+        public static List<Buyer> ReadBuyers(string JsonFileName)
         {
             string jsonString = File.ReadAllText(JsonFileName);
             return JsonConvert.DeserializeObject<List<Buyer>>(jsonString);
         }
-        public static void WriteBuyer(List<Buyer> buyers, string JsonFileName)
+        public static void WriteBuyers(List<Buyer> buyers, string JsonFileName)
         {
-
-
             string output = Newtonsoft.Json.JsonConvert.SerializeObject(buyers, Newtonsoft.Json.Formatting.Indented);
 
             File.WriteAllText(JsonFileName, output);
