@@ -78,7 +78,7 @@ namespace CAREier.Pages
             if (ActivOrder == null) {
                 Store foundStore = Global.FindShortest("all", false, CurrentBuyer.Location, PostProduct.Stores.ToArray());
                 ActivOrder = new Order(CurrentBuyer, foundStore);
-                ActivOrder.AddToProductList(PostProduct.LookUpInfo());
+                ActivOrder.AddToProductList(PostProduct);
                 order_crud.Create(ActivOrder);
             }
             else{
