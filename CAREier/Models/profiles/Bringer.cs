@@ -1,4 +1,5 @@
 ﻿using CAREier.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,7 @@ namespace CAREier.Models
             get { return _email; }
             set { _email = value; }
         }
+        [JsonConverter(typeof(WorldPointConverter))]
         public WorldPoint Location
         {
             get { return _location; }

@@ -1,0 +1,14 @@
+[
+  {
+    "OrderActive": false,
+    "Name": "Rasmus",
+    "Email": "Some@email.com",
+    "Phone": "",
+    "Adress": "",
+    "Username": "Fiskdusk",
+    "Password": "1234",
+    "Orders": [],
+    "Location": "1735:349;All;1",
+    "ActiveOrder": null
+  }
+]

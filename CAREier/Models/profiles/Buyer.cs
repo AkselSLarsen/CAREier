@@ -1,4 +1,5 @@
 ﻿using CAREier.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,7 +86,7 @@ namespace CAREier.Models
             get { return _orders; }
             set { _orders = value; }
         }
-
+        [JsonConverter(typeof(WorldPointConverter))]
         public WorldPoint Location
         {
             get { return _location; }
@@ -97,9 +98,13 @@ namespace CAREier.Models
             get
             {
                 if (Ordindex >= _orders.Count) return null;
+                if (Ordindex < 0) return null;
                 return _orders[Ordindex];
             }
-            set { _orders[Ordindex] = value; }
+            set {
+                if (_orders.Count > 0)
+                     _orders[Ordindex] = value;
+            }
         }
 
         public void MakeOrder(Store ClosestStore)
