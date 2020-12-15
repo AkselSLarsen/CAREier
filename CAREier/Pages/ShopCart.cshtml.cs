@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CAREier.Helpers;
 using CAREier.Interfaces;
 using CAREier.Models;
+using CAREier.Models.profiles;
 using CAREier.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,6 +16,7 @@ namespace CAREier.Pages
     {
         public Buyer CurrentBuyer { get; set; }
         private ICRUD<Product> _products;
+        private ICRUD<Order> _orders;
         public List<Product> Products { get; set; }
         public ShoppingCartService ChartService { get; }
         public List<Order> CurrentOrders { get; set; }
@@ -28,21 +30,22 @@ namespace CAREier.Pages
 
 
         public string StoreSort { get; set; }
-        public ShopCardModel(ICRUD<Product> products)
+        public ShopCardModel(IUser user,ICRUD<Product> products, ICRUD<Order> order_crud)
         {
-            StoreSort = "All";
+            //if (Products != null) return;
+
+            // StoreSort = "All";
+
             _products = products;
-            Products = new List<Product>();
-            foreach (var var in _products.ReadAll())
-            {
-                if (var is Product)
-                {
-                    Products.Add((Product)var);
-                }
-            }
-            
-            CurrentBuyer = new Buyer();
-            ActivOrder = null;
+            _orders = order_crud;
+            User shopUser = (User)user;
+            if (shopUser.Profile is Buyer)
+                CurrentBuyer = (Buyer)shopUser.Profile;
+            else
+                RedirectToPage("Index");
+
+            // = new Buyer();
+            // ActivOrder = null;
         }
         /// <summary>
         /// Gets a list sorted after store ides, or all products
@@ -50,14 +53,16 @@ namespace CAREier.Pages
         /// <returns>List of Products</returns>
         public List<Product> SortedProductList()
         {
-            if (ActivOrder == null) return Products;
-            List<Product> Prods = new List<Product>();
-            foreach (Product prod in Products)
-            {
-                if (!prod.HasStore(ActivOrder.MyStore)) continue;
-                Prods.Add(prod);
-            }
-            return Prods;
+            Products = _products.ReadAll();
+            return Products;
+            // if (ActivOrder == null) 
+            // List<Product> Prods = new List<Product>();
+            // foreach (Product prod in Products)
+            //{
+            // if (!prod.HasStore(ActivOrder.MyStore)) continue;
+            // Prods.Add(prod);
+            //}
+            // return Prods;
         }
         public List<Order> SortedOrderList()
         {
@@ -68,19 +73,21 @@ namespace CAREier.Pages
 
         public void OnGet()
         {
-            Products = _products.ReadAll();
+           
         }
 
-        public void OnPostByItem(ICRUD<Order> order_crud)
+        public void OnPostByItem()
         {
+            //CurrentBuyer.
+            /*
             if (ActivOrder == null) {
                 Store foundStore = Global.FindShortest("all", false, CurrentBuyer.Location, PostProduct.Stores.ToArray());
                 ActivOrder = new Order(CurrentBuyer, foundStore);
-                ActivOrder.AddToProductList(PostProduct.LookUpInfo());
+                ActivOrder.Products.Add(PostProduct.LookUpInfo());
                 order_crud.Create(ActivOrder);
             }
             else{
-                ActivOrder.AddToProductList(PostProduct.LookUpInfo());
+                ActivOrder.Products.Add(PostProduct.LookUpInfo());
             }
              /* Products = ProductSorter.GetProductsWithTags(_products.ReadAll(), Tags);
               if (Products.Count == 0)

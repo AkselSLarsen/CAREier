@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CAREier.Models.profiles {
     public class User : IUser {
-        private Buyer _buyer;
+        public Buyer _buyer;
         private Bringer _bringer;
         private Store _store;
 

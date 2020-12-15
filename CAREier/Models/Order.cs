@@ -15,7 +15,7 @@ namespace CAREier.Models
         private Buyer _buyer;
         private Bringer _bringer;
         private Store _store;
-        private List<string> _products;
+        public List<string> Products;
        
         private LocalizedPrice _totalPrice;
        
@@ -25,7 +25,7 @@ namespace CAREier.Models
         private DateTime _creationTime;
 
         public Order(Buyer buyer, Store FromStore) {
-            _products = new List<string>();
+            Products = new List<string>();
             _buyer = buyer;
             _store = FromStore;
             _OrderID = _idCount++;
@@ -33,7 +33,7 @@ namespace CAREier.Models
         }
         public Order(int id, string date, string buyerEmail, string StoreAdress,string bringerEmail)
         {
-            _products = new List<string>();
+            Products = new List<string>();
             _buyer = new Buyer();
             _buyer.Email = buyerEmail;
             _store = new Store();
@@ -59,21 +59,14 @@ namespace CAREier.Models
         public string Bringer_name { get { return _bringer.Email; } }
         //[JsonIgnore]
         // [JsonConverter(typeof(ProductListConverter))]
+  
         [JsonIgnore]
         public Buyer Buyer { get; }
         [JsonIgnore]
         public Bringer Bringer { get { return _bringer; } set { _bringer = value; } }
         [JsonIgnore]
         public Store MyStore { get { return _store; } set { _store = value; } }
-        public void AddToProductList(string info)
-        {
-            _products.Add(info);
-        }
-
-        public void RemoveProductFromList(string info)
-        {
-            _products.Remove(info);
-        }
+    
     }
     
 }

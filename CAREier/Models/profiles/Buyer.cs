@@ -38,10 +38,8 @@ namespace CAREier.Models
         }
         public void MakeOrder(Product product)
         {
-           
-
             Order ord = new Order(this, product.Stores[0]);
-            ord.AddToProductList(product);
+           // ord.AddToProductList(product);
             Orders.Add(ord);
             HasOrders = true;
         }
