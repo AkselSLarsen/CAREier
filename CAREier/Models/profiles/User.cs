@@ -55,14 +55,34 @@ namespace CAREier.Models.profiles {
 
         public string Username
         {
-            get { return Profile.Username; }
-            set { Profile.Username = value; }
+            get {
+                if (Profile == null) {
+                    return null;
+                } else {
+                    return Profile.Username;
+                }
+            }
+            set { 
+                if(Profile != null) {
+                    Profile.Username = value;
+                }
+            }
         }
 
         public string Password
         {
-            get { return Profile.Password; }
-            set { Profile.Password = value; }
+            get {
+                if (Profile == null) {
+                    return null;
+                } else {
+                    return Profile.Password;
+                }
+            }
+            set {
+                if (Profile != null) {
+                    Profile.Password = value;
+                }
+            }
         }
 
         public WorldPoint Location { get; set; }

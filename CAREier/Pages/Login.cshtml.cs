@@ -6,18 +6,26 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CAREier.Pages {
     public class LoginModel : PageModel {
-
-        public UserTypes UserType { get; set; }
+        private UserTypes _userType;
+        private string _username;
+        private string _password;
         private User _user;
         private ICRUD<Buyer> _buyers;
         private ICRUD<Bringer> _bringers;
         private ICRUD<Store> _stores;
+        
 
-        public LoginModel(IUser user)
+        public LoginModel(IUser user, ICRUD<Buyer> buyers, ICRUD<Bringer> bringers, ICRUD<Store> stores)
         {
             User = (User)user;
+            Buyers = buyers;
+            Bringers = bringers;
+            Stores = stores;
         }
 
+        public UserTypes UserType { get { return _userType; } set { _userType = value; } }
+        public string Username { get { return _username; } set { _username = value; } }
+        public string Password { get { return _password; } set { _password = value; } }
         [BindProperty]
         public User User
         {
@@ -56,23 +64,25 @@ namespace CAREier.Pages {
                     User.Profile = new Store();
                     return Page();
                 default:
+                    //This should not happen, please throw an exception here
                     return Page();
             }
         }
 
         public void OnPost()
         {
-            string password;
-            string username;
+            object o = null;
+            RouteData.Values.TryGetValue("id", out o);
+            int i = int.Parse((string)o);
+            UserType = (UserTypes)i;
+
             switch (UserType)
             {
                 case UserTypes.Buyer: //UserType = Buyer
-                    password = User.Password;
-                    username = User.Username;
                     Buyer buyerTemp = null;
                     foreach (var buy in _buyers.ReadAll())
                     {
-                        if (username==buy.Username)
+                        if (Username==buy.Username)
                         {
                             buyerTemp = buy;
                         }
@@ -80,27 +90,21 @@ namespace CAREier.Pages {
 
                     }
 
-                    if (buyerTemp == null)
-                    {
+                    if (buyerTemp == null) {
                         //invalidUsername();
-                    }
-
-                    if (password == buyerTemp.Password)
-                    {
-                        //login(UserTypes.Buyer);
-                    }
-                    else
-                    {
-                        //invalidPassword();
+                    } else {
+                        if (Password == buyerTemp.Password) {
+                            //login(UserTypes.Bringer);
+                        } else {
+                            //invalidPassword();
+                        }
                     }
                     break;
                 case UserTypes.Bringer: //UserType = Bringer
-                    password = User.Password;
-                    username = User.Username;
                     Bringer bringerTemp = null;
                     foreach (var bri in _bringers.ReadAll())
                     {
-                        if (username == bri.Username)
+                        if (Username == bri.Username)
                         {
                             bringerTemp = bri;
                         }
@@ -111,24 +115,19 @@ namespace CAREier.Pages {
                     if (bringerTemp == null)
                     {
                         //invalidUsername();
-                    }
-
-                    if (password == bringerTemp.Password)
-                    {
-                        //login(UserTypes.Bringer);
-                    }
-                    else
-                    {
-                        //invalidPassword();
+                    } else {
+                        if (Password == bringerTemp.Password) {
+                            //login(UserTypes.Bringer);
+                        } else {
+                            //invalidPassword();
+                        }
                     }
                     break;
                 case UserTypes.Store: //UserType = Store
-                    password = User.Password;
-                    username = User.Username;
                     Store storeTemp = null;
                     foreach (var sto in _stores.ReadAll())
                     {
-                        if (username == sto.Username)
+                        if (Username == sto.Username)
                         {
                             storeTemp = sto;
                         }
@@ -136,22 +135,18 @@ namespace CAREier.Pages {
 
                     }
 
-                    if (storeTemp == null)
-                    {
+                    if (storeTemp == null) {
                         //invalidUsername();
-                    }
-
-                    if (password == storeTemp.Password)
-                    {
-                        //login(UserTypes.Store);
-                    }
-                    else
-                    {
-                        //invalidPassword();
+                    } else {
+                        if (Password == storeTemp.Password) {
+                            //login(UserTypes.Bringer);
+                        } else {
+                            //invalidPassword();
+                        }
                     }
                     break;
                 default:
-                    //dør baby
+                    //This should not happen, please throw an exception here
                     break;
             }
         }

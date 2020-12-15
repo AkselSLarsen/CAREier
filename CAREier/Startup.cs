@@ -26,6 +26,8 @@ namespace CAREier {
             services.AddSingleton<IUser, User>();
             services.AddSingleton<ICRUD<Product>, ProductCatalog>();
             services.AddSingleton<ICRUD<Order>, OrderCatalog>();
+            services.AddSingleton<ICRUD<Buyer>, BuyerCatalog>();
+            services.AddSingleton<ICRUD<Bringer>, BringerCatalog>();
             services.AddSingleton<ICRUD<Store>, StoreCatalog>();
         }
 
