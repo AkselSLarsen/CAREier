@@ -23,6 +23,7 @@ namespace CAREier.Models.profiles
         }
         public void Create(Store item)
         {
+            if (item == null) return; 
             _stores.Add(item);
 
             WriteState();
