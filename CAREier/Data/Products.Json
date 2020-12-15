@@ -7,5 +7,14 @@
     "Picture": null,
     "Tags": "All",
     "id": 0
+  },
+  {
+    "Name": "Thise Fløde",
+    "Stores": [],
+    "Price": "6,266666666666667",
+    "Weight": "3",
+    "Picture": "GrønBar.jpg",
+    "Tags": "All",
+    "id": 1
   }
 ]

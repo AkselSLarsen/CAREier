@@ -24,6 +24,7 @@ namespace CAREier.Models.profiles
         }
         public void Create(Bringer item)
         {
+            if (item == null) return;
             _bringers.Add(item);
 
             WriteState();

@@ -24,6 +24,7 @@ namespace CAREier.Models.profiles
 
         public void Create(Buyer item)
         {
+            if (item == null) return;
             _buyers.Add(item);
 
             WriteState();
