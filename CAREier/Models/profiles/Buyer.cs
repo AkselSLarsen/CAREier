@@ -13,14 +13,16 @@ namespace CAREier.Models
         private string _phone;
         private string _adress;
         //private TransactionAccount _paymentMethod;
-        private List<Order> _orders;
         private string _username;
         private string _password;
-        public bool HasOrders;
+        //For oder stuff
+        public bool OrderActive;
+        private List<Order> _orders;
+        private int Ordindex;
         private WorldPoint _location;
         public Buyer()
         {
-            HasOrders = false;
+            OrderActive = false;
         }
 
         public Buyer(string name, string email, string phone, string adress, string username, string password)
@@ -33,21 +35,10 @@ namespace CAREier.Models
             _orders = new List<Order>();
             _username = username;
             _password = password;
-            HasOrders = false;
+            OrderActive = false;
 
         }
-        public void MakeOrder(Product product)
-        {
-            Order ord = new Order(this, product.Stores[0]);
-           // ord.AddToProductList(product);
-            Orders.Add(ord);
-            HasOrders = true;
-        }
-        public void ClearOrders()
-        {
-            Orders.Clear();
-            HasOrders = false;
-        }
+    
         public string Name
         {
             get { return _name;}
@@ -77,17 +68,6 @@ namespace CAREier.Models
             get { return _paymentMethod; }
             set { _paymentMethod = value; }
         }*/
-        public WorldPoint Location
-        {
-            get { return _location; }
-            set { _location = value; }
-        }
-        public List<Order> Orders
-        {
-            get { return _orders; }
-            set { _orders = value; }
-        }
-
         public string Username
         {
             get { return _username; }
@@ -98,6 +78,42 @@ namespace CAREier.Models
         {
             get { return _password; }
             set { _password = value; }
+        }
+
+        public List<Order> Orders
+        {
+            get { return _orders; }
+            set { _orders = value; }
+        }
+
+        public WorldPoint Location
+        {
+            get { return _location; }
+            set { _location = value; }
+        }
+
+        public Order ActiveOrder
+        {
+            get
+            {
+                if (Ordindex >= _orders.Count) return null;
+                return _orders[Ordindex];
+            }
+            set { _orders[Ordindex] = value; }
+        }
+
+        public void MakeOrder(Store ClosestStore)
+        {
+            Order ord = new Order(this, ClosestStore);
+            Orders.Add(ord);
+            Ordindex = Orders.Count - 1;
+            // ord.AddToProductList(product);
+            OrderActive = true;
+        }
+        public void ClearOrders()
+        {
+            Orders.Clear();
+            OrderActive = false;
         }
     }
 }

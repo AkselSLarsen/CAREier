@@ -58,7 +58,20 @@
                                 <th>Image</th>
                                 <th class="text-right">Price</th>
                             </tr>
-                           
+                            @if (Model.CurrentBuyer.OrderActive)
+                            {
+                                @foreach (var Ord in @Model.SortedOrderList())
+                                {
+
+                                    <tr>
+                                        <td> @Ord.OrderID</td>
+                                        <td> @Ord.TotalPrice.PriceDKK</td>
+                                        <td> @Ord.TotalWeight.WeightKilo</td>
+                                        <td> @Ord.CreationDate</td>
+                                    </tr>
+
+                                }
+                            }
                         </thead>
                     </table>
                 </div>
