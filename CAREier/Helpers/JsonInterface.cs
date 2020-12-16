@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace CAREier.Helpers {
+    [Obsolete]
     /// <summary>
     /// An abstact class that allows writing and reading of data to and from Json files.
     /// The class requires that you give it both at type to read and a type to write.

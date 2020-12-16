@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace CAREier.Interfaces
 {
+    [Obsolete]
     public interface IOrder
     {
         public double Rating { get; set; }

@@ -1,6 +1,6 @@
 [
   {
-    "Location": "581:1794;All;1",
+    "Location": "581:1794;1;0",
     "Name": "Rasmus",
     "Email": "Some@email.com",
     "Adress": "",
@@ -8,5 +8,15 @@
     "Rating": 0.0,
     "Username": "Fiskdusk2",
     "Password": "1234"
+  },
+  {
+    "Location": "1239:1038;All;1",
+    "Name": "Mr. Test",
+    "Email": "test&co@testing.org",
+    "Adress": "",
+    "OpeningTimes": "",
+    "Rating": 0.0,
+    "Username": "tester",
+    "Password": "test"
   }
 ]
