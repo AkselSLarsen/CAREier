@@ -18,7 +18,7 @@ namespace CAREier.Pages {
 
         public LoginModel(IUser user, ICRUD<Buyer> buyers, ICRUD<Bringer> bringers, ICRUD<Store> stores)
         {
-            User = (User)user;
+            _user = (User)user;
             Buyers = buyers;
             Bringers = bringers;
             Stores = stores;
@@ -29,12 +29,6 @@ namespace CAREier.Pages {
         public string Username { get { return _username; } set { _username = value; } }
         [BindProperty]
         public string Password { get { return _password; } set { _password = value; } }
-        [BindProperty]
-        public User User
-        {
-            get { return _user; }
-            set { _user = value; }
-        }
         public ICRUD<Buyer> Buyers
         {
             get { return _buyers; }
@@ -56,15 +50,15 @@ namespace CAREier.Pages {
             switch(id) {
                 case 0: //UserType = Buyer
                     UserType = UserTypes.Buyer;
-                    User.Profile=new Buyer();
+                    _user.Profile=new Buyer();
                     return Page();
                 case 1: //UserType = Bringer
                     UserType = UserTypes.Bringer;
-                    User.Profile = new Bringer();
+                    _user.Profile = new Bringer();
                     return Page();
                 case 2: //UserType = Store
                     UserType = UserTypes.Store;
-                    User.Profile = new Store();
+                    _user.Profile = new Store();
                     return Page();
                 default:
                     //This should not happen, please throw an exception here
@@ -150,7 +144,7 @@ namespace CAREier.Pages {
 
 
         private IActionResult login(UserTypes type, IUser user) {
-            User.Profile = user;
+            _user.Profile = user;
 
             switch(type) {
                 case UserTypes.Buyer:

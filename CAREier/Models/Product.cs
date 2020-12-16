@@ -27,6 +27,17 @@ namespace CAREier.Models
             Tags = new TagSystem();
             _stores = new List<Store>();
         }
+        public Product(string name, LocalizedPrice price, LocalizedWeight weight, TagSystem tags, int id) {
+            Tags = new TagSystem();
+            _stores = new List<Store>();
+
+            _name = name;
+            _price = price;
+            _weight = weight;
+            _tags = tags;
+            _id = id;
+        }
+
         public string Name
         {
             get { return _name;}

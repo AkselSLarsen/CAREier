@@ -1,0 +1,14 @@
+[
+  {
+    "OrderActive": false,
+    "Name": "Mr. Test",
+    "Email": "test&co@testing.org",
+    "Phone": "",
+    "Adress": "",
+    "Username": "tester",
+    "Password": "test",
+    "Orders": [],
+    "Location": null,
+    "ActiveOrder": null
+  }
+]

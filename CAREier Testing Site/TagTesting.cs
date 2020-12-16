@@ -14,7 +14,9 @@ namespace CAREier_Testing_Site {
         }
 
         private void ProductArrangement() {
+            catalog = new ProductCatalog();
 
+            //catalog.Create(new Product("1", ));
         }
     }
 }

@@ -148,7 +148,7 @@ namespace CAREier.Pages
                 case UserTypes.Store:
                     User.Profile = new Store(Name, Email, "", "", 0, Username, Password);
                     Stores.Create((Store)User.Profile);
-                    return RedirectToPage("ProductCatalog");
+                    return RedirectToPage("/Catalog/ProductCatalog");
                 default:
                     //This should not happen, please throw an exception here
                     return Page();

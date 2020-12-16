@@ -99,7 +99,14 @@ namespace CAREier.Models
                 if (Ordindex >= _orders.Count) return null;
                 return _orders[Ordindex];
             }
-            set { _orders[Ordindex] = value; }
+            set
+            {
+                if (_orders.Count == 0) {
+                    //make an order
+                } else {
+                    _orders[Ordindex] = value;
+                }
+            }
         }
 
         public void MakeOrder(Store ClosestStore)
