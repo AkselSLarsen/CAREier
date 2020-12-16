@@ -18,7 +18,6 @@ namespace CAREier.Pages
         private ICRUD<Product> _products;
         private ICRUD<Order> _orders;
         public List<Product> Products { get; set; }
-        public ShoppingCartService ChartService { get; }
         public List<string> Tags { get; set; }
 
         [BindProperty]

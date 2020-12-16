@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace CAREier.Interfaces {
+    [Obsolete]
     public interface ITranslator {
 
         public string GetTranslatedString(string s);

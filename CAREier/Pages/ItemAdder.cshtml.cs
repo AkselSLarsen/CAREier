@@ -13,7 +13,7 @@ namespace CAREier.Pages
     public class ItemAdderModel : PageModel
     {
         [BindProperty]
-        public IOrder Order { get; set; }
+        public Order Order { get; set; }
         public void OnGet()
         {
         }

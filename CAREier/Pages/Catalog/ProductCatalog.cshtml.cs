@@ -19,9 +19,6 @@ namespace CAREier.Pages
         [BindProperty]
         public List<string> Tags { get; set; }
 
-        [BindProperty]
-        public string Username { get; set; }
-
         public CatalogModel(ICRUD<Product> products, IUser Iuser)
         {
             _products = products;
@@ -33,8 +30,6 @@ namespace CAREier.Pages
                     Products.Add((Product)var);
                 }
             }
-            User user = (User)Iuser;
-            Username = user.Profile.Username;
         }
         public void OnGet()
         {

@@ -7,6 +7,7 @@ using CAREier.Localizers;
 
 namespace CAREier.Models
 {
+    [Obsolete]
     public class ProdInfo : IProduct
     {
         private string _info;
