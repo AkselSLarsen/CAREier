@@ -1,16 +1,25 @@
 [
   {
-    "Name": "fisk",
-    "Stores": [],
-    "Price": "2,65",
-    "Weight": "12",
-    "Picture": null,
+    "Name": "Thise Fløde",
+    "Store": {
+      "Location": "581:1794;1;0",
+      "Name": "Rasmus",
+      "Email": "Some@email.com",
+      "Adress": "",
+      "OpeningTimes": "",
+      "Rating": 0.0,
+      "Username": "Fiskdusk2",
+      "Password": "1234"
+    },
+    "Price": "6,266666666666667",
+    "Weight": "3",
+    "Picture": "GrønBar.jpg",
     "Tags": "All",
     "id": 0
   },
   {
     "Name": "Thise Fløde",
-    "Stores": [],
+    "Store": null,
     "Price": "6,266666666666667",
     "Weight": "3",
     "Picture": "GrønBar.jpg",

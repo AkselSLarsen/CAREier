@@ -14,7 +14,7 @@ namespace CAREier.Pages
     public class CatalogModel : PageModel
     {
         private ICRUD<Product> _products;
-
+        public Store CurrentStore { get; set; }
         public List<Product> Products { get; set; }
         [BindProperty]
         public List<string> Tags { get; set; }
@@ -22,8 +22,14 @@ namespace CAREier.Pages
         [BindProperty]
         public string Username { get; set; }
 
-        public CatalogModel(ICRUD<Product> products, IUser Iuser)
+        public CatalogModel(ICRUD<Product> products, IUser user)
         {
+            User storeUser = (User)user;
+            if (storeUser.Profile is Store)
+                CurrentStore = (Store)storeUser.Profile;
+            else
+                RedirectToPage("Index");
+
             _products = products;
             Products = new List<Product>();
             foreach (var var in _products.ReadAll())
@@ -33,8 +39,7 @@ namespace CAREier.Pages
                     Products.Add((Product)var);
                 }
             }
-            User user = (User)Iuser;
-            Username = user.Profile.Username;
+          
         }
         public void OnGet()
         {

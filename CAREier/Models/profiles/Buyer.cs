@@ -21,9 +21,11 @@ namespace CAREier.Models
         private List<Order> _orders;
         private int Ordindex;
         private WorldPoint _location;
+        
         public Buyer()
         {
             OrderActive = false;
+          
         }
 
         public Buyer(string name, string email, string phone, string adress, string username, string password)
@@ -106,7 +108,22 @@ namespace CAREier.Models
                      _orders[Ordindex] = value;
             }
         }
-
+        /// <summary>
+        /// if the buyer allrady have bought this item
+        /// </summary>
+        /// <param name="ClosestStore"></param>
+        public bool RebuyProduct(Product proditem)
+        {
+            
+            foreach (Product item in ActiveOrder.Products)
+            {
+                if (item.id == proditem.id) {
+                    ActiveOrder.ProductCount[item.id]++;
+                    return true;
+                }
+            }
+            return false;
+        }
         public void MakeOrder(Store ClosestStore)
         {
             Order ord = new Order(this, ClosestStore);

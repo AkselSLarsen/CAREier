@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CAREier.Interfaces;
 using CAREier.Models;
+using CAREier.Models.profiles;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -16,10 +17,18 @@ namespace CAREier.Pages.Catalog
         public List<Product> ProductList { get; set; }
 
         [BindProperty]
-        public Product Product { get; set; }
+        public Product NewProduct { get; set; }
 
-        public CreateModel(ICRUD<Product> NewProduct)
+        public Store CurrentStore { get; set; }
+
+        public CreateModel(ICRUD<Product> NewProduct, IUser user)
         {
+            User storeUser = (User)user;
+            if (storeUser.Profile is Store)
+                CurrentStore = (Store)storeUser.Profile;
+            else
+                RedirectToPage("Index");
+
             _newHandler = NewProduct;
             ProductList = new List<Product>();
             foreach (var var in NewProduct.ReadAll())
@@ -42,8 +51,9 @@ namespace CAREier.Pages.Catalog
             {
                 return Page();
             }
-
-            _newHandler.Create(Product);
+            //Sets store, but only info gets saved in newHandler
+            NewProduct.Store = CurrentStore;
+            _newHandler.Create(NewProduct);
             return RedirectToPage("ProductCatalog");
         }
     }

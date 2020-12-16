@@ -89,7 +89,10 @@ namespace CAREier.Models
             get { return _password; }
             set { _password = value; }
         }
+        public string LookUpInfo()
+        {
+            return $"{_name},{_adress},{_location.X},{_location.Y}";
+        }
 
-       
     }
 }

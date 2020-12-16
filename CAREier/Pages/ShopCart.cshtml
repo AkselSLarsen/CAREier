@@ -1,7 +1,8 @@
-﻿@page 
+﻿@page "{id?}"
 @model CAREier.Pages.ShopCardModel
 @{
     ViewData["Title"] = "ShoppingCart";
+
 }
 
 <div class="flex-container">
@@ -16,23 +17,27 @@
                     <th>Weight</th>
                     <th class="text-right">Price</th>
                 </tr>
-                @foreach (var Prod in @Model.SortedProductList())
-                {
+                <!-- ="multipart/form-data"-->
+                <form method="post" class="form-horizontal">
                     <tr>
-                        <td> <img style="width: 70px; height: auto" src="~/images/@Prod.Picture" alt="picture"></td>
-                        <td> @Prod.Name</td>
-                        <td> @Prod.Price.PriceDKK</td>
-                        <td> @Prod.Weight.WeightKilo</td>
-                        <td>
-                            <form method="post">
-                                <p>
-                                    <button type="submit" asp-page-handler="ByItem" class="btn btn-success">By Item</button>
-                                </p>
-                            </form>
-                    </tr>
-                }
-                </thead>
-        </table>
+                        @for (int i = 0; i < @Model.Products.Count; i++)
+                        {
+                            <td>
+                                <div class="form-group">
+                                    <label for="i" class="col-sm-2 control-label">i</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn btn-primary" asp-route-id="@Model.Products[i].id">Buy</button>
+
+                                </div>
+                            </td>
+                         }
+                        </tr>
+                    </form>
+                    </thead>
+                </table>
     </div>
     <div class="shop-page-container">
         <div class="headfield">
@@ -60,15 +65,15 @@
                             </tr>
                             @if (Model.CurrentBuyer.OrderActive)
                             {
-                                @foreach (var Ord in @Model.SortedOrderList())
+                                @foreach (var Ord in @Model.CurrentBuyer.Orders)
                                 {
-
-                                    <tr>
-                                        <td> @Ord.OrderID</td>
-                                        <td> @Ord.TotalPrice.PriceDKK</td>
-                                        <td> @Ord.TotalWeight.WeightKilo</td>
-                                        <td> @Ord.CreationDate</td>
-                                    </tr>
+                        <tr>
+                            <td> @Ord.OrderID</td>
+                            <td> @Ord.TotalPrice</td>
+                            <td> @Ord.TotalWeight</td>
+                            <td> @Ord.CreationDate</td>
+                            <td> @Ord.CountProds()</td>
+                        </tr>
 
                                 }
                             }

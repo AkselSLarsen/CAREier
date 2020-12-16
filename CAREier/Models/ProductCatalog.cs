@@ -64,6 +64,7 @@ namespace CAREier.Models
                         p.Weight = product.Weight;
                         p.Tags = product.Tags;
                         p.Picture = product.Picture;
+                        p.Store = product.Store;
                         WriteState();
                     }
                 }

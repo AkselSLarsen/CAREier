@@ -16,13 +16,18 @@ namespace CAREier.Pages
     {
         public Buyer CurrentBuyer { get; set; }
         private ICRUD<Product> _products;
-        private ICRUD<Order> _orders;
+        private ICRUD<Order> _orders { get; set; }
+
         public List<Product> Products { get; set; }
+        public List<Order> Orders { get; set; }
         public ShoppingCartService ChartService { get; }
         public List<string> Tags { get; set; }
 
-        [BindProperty]
-        public Product PostProduct { get; set; }
+        //[FromRoute]
+        //public long? Id { get; set; }
+
+        // [BindProperty]
+        // public Product PostProduct { get; set; }
 
         public string StoreSort { get; set; }
         public ShopCardModel(IUser user,ICRUD<Product> products, ICRUD<Order> order_crud)
@@ -39,6 +44,8 @@ namespace CAREier.Pages
             else
                 RedirectToPage("Index");
 
+            SortedProductList();
+           
             // = new Buyer();
             // ActivOrder = null;
         }
@@ -46,42 +53,63 @@ namespace CAREier.Pages
         /// Gets a list sorted after store ides, or all products
         /// </summary>
         /// <returns>List of Products</returns>
-        public List<Product> SortedProductList()
+        public void SortedProductList()
         {
             if (CurrentBuyer.OrderActive)
             {
-                foreach (Product prod in Products)
+                List<Product> ToBeFilterdProducts = _products.ReadAll();
+                Products = new List<Product>();
+                foreach (Product prod in ToBeFilterdProducts)
                 {
-                    if (!prod.HasStore(CurrentBuyer.ActiveOrder.MyStore)) continue;
+                    if(prod.Store == null) continue;
+                    if (prod.Store.Name != CurrentBuyer.ActiveOrder.MyStore.Name) continue;
                     Products.Add(prod);
+                
+
                 }
             }
             else
             {
                 Products = _products.ReadAll();
             }
-            return Products;
-        }
-        public List<Order> SortedOrderList()
-        {
-            //CurrentBuyer.Orders;
-            // ICRUD<Product> Prods
-            return CurrentBuyer.Orders;
-        }
-
-        public void OnGet()
-        {
+            if (Products == null) Products = new List<Product>(); 
            
         }
+   
 
-        public void OnPostByItem()
+        public void OnGet(string index)
         {
-            if (!CurrentBuyer.OrderActive) {
-                Store foundStore = Global.FindShortest("all", false, CurrentBuyer.Location, PostProduct.Stores.ToArray());
-                CurrentBuyer.MakeOrder(foundStore);
+            
 
+        }
+        public Product FindProduct(int prodid)
+        {
+            if (Products == null) return null;
+            foreach (Product prod in Products)
+            {
+                if (prod.id == prodid) return prod;
             }
-            CurrentBuyer.ActiveOrder.Products.Add(PostProduct.LookUpInfo());
+            return null;
+        }
+    public void OnPost(Product prod)
+        {
+            string name = Request.Path;
+            name = name.Substring(10, name.Length - 10);
+            int prodId = int.Parse(name);
+            Product PostProduct = FindProduct(prodId);
+            if (PostProduct == null) return;
+            if (PostProduct.Store == null) return;
+            if (!CurrentBuyer.OrderActive) {
+                //Obselte code Store foundStore = Global.FindShortest("all", false, CurrentBuyer.Location, PostProduct.Store);
+                CurrentBuyer.MakeOrder(PostProduct.Store);
+                SortedProductList();
+            }
+            if (!CurrentBuyer.RebuyProduct(prod))
+            {
+                CurrentBuyer.ActiveOrder.ProductCount.Add(prod.id, 1);
+                CurrentBuyer.ActiveOrder.Products.Add(PostProduct);
+            }
+            
 
 
             /*

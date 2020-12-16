@@ -16,6 +16,6 @@ namespace CAREier.Interfaces {
         public TagSystem Tags { get; set; }
         public string Picture { get; set; }
 
-        public List<Store> Stores { get; set; }
+        public Store Store { get; set; }
     }
 }

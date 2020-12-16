@@ -17,8 +17,9 @@ namespace CAREier.Models
         public LocalizedWeight Weight { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public TagSystem Tags { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string Picture { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public List<Store> Stores { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         string IProduct.Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Store Store { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public ProdInfo(string info) {
             _info = info;

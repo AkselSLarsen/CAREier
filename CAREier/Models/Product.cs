@@ -18,18 +18,17 @@ namespace CAREier.Models
         private LocalizedPrice _price;
         private LocalizedWeight _weight;
         private TagSystem _tags;
-        private List<Store> _stores;
+        private Store _store;
         private int _id;
 
         //[Required(AllowEmptyStrings = false, ErrorMessage = "the product must have a name")]
         public Product()
         {
             Tags = new TagSystem();
-            _stores = new List<Store>();
+     
         }
         public Product(string name, LocalizedPrice price, LocalizedWeight weight, TagSystem tags, int id) {
             Tags = new TagSystem();
-            _stores = new List<Store>();
 
             _name = name;
             _price = price;
@@ -43,11 +42,18 @@ namespace CAREier.Models
             get { return _name;}
             set { _name = value; }
         }
-
-        public List<Store> Stores
+        //[JsonIgnore]
+       /* public string Store_info
         {
-            get { return _stores; }
-            set { _stores = value; }
+            get { return Store.LookUpInfo(); }
+        }*/
+        
+        public Store Store
+        {
+            get { return _store; }
+            set { 
+                _store = value; 
+            }
         }
 
         //[Required] [Range(0, 1000000)]
@@ -68,7 +74,7 @@ namespace CAREier.Models
 
         public string Picture { get; set; }
 
-        public bool HasStore(Store myStore)
+       /* public bool HasStore(Store myStore)
         {
             if (_stores == null) return false;
             foreach (Store str in _stores)
@@ -77,7 +83,7 @@ namespace CAREier.Models
             }
             return false;
         }
-
+        */
         //[Required(AllowEmptyStrings = false, ErrorMessage = "the product must have at least 1 tag")]
         /// <summary>
         /// Is Read only, User .TagAdd( [Item] ) to add tags
@@ -98,7 +104,9 @@ namespace CAREier.Models
         {
             return $"{_name},{Tags.ToString()},{_id}";
         }
+     
         
+
         /*public Product(string name, LocalizedPrice price, LocalizedWeight weight,
             List<string> tags)
         {
