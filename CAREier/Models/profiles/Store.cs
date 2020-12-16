@@ -1,4 +1,5 @@
 ﻿using CAREier.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace CAREier.Models
         private string _username;
         private string _password;
         private WorldPoint _location;
+        [JsonConverter(typeof(WorldPointConverter))]
         public WorldPoint Location
         {
             get { return _location; }

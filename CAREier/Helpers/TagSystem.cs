@@ -16,10 +16,21 @@ namespace CAREier {
         }
         public TagSystem(string tags)
         {
+            
             _tags = StringToTags(tags);
         }
         public string[] StringToTags(string s) {
-            return s.Split(",");
+            //Remove unvonted symbols
+            string Tstr = s.Replace(';', ',');
+            Tstr = Tstr.Replace(':', ',');
+            string[] st = Tstr.Split(",");
+            //To avoid null tags and white space
+            List<string> newTagsList = new List<string>();
+            for (int i = 0; i < st.Length; i++)
+            {
+                if (st[i].Trim().Length > 0) newTagsList.Add(st[i]);
+            }
+            return newTagsList.ToArray();
         }
         /// <summary>
         /// Makes sure all tags are unicure
@@ -27,30 +38,31 @@ namespace CAREier {
         /// <param name="newtags"></param>
         public void Add(params string[] newtags)
         {
-            List<string> newTagsList = _tags.ToList();
-            foreach (string t in newtags)
+            string newStr = ListToString(_tags);
+            foreach (string Newt in newtags)
             {
-                foreach (string tag in _tags)
-                {
-                    if (tag == t) continue;
-                    newTagsList.Add(t);
-                }
+                if (!find(_tags,Newt)) newStr += Newt;
             }
-            _tags = newTagsList.ToArray();
+            _tags = StringToTags(newStr);
         }
-      
-        public void Remove(string[] findtags)
+        
+        public void Remove(params string[] findtags)
         {
-            List<string> newTagsList = new List<string>();
-            foreach (string t in findtags)
+            string newStr = "All,";
+            foreach (string tag in _tags)
             {
-                foreach (string tag in _tags)
-                {
-                    if (tag == t) continue;
-                    newTagsList.Add(tag);
-                }
+                if (find(findtags, tag)) continue; 
+                newStr += tag;
             }
-            _tags = newTagsList.ToArray();
+            _tags = StringToTags(newStr);
+        }
+        public bool find(string[] list, string findtag)
+        {
+            foreach (string currenttag in list)
+            {
+                if (currenttag == findtag) return true;
+            }
+            return false;
         }
         public bool Contains(params string[] findTags)
         {
@@ -71,21 +83,26 @@ namespace CAREier {
             //as it has all the tags
             return hasTags >= findTags.Length;
         }
-        public override string ToString()
+        public string ListToString(string[] taglist)
         {
             string re = "";
-            for (int i = 0; i < _tags.Length; i++)
+            for (int i = 0; i < taglist.Length; i++)
             {
-                if (i != _tags.Length - 1)
+                if (i != taglist.Length - 1)
                 {
-                    re += _tags[i] + ", ";
+                    re += taglist[i] + ",";
                 }
                 else
                 {
-                    re += _tags[i];
+                    re += taglist[i];
                 }
             }
             return re;
+        }
+        public override string ToString()
+        {
+ 
+            return ListToString(_tags);
         }
     }
     public class TagConverter : Newtonsoft.Json.JsonConverter

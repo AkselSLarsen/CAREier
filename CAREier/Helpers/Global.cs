@@ -72,6 +72,19 @@ namespace CAREier
         {
             return (XA - XB) * (XA - XB) + (YA - YB) * (YA - YB);
         }
+        public static WorldPoint GetCurrentLocation(IUser tarket)
+        {
+            //Getting a random point becuse we dont have a get form device or point on map methode yet 
+            //but this wil demostrarit it works
+            return GetRandLocation();
+        }
+        public static WorldPoint GetRandLocation()
+        {
+            Random rand = new Random();
+            WorldPoint wp = new WorldPoint(rand.Next(3600), rand.Next(3600));
+            return wp;
+        }
+        
     }
     public class WorldPoint
     {
@@ -91,18 +104,18 @@ namespace CAREier
             Difficulty = 1;
             Tags = new TagSystem();
         }
-        public WorldPoint(Int64 x, Int64 y, double difficulty, string type)
+        public WorldPoint(Int64 x, Int64 y, double difficulty, string tags)
         {
             this.X = x;
             this.Y = y;
             Difficulty = difficulty;
-            Tags = new TagSystem();
+            Tags = new TagSystem(tags);
         }
         
 
         public override string ToString()
         {
-            return $"{X},{Y} type:{Tags.ToString()} Difficulty:{Difficulty}";
+            return $"{X}:{Y};{Tags.ToString()};{Difficulty}";
         }
         
 
@@ -112,4 +125,5 @@ namespace CAREier
         }
 
     }
+    
 }

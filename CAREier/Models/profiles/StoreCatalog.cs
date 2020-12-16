@@ -23,7 +23,8 @@ namespace CAREier.Models.profiles
         }
         public void Create(Store item)
         {
-            if (item == null) return; 
+            if (item == null) return;
+            item.Location = Global.GetCurrentLocation(item);
             _stores.Add(item);
 
             WriteState();
@@ -31,6 +32,8 @@ namespace CAREier.Models.profiles
 
         public Store Read(int index)
         {
+            if (index <= 0) return _stores[0];
+            if (index >= _stores.Count) return _stores[_stores.Count - 1];
             return _stores[index];
         }
 
@@ -56,7 +59,7 @@ namespace CAREier.Models.profiles
                         b.Rating = item.Rating;
                         b.Username = item.Username;
                         b.Password = item.Password;
-
+                        b.Location = item.Location;
                         WriteState();
                     }
                 }

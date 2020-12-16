@@ -25,6 +25,7 @@ namespace CAREier.Models.profiles
         public void Create(Buyer item)
         {
             if (item == null) return;
+            item.Location = Global.GetCurrentLocation(item);
             _buyers.Add(item);
 
             WriteState();
@@ -32,6 +33,8 @@ namespace CAREier.Models.profiles
 
         public Buyer Read(int index)
         {
+            if (index <= 0) return _buyers[0];
+            if (index >= _buyers.Count) return _buyers[_buyers.Count - 1];
             return _buyers[index];
         }
 
@@ -57,7 +60,7 @@ namespace CAREier.Models.profiles
                         b.Orders = item.Orders;
                         b.Username = item.Username;
                         b.Password = item.Password;
-
+                        b.Location = item.Location;
                         WriteState();
                     }
                 }

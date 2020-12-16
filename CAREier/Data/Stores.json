@@ -1,22 +1,12 @@
 [
   {
-    "Location": null,
-    "Name": "Mr. Test",
-    "Email": "test&co@testing.org",
+    "Location": "581:1794;All;1",
+    "Name": "Rasmus",
+    "Email": "Some@email.com",
     "Adress": "",
     "OpeningTimes": "",
     "Rating": 0.0,
-    "Username": "tester",
-    "Password": "test"
-  },
-  {
-    "Location": null,
-    "Name": "Aksel Schøller Larsen",
-    "Email": "aksel.s.larsen@gmail.com",
-    "Adress": "",
-    "OpeningTimes": "",
-    "Rating": 0.0,
-    "Username": "test",
-    "Password": "test"
+    "Username": "Fiskdusk2",
+    "Password": "1234"
   }
 ]
