@@ -8,7 +8,19 @@
     "Username": "Fiskdusk",
     "Password": "1234",
     "Orders": [],
-    "Location": "1735:349;All;1",
+    "Location": "1735:349;1;0",
+    "ActiveOrder": null
+  },
+  {
+    "OrderActive": false,
+    "Name": "Fisk1",
+    "Email": "metaldragongoat@gmail.com",
+    "Phone": "",
+    "Adress": "",
+    "Username": "fisk1",
+    "Password": "1234",
+    "Orders": [],
+    "Location": "3498:1047;All;1",
     "ActiveOrder": null
   }
 ]

@@ -1,11 +1,74 @@
 [
   {
     "Name": "Thise Fløde",
-    "Store": null,
+    "Store": {
+      "Location": "244:2262;All;0",
+      "Name": "fugle",
+      "Email": "metaldragongoat@gmail.com",
+      "Adress": "",
+      "OpeningTimes": "",
+      "Rating": 0.0,
+      "Username": "fugle",
+      "Password": "1234"
+    },
     "Price": "6,266666666666667",
     "Weight": "3",
     "Picture": "GrønBar.jpg",
-    "Tags": "All",
+    "Tags": "All,fiks",
     "id": 1
+  },
+  {
+    "Name": "tomat",
+    "Store": {
+      "Location": "1440:1863;All;0",
+      "Name": null,
+      "Email": null,
+      "Adress": null,
+      "OpeningTimes": null,
+      "Rating": 0.0,
+      "Username": null,
+      "Password": null
+    },
+    "Price": "2,6666666666666665",
+    "Weight": "5",
+    "Picture": null,
+    "Tags": "All",
+    "id": 2
+  },
+  {
+    "Name": "agurk",
+    "Store": {
+      "Location": "778:2076;All;0",
+      "Name": null,
+      "Email": null,
+      "Adress": null,
+      "OpeningTimes": null,
+      "Rating": 0.0,
+      "Username": null,
+      "Password": null
+    },
+    "Price": "2,6666666666666665",
+    "Weight": "5",
+    "Picture": "fisk",
+    "Tags": "All",
+    "id": 3
+  },
+  {
+    "Name": "Fisk",
+    "Store": {
+      "Location": "1803:2168;All;0",
+      "Name": null,
+      "Email": null,
+      "Adress": null,
+      "OpeningTimes": null,
+      "Rating": 0.0,
+      "Username": null,
+      "Password": null
+    },
+    "Price": "4",
+    "Weight": "30",
+    "Picture": null,
+    "Tags": "All",
+    "id": 4
   }
 ]

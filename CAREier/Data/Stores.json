@@ -1,6 +1,6 @@
 [
   {
-    "Location": "581:1794;1;0",
+    "Location": "581:1794;0;1",
     "Name": "Rasmus",
     "Email": "Some@email.com",
     "Adress": "",
@@ -10,7 +10,7 @@
     "Password": "1234"
   },
   {
-    "Location": "1239:1038;All;1",
+    "Location": "1239:1038;1;0",
     "Name": "Mr. Test",
     "Email": "test&co@testing.org",
     "Adress": "",
@@ -18,5 +18,15 @@
     "Rating": 0.0,
     "Username": "tester",
     "Password": "test"
+  },
+  {
+    "Location": "244:2262;All;1",
+    "Name": "fugle",
+    "Email": "metaldragongoat@gmail.com",
+    "Adress": "",
+    "OpeningTimes": "",
+    "Rating": 0.0,
+    "Username": "fugle",
+    "Password": "1234"
   }
 ]

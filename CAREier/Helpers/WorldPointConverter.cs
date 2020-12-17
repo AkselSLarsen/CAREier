@@ -22,7 +22,7 @@ namespace CAREier
             string[] valuesB = values[0].Split(':');
             Int64.TryParse(valuesB[0], out Int64 x);
             Int64.TryParse(valuesB[1], out Int64 y);
-            return new WorldPoint(x, y, difficulty,values[2]);
+            return new WorldPoint(x, y, difficulty,values[1]);
         }
         public override bool CanConvert(Type typeToConvert)
         {

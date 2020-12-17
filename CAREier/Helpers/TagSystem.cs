@@ -10,6 +10,12 @@ namespace CAREier {
         
         private string[] _tags;
 
+        public string body
+        {
+            get { return ToString(); }
+            set { _tags = StringToTags(value); }
+        }
+
         public TagSystem()
         {
             _tags = new string[1] { "All" };
