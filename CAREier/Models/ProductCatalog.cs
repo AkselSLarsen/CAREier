@@ -74,35 +74,31 @@ namespace CAREier.Models
 
         public void Delete(Product item)
         {
-            if (item != null)
-            {
-                Product Temp = new Product();
-                foreach (var v in _products)
-                {
-                    if (item.id == v.id)
-                    {
-                        Temp = v;
+            if (item != null) {
+                int slot = -1;
+                for(int i=0; i < _products.Count; i++) {
+                    if (_products[i].id == item.id) {
+                        slot = i;
                     }
                 }
 
-                if (Temp != null)
-                { 
-                    _products.Remove(Temp);
-                    WriteState();
-                    
-                    if(item.id == _maxId) {
-                        calculateMaxId(true);
-                    }
+                if(slot != -1) {
+                    Delete(slot);
                 }
-                
             }
-
         }
 
         public Product Delete(int index)
         {
             Product deleted = Read(index);
-            Delete(deleted);
+
+            _products.RemoveAt(index);
+
+            WriteState();
+
+            if (index == _maxId) {
+                calculateMaxId(true);
+            }
 
             return deleted;
         }

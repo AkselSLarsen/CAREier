@@ -52,11 +52,11 @@ namespace CAREier.Pages
             get { return _bringers; }
             set { _bringers = value; }
         }
-
         public ICRUD<Store> Stores {
             get { return _stores; }
             set { _stores = value; }
         }
+        public string Error { get; set; }
 
         public IActionResult OnGet(int id) {
             switch (id) {
@@ -156,7 +156,7 @@ namespace CAREier.Pages
         }
 
         private void takenUsername() {
-
+            Error = "Username is already taken";
         }
     }
 }
