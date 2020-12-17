@@ -12,18 +12,13 @@ namespace CAREier.Interfaces
 
         public void Create(Item item);
 
-        public void Delete(Item item);
+        public Item Read(int index);
+        public List<Item> ReadAll();
 
         public void Update(Item product);
-
-        public void Read(int index);
-        public void Save();
-        public List<Item> Load();
+        public void Delete(Item item);
         public int Length();
-
         public int Index(Item item);
         public Item GetByName(string name);
-
-        public List<Item> ReadAll();
     }
 }

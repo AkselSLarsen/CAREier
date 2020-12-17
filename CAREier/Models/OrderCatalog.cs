@@ -17,50 +17,54 @@ namespace CAREier.Models
         {
             Create(item);
         }
+        public List<Order> ReadAll()
+        {
+            List<DB_Item> NewList = readAll();
+            foreach (DB_Item item in NewList)
+            {
+                if (item.type == FileTypes.Order)
+                    NewList.Add((Order)item);
+            }
+            return NewList;
+        }
+        public void Update(Order order)
+        {
+            update(order);
+        }
 
         public void Delete(Order item)
         {
             Create(item);
         }
 
-        public DB_Item GetByName(string name)
+        public Order GetByName(string name)
         {
-            GetByName(name);
+            return itemName(name);
         }
 
-        public int Index(DB_Item item)
+        public int Index(Order item)
         {
-            
+            return index(item);
+        }
+        public List<Order> Load()
+        {
+            List<Order> NewList = new List<Order>();
+            foreach (DB_Item item in NewList)
+            {
+                if (item.type == FileTypes.Order)
+                    NewList.Add((Order)item);
+            }
+            return NewList;
         }
 
-        public int Length()
-        {
-            
-        }
 
-        public List<DB_Item> Load()
-        {
-            
-        }
 
-        public void Read(int index)
-        {
-            
-        }
 
-        public List<DB_Item> ReadAll()
-        {
-           
-        }
 
-        public void Save()
-        {
-           
-        }
 
-        public void Update(DB_Item product)
-        {
-           
-        }
+
+
+
+
     }
 }

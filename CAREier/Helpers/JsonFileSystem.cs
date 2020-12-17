@@ -29,11 +29,19 @@ namespace CAREier.Helpers {
             string jsonString = File.ReadAllText(JsonFileName);
             return JsonConvert.DeserializeObject<List<DB_Item>>(jsonString);
         }
+        public void Write()
+        {
+            string output = Newtonsoft.Json.JsonConvert.SerializeObject(ItemQueue, Newtonsoft.Json.Formatting.Indented);
+
+            File.WriteAllText(filePath, output);
+            ItemQueue.Clear();
+        }
         public void Write(List<DB_Item> products)
         {
             string output = Newtonsoft.Json.JsonConvert.SerializeObject(products, Newtonsoft.Json.Formatting.Indented);
 
             File.WriteAllText(filePath, output);
+
         }
         /// <summary>
         /// Save to a Custom filepath
