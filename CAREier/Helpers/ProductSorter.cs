@@ -1,5 +1,6 @@
 ﻿using CAREier.Interfaces;
 using System.Collections.Generic;
+using CAREier.Models;
 
 namespace CAREier.Helpers {
     public static class ProductSorter {
@@ -9,9 +10,9 @@ namespace CAREier.Helpers {
         /// <param name="products">The products to be looked through</param>
         /// <param name="tag">The tag the products must have</param>
         /// <returns>A list of products from the "products" parameter with the given tag from the "tag" parameter</returns>
-        public static List<IProduct> GetProductsWithTag(List<IProduct> products, string tag) {
-            List<IProduct> re = new List<IProduct>();
-            foreach(IProduct product in products) {
+        public static List<Product> GetProductsWithTag(List<Product> products, string tag) {
+            List<Product> re = new List<Product>();
+            foreach(Product product in products) {
                 if(product.Tags.Contains(tag)) {
                     re.Add(product);
                 }
@@ -25,18 +26,19 @@ namespace CAREier.Helpers {
         /// <param name="products">>The products to be looked through</param>
         /// <param name="tags">The tags the products must have</param>
         /// <returns>A list of products from the "products" parameter with all the given tags from the "tags" parameter</returns>
-        public static List<IProduct> GetProductsWithTags(List<IProduct> products, string[] tags) {
-            List<IProduct> re = new List<IProduct>();
-            foreach (IProduct product in products) {
-                bool hasAll = true;
-                foreach (string tag in tags) {
-                    if(!product.Tags.Contains(tag)) {
+        public static List<Product> GetProductsWithTags(List<Product> products, string[] tags) {
+            List<Product> re = new List<Product>();
+            foreach (Product product in products) {
+                //bool hasAll = true;
+                product.Tags.Add(tags);
+                /*foreach (string tag in tags) {
+                    if(!Contains(tag)) {
                         hasAll = false;
                     }
                 }
                 if(hasAll) {
                     re.Add(product);
-                }
+                }*/
             }
             return re;
         }
@@ -46,7 +48,7 @@ namespace CAREier.Helpers {
         /// <param name="products">>The products to be looked through</param>
         /// <param name="tags">The tags the products must have</param>
         /// <returns>A list of products from the "products" parameter with all the given tags from the "tags" parameter</returns>
-        public static List<IProduct> GetProductsWithTags(List<IProduct> products, List<string> tags) {
+        public static List<Product> GetProductsWithTags(List<Product> products, List<string> tags) {
             return GetProductsWithTags(products, tags.ToArray());
         }
     }

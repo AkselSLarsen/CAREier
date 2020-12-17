@@ -6,133 +6,141 @@ using System.Threading.Tasks;
 using CAREier.Helpers;
 using CAREier.Interfaces;
 using CAREier.Localizers;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CAREier.Models
 {
-    public class ProductCatalog : JsonInterface<List<Product>, List<IProduct>>, IHandler<IProduct>
+    public class ProductCatalog : ICRUD<Product>
     {
         private string _filelocation;
-        private List<IProduct> _products;
+        private List<Product> _products;
+        private int _maxId;
 
         public ProductCatalog()
         {
             _filelocation = @"Data\Products.json";
 
-            _products = new List<IProduct>();
-            _products.Add(new Product()
-            {
-                Name = "milk",
-                Picture = "yes",
-                Price = new LocalizedPrice(20),
-                Weight = new LocalizedWeight(10),
-                Tags = new List<string>()
-
-            }); 
+            _products = new List<Product>();
+            
             if (ReadState() != null) {
                 _products.AddRange(ReadState());
             }
+            _maxId = 0;
+            calculateMaxId(false);
         }
 
-        public void Create(IProduct item)
+        public void Create(Product item)
         {
             if (item != null)
             {
+                item.id = ++_maxId; // this is shorthand for "maxId = maxId + 1; item.id = _maxId;"
                 _products.Add(item);
                 WriteState();
             }
         }
 
-        public int Count()
-        {
-            return _products.Count;
-        }
-
-        public IProduct Read(int index)
+        public Product Read(int index)
         {
             return _products[index];
         }
 
-        public IProduct ReadByName(string name)
-        {
-            foreach (var p in _products)
-            {
-                if (p.Name == name)
-                {
-                    return p;
-                }
-            }
-            return new Product();
-        }
 
-        public List<IProduct> ReadAll()
+        public List<Product> ReadAll()
         {
             return _products.ToList();
         }
 
-        public void Update(IProduct product)
+        public void Update(Product product)
         {
             if (product != null)
             {
                 foreach (var p in _products)
                 {
-                    if (p.Name == product.Name)
+                    if (p.id == product.id)
                     {
                         p.Name = product.Name;
                         p.Price = product.Price;
                         p.Weight = product.Weight;
                         p.Tags = product.Tags;
                         p.Picture = product.Picture;
+                        p.Store = product.Store;
+                        WriteState();
                     }
                 }
             }
         }
 
-        /*void IHandler<IProduct>.Update(IProduct pre, IProduct post)
-        {
-            if (_products.Contains(pre) )
-            {
-                int deleted = _products.IndexOf(pre);
-                _products.Remove(pre);
-                _products.Insert(deleted, post);
 
-                WriteState();
+        public void Delete(Product item)
+        {
+            if (item != null) {
+                int slot = -1;
+                for(int i=0; i < _products.Count; i++) {
+                    if (_products[i].id == item.id) {
+                        slot = i;
+                    }
+                }
+
+                if(slot != -1) {
+                    Delete(slot);
+                }
             }
-            
-        }*/
-
-        /*public IProduct Update(int index, IProduct item)
-        {
-            _products.RemoveAt(index);
-            _products.Insert(index, item);
-
-            WriteState();
-
-            return _products[index];
-        }*/
-
-        public void Delete(IProduct item)
-        {
-            _products.Remove(item);
-
-            WriteState();
         }
 
-        IProduct IHandler<IProduct>.Delete(int index)
+        public Product Delete(int index)
         {
-            IProduct deleted = Read(index);
+            Product deleted = Read(index);
+
             _products.RemoveAt(index);
 
             WriteState();
+
+            if (index == _maxId) {
+                calculateMaxId(true);
+            }
 
             return deleted;
         }
 
-        private List<Product> ReadState() {
-            return ReadState(_filelocation);
+        /// <summary>
+        /// This method ensures that every product not only gets a unique id amoungst existing products, but also amoungst no longer existing products.
+        /// This is achieved by always keeping track of the largest Id amoungst the current products, and giving new products higher Ids than that.
+        /// This itself ensures it in all but one edge case, which is if the current product with the highest Id is deleted.
+        /// This is remidied by checking for that edge case, and then reasigning the current product with the smallest Id, a new Id larger than the former max.
+        /// </summary>
+        /// <param name="wasRemoved">If the product with the highst Id was just deleted</param>
+        private void calculateMaxId(bool maxWasRemoved) {
+            if (maxWasRemoved) {
+                int minId = int.MaxValue;
+                Product temp = null;
+                foreach (Product product in _products) {
+                    if (product.id < minId) {
+                        minId = product.id;
+                        temp = product;
+                    }
+                }
+                Delete(temp);
+                temp.id = ++_maxId; // this is shorthand for "maxId = maxId + 1; temp.id = _maxId;", though is it really shorthand if I have to write all this out just to explain it?!?
+                Create(temp);
+                WriteState();
+            } else {
+                foreach (Product product in _products) {
+                    if (product.id > _maxId) {
+                        _maxId = product.id;
+                    }
+                }
+            }
         }
 
-        private void WriteState() {
-            WriteState(_products, _filelocation);
+        private List<Product> ReadState() 
+        {
+            return JsonFileSystem.ReadProduct(_filelocation);
+        }
+
+        private void WriteState() 
+        {
+            JsonFileSystem.WriteProduct(_products, _filelocation);
         }
     }
 }

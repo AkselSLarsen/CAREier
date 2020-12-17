@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{id:int}"
 @model CAREier.Pages.Catalog.UpdateModel
 @{
 }
@@ -12,20 +12,23 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="@Model.Product.Name"/>
+            <div class="form-group">
+                <input type="hidden" asp-for="@Model.Product.id" class="form-control" />
+            </div>
             <div class="form-group">
                 <label asp-for="@Model.Product.Name" class="control-label"></label>
                 <input asp-for="@Model.Product.Name" class="form-control" />
                 <span asp-validation-for="Product.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Product.Price" class="control-label"></label>
-                <input asp-for="@Model.Product.Price" class="form-control" />
+                <label asp-for="@Model.Product.Price.PriceDKK" class="control-label"></label>
+                <input asp-for="@Model.Product.Price.PriceDKK" class="form-control" />
+                <span asp-validation-for="Product.Price.PriceDKK" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Product.Weight" class="control-label"></label>
-                <input asp-for="@Model.Product.Weight" class="form-control" />
-                <span asp-validation-for="Product.Weight" class="text-danger"></span>
+                <label asp-for="@Model.Product.Weight.WeightKilo" class="control-label"></label>
+                <input asp-for="@Model.Product.Weight.WeightKilo" class="form-control" />
+                <span asp-validation-for="Product.Weight.WeightKilo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Product.Tags" class="control-label"></label>
@@ -33,11 +36,16 @@
                 <span asp-validation-for="Product.Tags" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="@Model.Product.Picture" class="control-label"></label>
+                <input asp-for="@Model.Product.Picture" class="form-control" />
+                <span asp-validation-for="Product.Picture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
 
                 <input type="submit" value="save" class="btn btn-primary" />
             </div>
             <div>
-                <a asp-page="Catalog">Back to list</a>
+                <a asp-page="ProductCatalog">Back to list</a>
             </div>
         </form>
 

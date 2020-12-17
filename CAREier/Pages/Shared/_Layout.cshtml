@@ -25,20 +25,18 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Catalog/Catalog">Catalog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/ShopCart">ShoppingCart</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Catalog/OrderCatalog">Orders</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+       
     </div>
 
     <footer class="border-top footer text-muted">

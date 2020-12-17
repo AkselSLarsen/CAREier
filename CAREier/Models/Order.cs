@@ -1,6 +1,7 @@
 ﻿using CAREier.Helpers;
 using CAREier.Interfaces;
 using CAREier.Localizers;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,91 +9,102 @@ using System.Threading.Tasks;
 
 namespace CAREier.Models
 {
-    public class Order : DB_Item, IOrder
+    public class Order 
     {
-        private string _name;
-        public string Name { get { return _name;  } set { _name = value; } }
-
-        private IStore _store;
-        public IStore MyStore { get { return _store; } set { _store = value; } }
-        private List<IProduct> _products;
-        public List<IProduct> Products { get { return _products; } set { _products = value; } }
-        private LocalizedPrice _totalPrice;
-        public LocalizedPrice TotalPrice { get { return _totalPrice; } set { _totalPrice = value; } }
-        private string _OrderID;
-        public string OrderID { get { return _OrderID; } set { _OrderID = value; } }
-
-        public override void save()//{
-        {
-            my_values.Add("Name", _name);
-            my_values.Add("MyStore", _store);
-            my_values.Add("products", _products);
-            my_values.Add("totalPrice", _totalPrice);
-            my_values.Add("OrderID", _OrderID);
-
-           
-            JsonFileSystem.Write_Item(my_values);
-        }
-        public void AddProduct(IProduct item)//{
-        {
-            _products.Add(item);
-        }
-
-        public void RemoveProduct(IProduct item)//{
-        {
-            _products.Remove(item);
-        }
-
-        public void RemoveProductWithTags(params string[] tags)//{
-        {
-            List<Product> DeleteList = GetProductsWithTags(tags);
-            foreach (var prod in DeleteList)
-            {
-                if(!_products.Contains(prod)) throw new System.ArgumentException("A imposible Error; A none existen product could not get deleted: tjeck order", "original");
-                _products.Remove(prod);
-            }
-            DeleteList.Clear();
-        }
-        public List<Product> GetProduct(string name)//{
-        {
-            List<Product> NewProductsList = new List<Product>();
-            foreach (var prod in _products)
-            {
-                if (prod is Product) 
-                {
-                    if (prod.Name == name)
-                    {
-                        NewProductsList.Add((Product)prod);
-                    }
-                }
-            }
-            return NewProductsList;
-        }
-        public Product GetFistProduct(string name)
-        {
-            foreach (var prod in _products)
-            {
-                if (prod is Product)
-                {
-                    if (prod.Name == name)
-                    {
-                        return (Product)prod;
-                    }
-                    
-                }
-            }
-            return null;
-        }
-        public List<Product> GetProductsWithTags(params string[] tags)//{
-        {
-            List<IProduct> Products = ProductSorter.GetProductsWithTags(_products, tags);
-            List<Product> NewProductsList = new List<Product>(Products.Count);
-            foreach (var prod in _products)
-            {
-                NewProductsList.Add((Product)prod);
-            }
-            return NewProductsList;
-        }
+        private double _rating;
+        private Buyer _buyer;
+        private Bringer _bringer;
+        private Store _store;
+        public List<Product> Products;
+        public Dictionary<int, int> ProductCount;
         
+
+       
+        
+        private static int _idCount;
+        private int _OrderID;
+        private DateTime _creationTime;
+
+        public Order(Buyer buyer, Store FromStore) {
+            Products = new List<Product>();
+            _buyer = buyer;
+            _store = FromStore;
+            _OrderID = _idCount++;
+            _creationTime = DateTime.Now;
+            ProductCount = new Dictionary<int, int>();
+        }
+        public Order(int id, string date, string buyerEmail, string StoreAdress,string bringerEmail)
+        {
+            Products = new List<Product>();
+            _buyer = new Buyer();
+            _buyer.Email = buyerEmail;
+            _store = new Store();
+            _store.Adress = StoreAdress;
+            _bringer = new Bringer();
+            _bringer.Email = bringerEmail;
+            _OrderID = id;
+            _creationTime = DateTime.Parse(date);
+            ProductCount = new Dictionary<int, int>();
+        }
+
+        public double Rating { get; set; }
+
+        //[JsonConverter(typeof(PriceConverter))]
+
+        // [JsonConverter(typeof(WeightConverter))]
+        // public LocalizedWeight TotalWeight { get { return _totalWeight; } private set { _totalWeight = value; } }
+        public int OrderID { get { return _OrderID; } set { _OrderID = value; } }
+        public DateTime CreationDate { get { return _creationTime; } }
+        public bool ITaken { get { return Bringer != null; } }
+        
+        public string Buyer_name { get { return _buyer.Email; } }
+        public string Store_name { get { return _store.Adress; } }
+        public string Bringer_name { get { return _bringer.Email; } }
+        //[JsonIgnore]
+        // [JsonConverter(typeof(ProductListConverter))]
+        [JsonIgnore]
+        public double TotalPrice
+        {
+            get
+            {
+                double value = 0;
+                foreach (var p in Products)
+                {
+                    value += p.Price.PriceDKK;
+                }
+                return value;
+            }
+        }
+        [JsonIgnore]
+        public double TotalWeight
+        {
+            get
+            {
+                double value = 0;
+                foreach (var p in Products)
+                {
+                    value += p.Weight.WeightKilo;
+                }
+                return value;
+            }
+        }
+        [JsonIgnore]
+        public Buyer Buyer { get; }
+        [JsonIgnore]
+        public Bringer Bringer { get { return _bringer; } set { _bringer = value; } }
+        [JsonIgnore]
+        public Store MyStore { get { return _store; } set { _store = value; } }
+    
+        public int CountProds()
+        {
+            int val = 0;
+            foreach (Product item in Products)
+            {
+                val += ProductCount[item.id];
+            }
+            return val;
+        }
+
     }
+
 }

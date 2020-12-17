@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace CAREier.Localizers {
+    [Obsolete]
     public class JsonTranslatorDictionary : JsonInterface<Dictionary<string, string>, Dictionary<string, string>>, ITranslator {
         private Dictionary<string, string> _translations;
         private string _fileLocation;

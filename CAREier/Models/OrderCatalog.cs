@@ -1,70 +1,98 @@
-﻿using CAREier.Helpers;
-using CAREier.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Threading.Tasks;
+using CAREier.Helpers;
+using CAREier.Interfaces;
+using CAREier.Localizers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CAREier.Models
 {
-    public class OrderCatalog : FileCatalog, ICatalog<Order>
+    public class OrderCatalog : ICRUD<Order>
     {
-        public OrderCatalog(JsonFileSystem jsonfileSaver) : base(jsonfileSaver)
+
+        private string _filelocation;
+        private List<Order> _orders;
+
+        public OrderCatalog()
         {
-          
+            _filelocation = @"Data\Orders.json";
+
+            _orders = ReadState();
+
+            if (_orders == null) _orders = new List<Order>();
         }
         public void Create(Order item)
         {
-            Create(item);
+            if (item != null)
+            {
+                foreach (var v in _orders)
+                {
+                    if (item.OrderID == v.OrderID)
+                    {
+                        return;
+                    }
+                }
+                _orders.Add(item);
+                WriteState();
+            }
+        }
+
+        public Order Read(int index)
+        {
+            return _orders[index];
         }
         public List<Order> ReadAll()
         {
-            List<DB_Item> NewList = readAll();
-            foreach (DB_Item item in NewList)
-            {
-                if (item.type == FileTypes.Order)
-                    NewList.Add((Order)item);
-            }
-            return NewList;
+            return _orders.ToList();
         }
+
         public void Update(Order order)
         {
-            update(order);
-        }
-
-        public void Delete(Order item)
-        {
-            Create(item);
-        }
-
-        public Order GetByName(string name)
-        {
-            return itemName(name);
-        }
-
-        public int Index(Order item)
-        {
-            return index(item);
-        }
-        public List<Order> Load()
-        {
-            List<Order> NewList = new List<Order>();
-            foreach (DB_Item item in NewList)
+            if (order != null)
             {
-                if (item.type == FileTypes.Order)
-                    NewList.Add((Order)item);
+                foreach (var o in _orders)
+                {
+                    if (o.Bringer == order.Bringer)
+                    {
+                        o.MyStore = order.MyStore;
+                        o.Products = order.Products;
+                        o.Rating = order.Rating;
+                        WriteState();
+                    }
+                }
             }
-            return NewList;
         }
+        public void Delete(Order item) {
+            if (item != null) {
+                int i = 0;
+                for (i = 0; i < _orders.Count; i++)
+                {
+                    if (_orders[i].OrderID == item.OrderID)
+                    {
+                        break;
+                    }
 
-
-
-
-
-
-
-
-
-
+                }
+                if (i < _orders.Count) {
+                    _orders.RemoveAt(i);
+                    WriteState();
+                }
+            }
+        }
+        public Order Delete(int index) {
+            Order deleted = Read(index);
+            _orders.RemoveAt(index);
+            WriteState();
+            return deleted;
+        }
+        private List<Order> ReadState() {
+            return JsonFileSystem.ReadOrder(_filelocation);
+        }
+        private void WriteState() {
+            JsonFileSystem.WriteOrder(_orders, _filelocation);
+        }
     }
 }

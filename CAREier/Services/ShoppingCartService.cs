@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace CAREier.Services
 {
+    [Obsolete]
     public class ShoppingCartService
     {
         public decimal CalculateTotalPrice()

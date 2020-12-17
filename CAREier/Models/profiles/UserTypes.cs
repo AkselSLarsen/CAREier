@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CAREier.Models
+namespace CAREier.Models.profiles
 {
-    public class Test
+    public enum UserTypes
     {
+        Buyer,
+        Bringer,
+        Store
     }
 }

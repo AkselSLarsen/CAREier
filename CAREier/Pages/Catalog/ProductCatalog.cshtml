@@ -1,0 +1,57 @@
+﻿@page
+@using CAREier.Interfaces
+@using CAREier.Helpers
+@using CAREier.Models
+@model CAREier.Pages.CatalogModel
+@inject ICRUD<Product> Handler
+@{
+}
+
+
+<h1>List of Products</h1>
+
+
+<div>
+    <form method="post">
+        <p>
+            Search:
+            <input type="text" asp-for="@Model.Tags" />
+            <input type="submit" value="Search" />
+        </p>
+    </form>
+</div>
+
+<p>
+    <a asp-page="ProductCreate">Create New Product</a>
+</p>
+
+
+<p>number of products in the catalog: @Model.Products.Count</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>price</th>
+            <th>weight</th>
+            <th>tags</th>
+            <th>picture</th>
+            <th>Functions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Products.Count; i++)
+        {
+            <tr>
+                <td> @Model.Products[i].Name</td>
+                <td> @Model.Products[i].Price.PriceDKK</td>
+                <td> @Model.Products[i].Weight.WeightKilo</td>
+                <td> @Model.Products[i].Tags</td>
+                <td> <img style="width: 70px; height: auto" src="~/images/@Model.Products[i].Picture" alt="picture"></td>
+                <td> <a asp-page="ProductUpdate" asp-route-id="@i">Update product</a> <br> <a asp-page="ProductDelete" asp-route-id="@i">Delete</a></td>
+
+            </tr>
+
+        }
+    </tbody>
+</table>

@@ -1,4 +1,5 @@
-﻿using CAREier.Models;
+﻿using CAREier.Interfaces;
+using CAREier.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,49 +8,62 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace CAREier.Helpers {
-    public class JsonFileSystem {
-        public string filePath;
-        public List<DB_Item> ItemQueue;
-        public JsonFileSystem (string filePath)
-        {
-            this.filePath = filePath;
-            ItemQueue = new List<DB_Item>();
-        }
-        public List<DB_Item> Read()
-        {
-            string jsonString = File.ReadAllText(filePath);
-            return JsonConvert.DeserializeObject<List<DB_Item>>(jsonString);
-        }
-        /// <summary>
-        /// Read from a Custom filepath
-        /// </summary>
-        /// <param name="JsonFileName"></param>
-        /// <returns></returns>
-        public List<DB_Item> Read(string JsonFileName) {
+    public static class JsonFileSystem {
+        //Read and Write Products
+        public static List<Product> ReadProduct(string JsonFileName) {
             string jsonString = File.ReadAllText(JsonFileName);
-            return JsonConvert.DeserializeObject<List<DB_Item>>(jsonString);
+            return JsonConvert.DeserializeObject<List<Product>>(jsonString);
         }
-        public void Write()
-        {
-            string output = Newtonsoft.Json.JsonConvert.SerializeObject(ItemQueue, Newtonsoft.Json.Formatting.Indented);
 
-            File.WriteAllText(filePath, output);
-            ItemQueue.Clear();
-        }
-        public void Write(List<DB_Item> products)
-        {
+        public static void WriteProduct(List<Product> products, string JsonFileName) {
             string output = Newtonsoft.Json.JsonConvert.SerializeObject(products, Newtonsoft.Json.Formatting.Indented);
 
-            File.WriteAllText(filePath, output);
-
+            File.WriteAllText(JsonFileName, output);
         }
-        /// <summary>
-        /// Save to a Custom filepath
-        /// </summary>
-        /// <param name="products"></param>
-        /// <param name="JsonFileName"></param>
-        public void Write(List<DB_Item> products, string JsonFileName) {
-            string output = Newtonsoft.Json.JsonConvert.SerializeObject(products, Newtonsoft.Json.Formatting.Indented);
+
+        //Read and Write Orders
+        public static List<Order> ReadOrder(string JsonFileName) {
+            string jsonString = File.ReadAllText(JsonFileName);
+
+            return JsonConvert.DeserializeObject<List<Order>>(jsonString);
+        }
+        public static void WriteOrder(List<Order> orders, string JsonFileName) {
+            string output = Newtonsoft.Json.JsonConvert.SerializeObject(orders, Newtonsoft.Json.Formatting.Indented);
+
+            File.WriteAllText(JsonFileName, output);
+        }
+
+        public static List<Buyer> ReadBuyers(string JsonFileName)
+        {
+            string jsonString = File.ReadAllText(JsonFileName);
+            return JsonConvert.DeserializeObject<List<Buyer>>(jsonString);
+        }
+        public static void WriteBuyers(List<Buyer> buyers, string JsonFileName)
+        {
+            string output = Newtonsoft.Json.JsonConvert.SerializeObject(buyers, Newtonsoft.Json.Formatting.Indented);
+
+            File.WriteAllText(JsonFileName, output);
+        }
+
+        public static List<Store> ReadStores(string JsonFileName)
+        {
+            string jsonString = File.ReadAllText(JsonFileName);
+            return JsonConvert.DeserializeObject<List<Store>>(jsonString);
+        }
+        public static void WriteStores(List<Store> stores, string JsonFileName)
+        {
+            string output = Newtonsoft.Json.JsonConvert.SerializeObject(stores, Newtonsoft.Json.Formatting.Indented);
+
+            File.WriteAllText(JsonFileName, output);
+        }
+        public static List<Bringer> ReadBringers(string JsonFileName)
+        {
+            string jsonString = File.ReadAllText(JsonFileName);
+            return JsonConvert.DeserializeObject<List<Bringer>>(jsonString);
+        }
+        public static void WriteBringers(List<Bringer> bringers, string JsonFileName)
+        {
+            string output = Newtonsoft.Json.JsonConvert.SerializeObject(bringers, Newtonsoft.Json.Formatting.Indented);
 
             File.WriteAllText(JsonFileName, output);
         }

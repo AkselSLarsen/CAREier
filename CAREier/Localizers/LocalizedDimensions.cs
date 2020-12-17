@@ -1,6 +1,8 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
 
 namespace CAREier.Localizers {
+    [Obsolete]
     public class LocalizedDimensions {
         private Vector3 _dimensions; //Dimensions in meters
 

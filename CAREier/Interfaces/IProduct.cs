@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
+using CAREier.Models;
 
 namespace CAREier.Interfaces {
     public interface IProduct {
@@ -12,7 +13,9 @@ namespace CAREier.Interfaces {
         public string Name { get; set; }
         public LocalizedPrice Price { get; set; }
         public LocalizedWeight Weight { get; set; }
-        public List<string> Tags { get; set; }
+        public TagSystem Tags { get; set; }
         public string Picture { get; set; }
+
+        public Store Store { get; set; }
     }
 }

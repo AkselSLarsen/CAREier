@@ -1,4 +1,5 @@
 ﻿using CAREier.Localizers;
+using CAREier.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,19 +7,22 @@ using System.Threading.Tasks;
 
 namespace CAREier.Interfaces
 {
+    [Obsolete]
     public interface IOrder
     {
-        public string Name { get; set; }
-
+        public double Rating { get; set; }
+        public Buyer Buyer { get; }
+        public Bringer Bringer { get; set; }
         //Nu heder den MyStore, for det har jeg lyst til den skal hede! :D
         //Det er komplet uacceptablet!!! XD
-        public IStore MyStore { get; set; }
-        public List<IProduct> Products { get; set; }
-        public LocalizedPrice TotalPrice { get; set; }
-
-        public string OrderID { get; set; }
+        public Store MyStore { get; }
+        public List<IProduct> Products { get; }
+        public LocalizedPrice TotalPrice { get; }
+        public LocalizedWeight TotalWeight { get; }
+        public int OrderID { get; }
+        public DateTime CreationDate { get; }
         
-        public abstract void AddProduct(IProduct item);
-        public abstract void RemoveProduct(IProduct item);
+        public abstract void AddToProductList(IProduct item);
+        public abstract void RemoveProductFromList(IProduct item);
     }
 }

@@ -1,0 +1,18 @@
+﻿@page
+@model CAREier.Pages.Catalog.OrderCatalogModel
+@{
+}
+<h1>List of Orders</h1>
+
+<tbody>
+    @foreach (var Ord in Model.Orders)
+    {
+        <tr>
+            <td> @Ord.OrderID</td>
+            <td> @Ord.TotalPrice</td>
+            <td> @Ord.TotalWeight</td>
+            <td> @Ord.CreationDate</td>
+        </tr>
+
+        }
+</tbody>
